@@ -1,0 +1,220 @@
+
+.pp
+{
+    padding-left: 24px;
+}
+.text-custom
+{
+    color:rgba(209, 69, 69, 0.80)
+}
+.tra
+{
+    position: relative;
+    transition: all ;
+    transition-duration: 500ms;
+     transition-timing-function: ease;
+     animation-name: ht1;
+     animation-duration: 500ms;
+     transform: translateX(100%);
+    
+}
+.tra1
+{
+    position: relative;
+    transition: all ;
+    transition-duration: 500ms;
+     transition-timing-function: ease;
+     animation-name: ht;
+     animation-duration: 500ms;
+     transform: translateX(-100%);
+
+}
+@keyframes ht {
+   from {
+    transform: translateX(100%);
+   }
+   to {
+    transform: translateX(-100%);
+   }
+}
+@keyframes ht1 {
+   from {
+    transform: translateX(-100%);
+   }
+   to {
+    transform: translateX(100%);
+   }
+}
+
+.contlog
+{
+    height: 100vh;
+    align-items: center;
+   width: 50vw;
+
+}
+.msg
+{
+    width: 50vw;
+    align-items: center;
+}
+.main
+{
+    width: 50vw;
+    height: auto;
+    align-items: center;
+}
+.contfor
+{
+    width: 50vw;
+}
+.form
+{
+    width: 50vw;
+    align-items: center;
+}
+.fo
+{
+    width: 400px;
+    margin-bottom: 2vh;
+    height: 50px;
+}
+.sb
+{
+    width: 150px;
+    margin-top: 2vh;
+    height:40px;
+}
+.contimg
+{
+    width: 50vw;
+    height: 100vh;
+}
+.img
+{
+    width: 50vw;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center center;
+}
+.papa
+{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+@media  screen and (max-width:801px)
+{
+    .fo
+    {
+        width: 300px;
+    }
+    .sb
+    {
+        width: 100px;
+    }
+}
+@media  screen and (max-width:604px)
+{
+    .tra
+    {
+        position: relative;
+        transition:none ;
+        transition-duration:none;
+         transition-timing-function:none;
+         animation-name:none;
+         animation-duration:none;
+         transform:none;
+    
+    }
+    .tra1
+    {
+    position: relative;
+    transition:none ;
+    transition-duration:none;
+     transition-timing-function:none;
+     animation-name:none;
+     animation-duration:none;
+     transform:none;
+
+    }
+    @keyframes ht {
+             }
+     @keyframes ht1 {
+       
+     }
+     .papa
+     {
+        display: flex;
+        flex-direction: row;
+     }
+     .contimg
+     {
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+
+     }
+     .img
+     {
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        z-index: -2;
+        opacity: 0.5;
+     }
+     .contlog
+     {
+        width: 95%;
+        height: 90%;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        margin-left: auto;
+        margin-right: auto;
+
+        z-index: 1;
+        background-color: rgba(0, 0, 0, 0.614);
+        border-radius: 30px;
+        box-shadow: 0px 0px 10px 1px rgba(255, 255, 255, 0.397);
+     }
+     .ww
+     {
+        color: white;
+     }
+     .fo
+     {
+         width: 60vw;
+     }
+     .sb
+     {
+         width: 100px;
+     }
+
+     .papa{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+     }
+     .LSlogo
+     {
+        top: 6vh;
+        width: 100px;
+        left: 25px;
+     }
+}
+@media screen and (max-width:376px)
+ {
+   .ww
+   {
+      font-size:85%;
+      flex-wrap: nowrap;
+      width: 90vw;
+   }    
+   .contlog
+   {
+    width: 95vw;
+   }
+   .fo{
+    width: 90vw;
+   }
+}

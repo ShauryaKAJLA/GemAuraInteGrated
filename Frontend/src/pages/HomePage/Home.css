@@ -1,0 +1,780 @@
+/* Crousal Home page */
+.CrousalHomeMainContainer
+{
+    height: 80vh;
+    width: 100vw;
+    position: relative;
+}
+.CrousalHomeContainerOverlay
+{
+    background: rgba(0, 0, 0, 0.329);
+}
+.CrousalHomeContainerImageDiv
+{
+    height: 80vh;
+    width: 100vw;
+    background-color: black;
+    
+}
+
+.CrousalHomeContainerImage{
+    height: 80vh;
+    width: 100vw;
+    object-fit: cover;
+    position: relative;
+}
+.CrousalHomeContainerTextDiv
+{
+    height: 50vh;
+    position: absolute;
+    top:15%;
+    left: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 2vh;
+    padding: 40px;
+    border-radius: 10px;
+    z-index: 2;
+    /* box-shadow: 0px 0px 8px 1px rgba(255, 255, 255, 0.1);
+    background-color: rgba(0, 0, 0, 0.123); */
+}
+.caveat-custom{
+    font-family: "Caveat", cursive;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: normal;
+  }
+.CrousalHomeContainerTextHead
+{
+     display: flex;
+    width: 100%;
+}
+.CrousalHomeContainerTextDesc
+{
+   max-width: 30vw;
+}
+.isSelected
+{
+    opacity: 1;
+    display: flex;
+    animation: cen;
+    animation-duration: 500ms;
+    animation-timing-function: ease;
+   
+}
+@keyframes cen {
+    from{
+        transform: scale(0.90);
+    }
+    to{
+        transform: scale(1);
+    }
+    
+}
+.isNotSelected
+{
+    opacity: 0;
+    display: none;
+}
+
+@media screen and (max-width:1140px)
+{  
+    .CrousalHomeMainContainer
+{
+    height: 70vh;
+    width: 100vw;
+    position: relative;
+}
+.CrousalHomeContainerImageDiv
+{
+    height: 70vh;
+    width: 100vw;
+    background-color: black;
+}
+.CrousalHomeContainerImage{
+    height: 70vh;
+    width: 100vw;
+    object-fit: cover;
+    position: relative;
+}
+
+.caveat-custom{
+    font-family: "Caveat", cursive;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+  }
+.CrousalHomeContainerTextHead
+{
+    font-size:5vw;
+    display: flex;
+    width: 100%;
+}
+.CrousalHomeContainerTextDesc
+{
+   max-width: 40vw;
+   font-size: 2.5vw;
+}
+}
+
+@media screen and (max-width:795px)
+{  
+    .CrousalHomeMainContainer
+{
+    height: 70vh;
+    width: 100vw;
+    position: relative;
+}
+.CrousalHomeContainerImageDiv
+{
+    height: 70vh;
+    width: 100vw;
+    background-color: black;
+}
+.CrousalHomeContainerImage{
+    height: 70vh;
+    width: 100vw;
+    object-fit: cover;
+    position: relative;
+}
+
+.caveat-custom{
+    font-family: "Caveat", cursive;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+  }
+.CrousalHomeContainerTextHead
+{
+    font-size:5vw;
+    display: flex;
+    width: 100%;
+}
+.CrousalHomeContainerTextDesc
+{
+   max-width: 40vw;
+   font-size: 2.5vw;
+}
+}
+
+@media screen and (max-width:665px)
+{  
+    .CrousalHomeMainContainer
+{
+    height: 40vh;
+    width: 100vw;
+    position: relative;
+
+}
+.CrousalHomeContainerImageDiv
+{
+    height: 40vh;
+    width: 100vw;
+    background-color: black;
+}
+.CrousalHomeContainerImage{
+    height: 40vh;
+    width: 100vw;
+}
+.CrousalHomeContainerTextDiv
+{
+    height: 50vh;
+    position: absolute;
+    top:-5%;
+}
+
+.CrousalHomeContainerTextHead
+{
+    font-size:5vw;
+    display: flex;
+    width: 100%;
+}
+.CrousalHomeContainerTextDesc
+{
+   max-width: 40vw;
+   font-size: 2.5vw;
+}
+}
+
+@media screen and (max-width:545px)
+{  
+    .CrousalHomeMainContainer
+{
+    height: 65vh;
+    width: 100vw;
+    position: relative;
+
+}
+.CrousalHomeContainerImageDiv
+{
+    height: 65vh;
+    width: 100vw;
+    background-color: black;
+}
+.CrousalHomeContainerImage{
+    height: 65vh;
+    width: 100vw;
+}
+.CrousalHomeContainerTextDiv
+{
+    height: 50vh;
+    position: absolute;
+    top:40%;
+    left: 0;
+    right: 0;
+}
+.CrousalHomeContainerTextHead
+{
+    font-size:7.5vw;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.caveat-custom{
+    font-family: "Caveat", cursive;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: normal;
+  }
+.CrousalHomeContainerTextDesc
+{
+    max-width: 100vw;
+   width: 100vw;
+   font-size: 4vw;
+   display: flex;
+   justify-content: center;
+   font-weight: 500;
+}
+}
+
+
+/* Image 2 portion */
+
+.ContainerImages2
+{
+    display: flex;
+    margin-top: 5vw;
+    margin-right: 2vw;
+    margin-left: 2vw;
+    width: 96vw;
+    column-gap: 2vw;
+    height: auto;
+}
+.Image4Text
+{
+    width: 100%;
+    height: 87.5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    background-color: rgba(0, 0, 0, 0.249);
+}
+.inTextImage4
+{
+    background-color:white;
+    border: 0.8vw solid rgb(102, 43, 43);
+    border-radius: 20px;
+}
+.ContainerImage4 img
+{ 
+    width: 47vw; 
+object-fit: cover;
+}
+.ContainerImage2 img ,video
+{
+    width: 47vw;
+
+}
+
+.ContainerImage2 img 
+{
+    height: 42%;
+    filter: blur(.5px);
+}
+.ContainerImage2 video
+{
+    height: 42.55%;
+    object-fit:cover;
+    object-position: center;
+}
+
+.ContainerImage2 
+{
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.5vw;
+}
+
+@media screen and (max-width:545px)
+{
+    .Image4Text
+{
+
+    height: 100%;
+}
+    .ContainerImages2
+    {
+        flex-direction: column;
+        row-gap: 2vw;
+    }
+.ContainerImage4 img
+{ 
+    width: 96vw;
+
+}
+.ContainerImage2 img ,video
+{
+    width: 96vw;
+}
+.ContainerImage2 img 
+{
+    height: 45%;
+}
+.ContainerImage2 video
+{
+    height: 43%;
+    object-fit: cover;
+}
+
+.ContainerImage2 
+{
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.5vw;
+}
+}
+
+
+
+/* Catagories */
+
+.CatagoriesContainer
+{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 10vh;
+    padding-bottom:5vh ;
+    row-gap: 5vh;
+}
+.CatagoriesContainerText
+{
+     width: 100vw;
+     height: 100px;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     row-gap: 2vh;
+}
+.CatagoriesContainerMainHead
+{
+    color: #E8CF36;
+}
+
+/* Crousal for Catagories */
+.CatagoriesContainerAllCat
+{
+   width: 90vw;
+   display: flex;
+   flex-direction: column;
+   margin-right: 5vw;
+   margin-left:5vw ;
+}
+.CatagoriesCont
+{
+    height: 280px;
+padding-left: 2vw;
+padding-right: 2vw;
+}
+.ImageOfCatagories
+{
+    width:100%;
+    height: 200px;
+   overflow: hidden;
+
+}
+.ImageOfCatagories img
+{
+    width:100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+    scale: 1.13;
+}
+
+.Catagoriesdata
+{
+  background-color: black;
+  height:80px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.CustomCatagoryColor
+{
+    color:#E8CF36;
+    text-transform: uppercase;
+}
+@media screen and (max-width:500px)
+{
+    .CatagoriesContainerAllCat
+{
+   width: 85vw;
+   display: flex;
+   flex-direction: column;
+   margin-right: 7.5vw;
+   margin-left:7.5vw ;
+}
+.CatagoriesCont
+{
+    height: 250px;
+    padding-left: 1vw;
+    padding-right: 1vw;
+}
+.ImageOfCatagories
+{
+    width:100%;
+    height: 170px;
+   overflow: hidden;
+
+}
+.ImageOfCatagories img
+{
+    width:100%;
+    height: 170px;
+    object-fit: cover;
+    object-position: center;
+    scale: 1.13;
+}
+
+.Catagoriesdata
+{
+  background-color: black;
+  height:60px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.CustomCatagoryColor
+{
+    color:#E8CF36;
+    text-transform: uppercase;
+}
+}
+
+
+
+/* Banner1 */
+
+.Banner1Div
+{
+    width: 100vw;
+    min-height: 46vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5vh;
+}
+
+.Banner1InnerDiv
+{
+    width: 97vw;
+    background-color: rgb(102, 43, 43);
+    height: 40vh;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+}
+.Banner1FirstPhoto
+{
+    width: 230px;
+    height: 100%;
+    margin-left:2vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Banner1FirstPhoto img
+{
+    width: 100%;
+    height: 80%;
+    object-fit: contain;
+
+}
+.Banner1SecondPhoto
+{
+    width: 300px;
+    height: 40vh;
+}
+.Banner1SecondPhoto img
+{
+    width: 100%;
+    height: 40vh;
+    object-fit: cover;
+}
+.Banner1Text
+{
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    height: 40vh;
+    justify-content: center;
+    align-items: center;
+    row-gap: 5vh;
+    margin-right: auto;
+    margin-left: auto;
+}
+@media screen and (max-width:1228px) 
+{
+    
+    .Banner1FirstPhoto
+    {
+        width: 150px;
+        height: 100%;
+        margin-left:2vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .Banner1FirstPhoto img
+    {
+        width: 100%;
+        height: 80%;
+        object-fit: contain;
+        
+    }
+    .Banner1SecondPhoto
+    {
+        width: 250px;
+        height: 40vh;
+    }
+    .Banner1SecondPhoto img
+    {
+        width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.Banner1Text
+{
+    display: flex;
+    flex-direction: column;
+    width: 60vw;
+    height: 40vh;
+    justify-content: center;
+    align-items: center;
+    row-gap: 5vh;
+}
+}
+@media screen and (max-width:1175px) 
+{
+.Banner1Text
+{
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    height: 40vh;
+    justify-content: center;
+    align-items: center;
+    row-gap: 5vh;
+}
+}
+@media screen and (max-width:810px) 
+{
+    .Banner1InnerDiv
+    {
+        width: 97vw;
+        background-color: rgb(102, 43, 43);
+        height: 35vh;
+    }
+    .Banner1FirstPhoto
+    {
+        width: 120px;
+        height: 100%;
+        margin-left:2vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .Banner1FirstPhoto img
+    {
+        width: 100%;
+        height: 80%;
+        object-fit: contain;
+    
+    }
+    .Banner1SecondPhoto
+    {
+        width: 200px;
+        height: 35vh;
+    }
+    .Banner1SecondPhoto img
+    {
+        width: 100%;
+        height: 35vh;
+        object-fit: cover;
+    }
+    .Banner1Text
+    {
+        display: flex;
+        flex-direction: column;
+        width: 50vw;
+        height: 35vh;
+        justify-content: center;
+        align-items: center;
+        row-gap:1vh;
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
+@media screen and (max-width:521px) 
+{
+    .Banner1InnerDiv
+    {
+        width: 97vw;
+        background-color: rgb(102, 43, 43);
+        height: auto;
+        flex-direction: column;
+
+    }
+    .Banner1FirstPhoto
+    {
+        width: 120px;
+        height: 25vh;
+        margin-left:2vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .Banner1FirstPhoto img
+    {
+        width: 100%;
+        height: 80%;
+        object-fit: contain;
+    
+    }
+    .Banner1SecondPhoto
+    {
+        width:100%;
+        height: 50vh;
+    }
+    .Banner1SecondPhoto img
+    {
+        width:90%;
+        height: 45vh;
+        object-fit: contain;
+    }
+    .Banner1Text
+    {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 30vh;
+        justify-content: center;
+        align-items: center;
+        row-gap:1vh;
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
+
+
+
+/* Products1 */
+
+.Products1
+{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10vh;
+}
+
+.Products1Maindiv
+{
+    width: 85vw;
+    display: flex;
+    flex-direction: column;
+    margin-right: 7.5vw;
+    margin-left: 7.5vw;
+    margin-top: 4vw;
+}
+.Products1productDiv
+{
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 2vw;
+    padding-right: 2vw;
+}
+.Products1ImageDiv
+{
+    width: 100%;
+    height: 180px;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Products1ImageDiv img
+{
+    width: 100%;
+    height: 80%;
+    object-fit: contain;
+    object-position: center;
+}
+.Products1DataDiv
+{
+    width: 100%;
+    height: 70px;
+    background-color: black;
+    color: white;
+}
+
+@media screen and (max-width:460px)
+ {
+   
+
+.Products1productDiv
+{
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 2vw;
+    padding-right: 2vw;
+}
+.Products1ImageDiv
+{
+    width: 100%;
+    height: 130px;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Products1ImageDiv img
+{
+    width: 100%;
+    height: 80%;
+    object-fit: contain;
+    object-position: center;
+}
+.Products1DataDiv
+{
+    width: 100%;
+    height: 70px;
+    background-color: black;
+    color: white;
+}
+}

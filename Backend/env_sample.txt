@@ -1,0 +1,4 @@
+PORT = 5000
+USERNAME = shubhammehta212
+PASSWORD = EXJNKkEI8rjgcuAS
+JWT_SECRET_KEY = fibnTYufneiRqivtrtWtivRWx

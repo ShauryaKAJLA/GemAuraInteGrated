@@ -1,0 +1,163 @@
+.contnav
+{
+    background-color:rgb(102, 43, 43);
+    color: white;
+    align-items: center;
+
+}
+
+.products
+{
+    height: 100%;
+}
+.proOpt
+{
+    position: absolute;
+    display: none;
+    top: 20px;
+      overflow: hidden;
+}
+.proOpt li
+{
+    margin-left: 7px; 
+}
+.products:hover .proOpt
+{
+   display: flex;
+   animation-name: pro;
+   animation-duration: 100ms;
+   animation-timing-function: ease-out;
+}
+.proOpt:hover
+{
+   display: flex;
+}
+@keyframes pro {
+ from
+ {
+    transform: translateY(-10%);
+ 
+    height: 0px;
+}   
+to
+{
+     transform: translateY(0%);
+
+    height: 100px;
+ }
+}
+.aft
+{
+    display: none;
+}
+.menu
+{
+    display: none;
+}
+.MainMenu
+{
+    display: flex;
+}
+@media screen and (max-width:760px)
+{
+    .menu
+    {
+        display: flex;
+    }
+    .MainMenu
+    {
+        display: none;
+    }
+    
+.MainMenu
+{
+      position: absolute;
+      flex-direction: column;
+      top: 0;
+      background:rgb(102, 43, 43);
+      width: 40vw;
+      min-width: 150px;
+      height: auto;
+      min-height: 100vh;
+      left: 0;
+      align-items: center;    
+      row-gap: 10px;
+      animation-name: side;
+      animation-duration: 500ms;
+      animation-timing-function: ease;
+    }
+    
+@keyframes side 
+{
+   from
+   {
+      left: -100%;
+   }    
+   to
+   {
+     left:0%;
+   }
+}
+.proOpt
+{
+    position: relative;
+    top: 0;
+    padding:3px;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1vw;
+    width: 20vw;
+}
+.MainOpt
+{
+   display: flex;
+   flex-direction: column;
+   margin-left: 5vw;
+   width: 100%;
+}
+.proOpt li
+{
+    margin-left: 0; 
+}
+.pre
+{
+   display: none;
+}   
+.aft
+{
+    display: flex;
+    width: 100%;
+    margin-left: 5vw;
+    margin-top: 10px;
+    align-items: center;
+}
+.search
+{
+    width: auto;
+}
+.search input
+{
+  display: none;
+}
+.search button
+{
+  border: 1px solid white;
+  border-radius: 100% ;
+}
+.search:hover input
+{
+    display: flex;
+}
+.search:hover 
+{
+    width: 40vw;
+}
+.search:hover button
+{
+    border-start-start-radius: 9999px;
+    border-end-start-radius: 9999px;
+    border-inline-end-width: 0px;
+}
+}
+

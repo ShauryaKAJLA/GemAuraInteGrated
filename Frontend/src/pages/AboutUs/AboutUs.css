@@ -1,0 +1,130 @@
+.ContAbout
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.Back
+{
+    background-color: black;
+    padding: 5px;
+    border-radius: 50%;
+    font-size: larger;
+}
+.AboutUsImgCont
+{
+    width:100vw;
+    height: 100vh;
+    position: absolute;
+}
+.AboutUsImg
+{
+    width: 100vw;
+    height: 100vh;
+    object-fit:cover;
+    object-position:center;
+
+}
+.ContText
+{
+    width: 70vw;
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    background-color: rgba(222, 166, 166, 0.646);
+    border-radius: 30px;
+    color: rgb(0, 0, 0);
+    box-shadow: 0px 0px 8px 1px rgba(255, 255, 255, 0.543);
+    row-gap: 2vh;
+    font-weight:bold;
+}
+.Head
+{
+    width: 70vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: xx-large;
+    font-weight: bold;
+}
+.text
+{
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: larger;
+}
+.dancing-script-Customtext {
+    font-family: "Dancing Script", cursive;
+    font-optical-sizing: auto;
+    font-weight:700;
+    font-style: normal;
+  }
+
+@media screen and (max-width:1104px) {
+.ContText
+{
+    width: 80vw;
+    height: 90vh;
+    font-size:smaller;
+}
+.text
+{
+    width: 70vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: larger;
+}
+
+  }
+
+  @media screen and (max-width:680px) {
+    .ContText
+    {
+        width: 90vw;
+        height: 60vh;
+        font-size:x-small;
+    }
+    .text
+    {
+        width: 80vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: larger;
+    }
+    
+      }
+      
+      @media screen and (max-width:463px) 
+      {
+        .ContText
+        {
+            width: 95vw;
+            height: 70vh;
+            font-size:xx-small;
+        }
+        .text
+        {
+            width: 90vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: larger;
+        }
+        .Head
+        {
+            width: 70vw;
+            font-size:x-large;
+        }
+        }

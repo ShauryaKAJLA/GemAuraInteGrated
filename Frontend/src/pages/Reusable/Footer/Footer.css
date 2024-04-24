@@ -1,0 +1,85 @@
+.copyright
+{
+    border-top: 0.5px solid rgba(255, 255, 255, 0.425);
+}
+.contFoot
+{
+    display: grid;
+    grid-template-columns: 20vw 20vw 20vw 20vw;
+    justify-content: center;
+    column-gap: 3vw;
+   min-height: 245px;
+   align-items: center;
+
+}
+.GridCols
+{
+    width: 20vw;
+    height: 200px;
+}
+.contLink
+{
+     display: flex;
+     flex-direction: column;
+     row-gap: 1vh;
+     color: white;
+     font-size:14px;
+
+}
+.customfooterColor
+{
+    color: #E8CF36;
+}
+.linkData
+{
+    display: flex;
+    align-items: center;
+}
+@media screen and (max-width:1053px) 
+{
+     .contFoot{
+       column-gap: 1vw;
+     }
+}
+@media screen and (max-width:653px) 
+{
+    .contFootMain
+    {
+        min-height: 555px;
+    }
+     .contFoot{
+       grid-template-columns: 40vw 40vw;
+       grid-template-rows: 250px 250px;
+       height: 500px;
+       justify-content: center;
+     }
+     .GridCols
+     {
+        width: 40vw;
+     }
+     .contFoot{
+        column-gap: 10vw;
+      }
+}
+@media screen and (max-width:369px) 
+{
+    .contFootMain
+    {
+        min-height: 655px;
+    }
+     .contFoot{
+       grid-template-columns: 100vw;
+       grid-template-rows: 120px 160px 170px 130px;
+       height: 600px;
+       justify-content: center;
+     }
+     .GridCols
+     {
+        width: 40vw;
+        height: auto;
+        margin-left: 20vw;
+     }
+     .contFoot{
+        column-gap: 10vw;
+      }
+}

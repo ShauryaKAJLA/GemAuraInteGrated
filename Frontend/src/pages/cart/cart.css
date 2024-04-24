@@ -1,0 +1,35 @@
+.customIncrement
+{
+    border: 1px solid rgba(209, 69, 69, 0.80);
+}
+@media screen and (max-width:606px)
+{
+    .customIncrement
+    {
+        border: 0.5px solid rgba(209, 69, 69, 0.80);
+        width: 40px;
+        height: 20px;
+        font-size: x-small;
+        padding-left: 0.5px;
+        padding-right: 0.5px;
+        display: flex;
+        justify-content: space-between;
+    }  
+    .customIncrement div
+    {
+        display: flex;
+        font-size: small;
+    }
+    .head
+    {
+        width: 15vw;
+    }
+}
+@media screen and (max-width:335px) 
+{ 
+
+    .head
+    {
+        width: 16vw;
+    }
+}
