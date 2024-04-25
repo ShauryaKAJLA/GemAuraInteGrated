@@ -34,8 +34,7 @@ const Contactus = () => {
       getValues,
       formState: { errors, isSubmitting },
     } = useForm()
-  
-  
+    
     const [message, setMessage] = useState('');
     const onSubmit = async () => {
       const data = getValues()
@@ -51,8 +50,8 @@ const Contactus = () => {
           reset()
         }
       } catch (error) {
-        console.error('Error:', error);
         setMessage(error.response.data.message);
+        console.error('Error:', error);
       }
     };
      
