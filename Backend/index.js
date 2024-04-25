@@ -11,6 +11,7 @@ const ProductRoute = require('./routes/products.route')
 const AuthRoute = require('./routes/auth.route')
 const CartRoute = require('./routes/cart.route')
 const HomeRoute = require('./routes/home.route')
+const FeedbackRoute = require('./routes/feedback.route')
 
 
 
@@ -28,6 +29,7 @@ app.use('/products',ProductRoute)
 app.use('/auth',AuthRoute)
 app.use('/cart',CartRoute)
 app.use('/home',HomeRoute)
+app.use('/feedback',FeedbackRoute)
 
 app.listen(PORT,()=>{
     console.log("Backend initiated on PORT no. ",PORT)

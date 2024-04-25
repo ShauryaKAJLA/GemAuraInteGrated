@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from "react-hook-form"
 import './ContactUs.css'
 import image from '../../assets/Contactus.jpg'
@@ -25,16 +25,37 @@ const Contactus = () => {
         }
     })()
   },[])
-
+  
     const {
-        register,
-        handleSubmit,
-        watch,
-        formState: { errors,isSubmitting },
-      } = useForm()
-    
-      const onSubmit = (data) => console.log(data) 
-      
+      register,
+      handleSubmit,
+      watch,
+      reset,
+      getValues,
+      formState: { errors, isSubmitting },
+    } = useForm()
+  
+  
+    const [message, setMessage] = useState('');
+    const onSubmit = async () => {
+      const data = getValues()
+      console.log({data})
+      try {
+        console.log('i am clicked')
+        const response = await axios.post('http://localhost:5000/feedback/submit', {
+          token,
+          data : {name : data.name , email:data.Email , message : data.Message}
+        });
+        if(response.data.success){
+          setMessage(response.data.message);
+          reset()
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        setMessage(error.response.data.message);
+      }
+    };
+     
   return (
     <div>
         <div className='ContactImgContainer realtive'>
