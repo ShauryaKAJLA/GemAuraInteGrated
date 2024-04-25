@@ -24,12 +24,15 @@ const Signup = () => {
   const submitData = async (data) => {
     try {
       const response = await axios.post("http://localhost:5000/auth/signup", {
-        data: { email: data.Email, password: data.password },
+        // Change added username  from the data from form 
+        //now set api and set user's username to the sended one bro
+        data: { email: data.Email,username:data.username, password: data.password },
       });
       if(response.data.success === true)
         navigate('/login_signup/login')
     } catch (err) {
       console.log(err.response.data.message);
+      setError("ErrorInSignup",{message:err.response.data.message})
     }
   };
 
@@ -59,6 +62,14 @@ const Signup = () => {
               onSubmit={handleSubmit(onSubmit)}
               className="form flex flex-col justify-center"
             >
+                 <input
+                className="pp inp fo hover:scale-105 transition-all"
+                placeholder="UserName"
+                {...register("username", {
+                  required: { value: true, message: "This field is required" },
+                  minLength: { value: 2, message: "Invalid Email name" },
+                })}
+              />
               <input
                 className="pp inp fo hover:scale-105 transition-all"
                 placeholder="Email"
@@ -141,7 +152,7 @@ const Signup = () => {
                 className=" sb hover:scale-105 transition-all flex justify-center flex-wrap items-center inp"
                 onClick={() => clearErrors("match")}
               />
-              {/* <div className='flex justify-center w-full text-red-300'>{errors.dataVerified&&errors.dataVerified.message}</div>    */}
+              <div className='flex justify-center w-full text-red-300'>{errors.ErrorInSignup&&errors.ErrorInSignup.message}</div>   
             </form>
           </div>
         </div>
