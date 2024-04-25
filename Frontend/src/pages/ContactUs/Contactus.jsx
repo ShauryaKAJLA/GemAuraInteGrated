@@ -1,11 +1,31 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from "react-hook-form"
 import './ContactUs.css'
 import image from '../../assets/Contactus.jpg'
 import { FaPhone } from "react-icons/fa6";
 import { IoIosMail } from "react-icons/io";
 import { CiLocationOn } from "react-icons/ci";
+import { userCart } from '../cart/CartSlice';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
 const Contactus = () => {
+  const token = localStorage.getItem('token')
+  const dispatch=useDispatch()
+  useEffect(()=>{
+    (async()=>{
+        try{
+            const response = await axios.get('http://localhost:5000/cart/',{
+              params:{
+                token
+              }
+            })
+             dispatch(userCart(response.data.cart))
+        }catch(err){
+          console.log(err)
+        }
+    })()
+  },[])
+
     const {
         register,
         handleSubmit,

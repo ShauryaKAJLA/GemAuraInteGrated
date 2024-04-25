@@ -10,15 +10,23 @@ export const FilteredProductsSlice=createSlice({
     initialState,
     reducers:{
       addProducts:(state,action)=>{
-        state.AllProducts=action.payload.filter(item=>item);
+        state.AllProducts=[...action.payload];
         console.log(state.AllProducts)
     },
         changeProducts:(state,action)=>{
           const types=state.AllProducts.map(item=>item.type_of)
           const gem=state.AllProducts.map(item=>item.Gem.type)
-          const metal=state.AllProducts.map(item=>item.metal.type)
-
-            let pro=state.AllProducts.filter(item=>item)
+          let metal=[]
+          state.AllProducts.forEach(item=>{
+           if(!metal.find(i=>i.toLowerCase()==item.metal.type.toLowerCase()))
+            {
+              metal.push(item.metal.type.toLowerCase())
+            }
+          }
+          )
+          console.log(metal)
+            let pro=[...state.AllProducts];
+            console.log(pro)
             console.log(action.payload)
             if(action.payload.gender!='All')
               {
@@ -67,7 +75,7 @@ export const FilteredProductsSlice=createSlice({
                 metal.forEach(item=>{
                   if(action.payload.search.toLowerCase().includes(item.toLowerCase())||item.toLowerCase().includes(action.payload.search.toLowerCase()))
                   {
-                    dummy=pro.filter(i=>i.metal.type.includes(item))
+                    dummy=dummy.filter(i=>i.metal.type.toLowerCase().includes(item.toLowerCase()))
                   }
                 })
                

@@ -4,12 +4,12 @@ const CatagoriesData=[
 {
     id:1,
     src:"https://res.cloudinary.com/dimqqgecs/image/upload/v1711994514/catagories/pwso1wfkrjankgcch8lx.png",
-    name:"earings"
+    name:"earrings"
 },
 {
     id:2,
     src:"https://res.cloudinary.com/dimqqgecs/image/upload/v1711994514/catagories/wznghdhrn7myxcavqpl3.png",
-    name:"gold earings"
+    name:"gold earrings"
 },
 {
     id:3,

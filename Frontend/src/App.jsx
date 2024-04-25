@@ -7,20 +7,6 @@ import axios from "axios"
 import { addProducts } from "./products/FilteredProductsSlice"
 function App() {
   const dispatch=useDispatch();
-//   useEffect(()=>{
-//     (async()=>{
-//         try{
-//             const response = await axios.get('http://localhost:5000/products')
-//             if(response.data.success===true)
-//             {
-//               dispatch(addProducts(response.data.products))
-              
-//             }
-//         }catch(err){
-//             console.log(err)
-//         }
-//     })()
-// },[])
 
 const handelCheckMenu=()=>{
 

@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/user.model");
 const { tokenAuth } = require("../middlewares/tokenAuth");
+const Product =  require('../models/product.model')
 
 router.use(express.json());
 
@@ -11,25 +12,30 @@ router.post("/add", tokenAuth, async (req, res) => {
   const { productId, size } = req.body;
 //   console.log(size);
   try {
-    let fetchedUser = await User.findById(user._id);
+    let fetchedUser = await User.findById(user._id).populate({
+      path : 'cart',
+      populate: ({
+        path : 'product'
+      })
+    });
     if (!fetchedUser) {
       return res
         .status(400)
         .json({ success: false, message: "User not found !!" });
     }
+    const productToBeAdded = await Product.findById(productId)
+    console.log(productToBeAdded)
     const productIndexInCart = fetchedUser.cart.findIndex((cartItem) => {
-      return cartItem.product == productId && cartItem.size == size;
+      return cartItem.product._id == productId && cartItem.size == size;
     });
     // console.log(productIndexInCart);
     let newCart = [];
-    let updatedProduct = []
     // console.log((type ==='Ring'||type ==='ring'))
 
     if (productIndexInCart !== -1) {
     //   console.log("mil gya ...");
       newCart = fetchedUser.cart.map((cartItem) => {
-        if (cartItem.product == productId && cartItem.size == size) {
-          updatedProduct = { ...cartItem, quantity: cartItem.quantity + 1 }
+        if (cartItem.product._id == productId && cartItem.size == size) {
           return { ...cartItem, quantity: cartItem.quantity + 1 };
         } else {
           return cartItem;
@@ -39,15 +45,16 @@ router.post("/add", tokenAuth, async (req, res) => {
       // console.log(fetchedUser.cart)
       newCart = [
         ...fetchedUser.cart,
-        { product: productId, size: size !== undefined ? size : undefined },
+        { product: productToBeAdded, size: size !== undefined ? size : undefined },
       ];
-      updatedProduct = {product : productId, size: size !== undefined ? size : undefined}
     }
     fetchedUser.cart = newCart;
     // fetchedUser.size = size
-    // console.log({updatedProduct})
     await fetchedUser.save();
-    return res.status(200).json({ success: true, cart: newCart });
+    newCart = fetchedUser.toObject(newCart).cart // to convert to plain object from mongoose document
+    const updatedCartItem = newCart.find(item => item.product._id.equals(productId) && item.size == size)
+    
+    return res.status(200).json({ success: true, cart: newCart , updatedCartItem });
   } catch (err) {
     console.log(err);
     res.status(400).json({ success: false, message: err.message });
@@ -116,16 +123,22 @@ router.post("/reduce", tokenAuth, async (req, res) => {
   const { user } = req;
   const { productId, size } = req.body;
   try {
-    const fetchedUser = await User.findById(user._id)
+    const fetchedUser = await User.findById(user._id).populate({
+      path : 'cart',
+      populate: ({
+        path : 'product'
+      })
+    });
+
     if (!fetchedUser) {
       return res
         .status(400)
         .json({ success: false, message: "User not found" })
     }
-    
+    const productToBeUpdated = await Product.findById(productId)
     const currentQuantity = fetchedUser.cart.find(item => item.product._id == productId && item.size == size).quantity
     // console.log(currentQuantity)
-
+    
     let newCart =[]
     if(currentQuantity > 1){
         newCart = fetchedUser.cart.map(item => (item.product._id == productId && item.size == size )? ({...item , quantity : item.quantity-1 }) : item)
@@ -134,7 +147,10 @@ router.post("/reduce", tokenAuth, async (req, res) => {
     }
     fetchedUser.cart = newCart;
     await fetchedUser.save();
-    return res.status(200).json({ success: true, cart: newCart });
+    newCart = fetchedUser.toObject(newCart).cart
+    const updatedCartProduct = newCart.find(item =>  item.product._id == productId && item.size == size)
+    
+    return res.status(200).json({ success: true, cart: newCart , updatedCartProduct});
   } catch (err) {
     return res.status(400).json({ success: false, message: err.message });
   }

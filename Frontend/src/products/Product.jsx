@@ -1,6 +1,6 @@
 import { changeGender, changePrice ,changeMetal, changeGem } from "./filterSlice";
 import { changeProducts } from "./FilteredProductsSlice";
-import { addToCart } from "../pages/cart/CartSlice";
+import { addToCart, userCart } from "../pages/cart/CartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { FaRegHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -17,6 +17,23 @@ export function Product() {
   const dispatch = useDispatch();
   const[mx,setMx]=useState(0);
   const[mn,setMn]=useState(0);
+
+   useEffect(()=>{
+    (async()=>{
+        try{
+            const response = await axios.get('http://localhost:5000/cart/',{
+              params:{
+                token
+              }
+            })
+            dispatch(userCart(response.data.cart))
+            
+        }catch(err){
+          console.log(err)
+        }
+    })()
+  },[])
+
   useEffect(()=>{
     (async()=>{
       try{
@@ -99,7 +116,7 @@ export function Product() {
 
 
 
-  const size = 0.5;
+  const size = 10;
  
   
   useEffect(()=>{
@@ -107,7 +124,6 @@ export function Product() {
   },[change])
   // const cart = useSelector((state) => state.cart);
   const token = localStorage.getItem('token')
-  const {productId } = useParams()
    async  function handleAddToCart(product){
     try{
       console.log({product})
@@ -119,9 +135,20 @@ export function Product() {
       if(response.data.success === true){
           // dispatch(addToCart(product))
           let result=response.data.cart
-        console.log(result,product._id)
+          if(product.type_of==='ring'||product.type_of==='Ring')
+          {
+            let newProduct=result.find(item=>(item.product._id==product._id&&item.size==size));
+            console.log(newProduct)
+            dispatch(addToCart(newProduct))
+          }
+          else{
+          let newProduct=result.find(item=>item.product._id==product._id);
+          console.log(newProduct)
+          dispatch(addToCart(newProduct))
+          }
       }
     }catch(err){
+      
       console.log(err )
     }    
   } 

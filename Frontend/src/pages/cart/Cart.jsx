@@ -13,8 +13,10 @@ import { useEffect , useState } from "react";
 import axios from 'axios'
 
 export function Cart() {
+  const [price,setPrice]=useState(0);
   const dispatch = useDispatch()
-  const [cartItems ,setCartItems ] = useState(useSelector(state=>state.cart.cart))
+  const change=useSelector(state=>state.cart.cart)
+  const [cartItems ,setCartItems ] = useState([])
   const token = localStorage.getItem('token')
   useEffect(()=>{
     (async()=>{
@@ -26,7 +28,6 @@ export function Cart() {
             })
             dispatch(userCart(response.data.cart))
             // console.log('this is csrt : ',{response})
-            
         }catch(err){
           console.log(err)
         }
@@ -87,15 +88,21 @@ export function Cart() {
   }
   // console.log({cartItems})
   const cart = useSelector((state) => state.cart.cart);
-  var price = 0;
-  cart.forEach((item) => {
-    if (item.instock)
-      price +=
-        (item.product.Gem.totalPrice +
-          item.product.metal.weightInGram * item.product.metal.pricePerGram) *
-        item.product.quantity;
-  });
-
+  useEffect(()=>{
+    let p=0
+    change.forEach((item) => {
+      if (item.product.inStock)
+        p+=
+          (item.product.Gem.totalPrice +
+            item.product.metal.weightInGram * item.product.metal.pricePerGram) *
+          item.quantity;
+    });
+    setPrice(p)
+  },[change])
+useEffect(()=>{
+  setCartItems(change)
+  console.log(change)
+},[change])
   return (
     <div className=" flex flex-col items-center py-8 min-h-[49vh]">
       <div className=" lg:h-[15vh] md:h-[9vh]  w-[100vw] h-[10vh] text-2xl flex justify-center items-center">

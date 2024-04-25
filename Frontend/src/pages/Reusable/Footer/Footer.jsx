@@ -16,7 +16,7 @@ const Footer=()=>{
             <div className="contLink">
                 <ul className="contLink">
                     <li className="linkData"><Link to="/">Return</Link></li>
-                    <li className="linkData"><Link to="/">Find a Store</Link></li>
+                    <li className="linkData"><Link to="/contactUs">Find a Store</Link></li>
                 </ul>
             </div>
         </div>
@@ -34,11 +34,7 @@ const Footer=()=>{
             <div className="text-xl customfooterColor font-semibold mb-2">Information</div>
             <div className="contLink">
                 <ul className="contLink">
-                    <li className="linkData"><Link to="/">Careers</Link></li>
-                    <li className="linkData"><Link to="/">Blog</Link></li>
-                    <li className="linkData"><Link to="/">Offers Details</Link></li>
-                    <li className="linkData"><Link to="/">Help & FAQs</Link></li>
-                    <li className="linkData"><Link to="/">Help & FAQs</Link></li>
+                    <li className="linkData"><Link to="/aboutUs">About Us</Link></li>
                 </ul>
             </div>
         </div>

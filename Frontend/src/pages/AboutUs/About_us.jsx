@@ -1,9 +1,28 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import AboutUs from '../../assets/AboutUs.jpg'
 import { RxCross1 } from "react-icons/rx";
 import { Link } from 'react-router-dom';
 import './AboutUs.css'
+import { useDispatch } from 'react-redux';
+import axios from 'axios';
+import { userCart } from '../cart/CartSlice';
 const About_us=()=>{
+  const token = localStorage.getItem('token')
+  const dispatch=useDispatch()
+  useEffect(()=>{
+    (async()=>{
+        try{
+            const response = await axios.get('http://localhost:5000/cart/',{
+              params:{
+                token
+              }
+            })
+             dispatch(userCart(response.data.cart))
+        }catch(err){
+          console.log(err)
+        }
+    })()
+  },[])
   return(
     <div className='h-[100vh] ContAbout '>
         <div className='Back text-white absolute top-3 left-4 z-[1]'> <Link to="/"><RxCross1 size={20}/></Link></div>

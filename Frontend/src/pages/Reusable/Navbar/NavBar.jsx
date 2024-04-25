@@ -16,6 +16,7 @@ const NavBar = () => {
   const [check,setCheck]=useState(false);
   const [search,setSearch]=useState("");
   const dispatch=useDispatch();
+ 
   let cart=useSelector(state=>state.cart.cart)
   useEffect(()=>{
 

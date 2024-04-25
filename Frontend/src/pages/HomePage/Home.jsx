@@ -15,7 +15,10 @@ import BannerSecondPhoto from "../../assets/homePage/BannerSecondPhoto.png";
 import genderData from "./genderData";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { addProducts } from "../../products/FilteredProductsSlice";
+import { addProducts, changeProducts } from "../../products/FilteredProductsSlice";
+import { userCart } from "../cart/CartSlice";
+import { Link } from "react-router-dom";
+import { changeGem, changeGender, changeMetal, changeSearch } from "../../products/filterSlice";
 const Home = () => {
   const dispatch=useDispatch();
   const [categoriesData, setCategoriesData] = useState([]);
@@ -26,8 +29,24 @@ const Home = () => {
   // useEffect(() => {
   //   setpdts(products.filter((item, index) => index <= 6));
   // }, [products]);
+  useEffect(()=>{
+    (async()=>{
+        try{
+            const response = await axios.get('http://localhost:5000/cart/',{
+              params:{
+                token
+              }
+            })
+            dispatch(userCart(response.data.cart))
+            
+        }catch(err){
+          console.log(err)
+        }
+    })()
+  },[])
 
   useEffect(()=>{
+    
           (async()=>{
               try{
                   const response = await axios.get('http://localhost:5000/products')
@@ -223,6 +242,7 @@ const Home = () => {
       </div>
       <div className="ContainerImages2 ">
         <div className="ContainerImage4 relative">
+        <Link to='/products'  onClick={()=> { dispatch(changeGender("All")); dispatch(changeMetal("Silver")); dispatch(changeGem("All")); dispatch(changeSearch("All")) }}>
           <div className="absolute dancing-script-Customtext  sm:text-3xl md:text-4xl lg:text-5xl text-3xl Image4Text">
             {" "}
             <div className=" inTextImage4 text-black p-[1vw]">
@@ -237,17 +257,19 @@ const Home = () => {
             src="https://res.cloudinary.com/dimqqgecs/image/upload/v1711947279/xppscsjah7nrysq9vqmh.png"
             alt=""
           />
+          </Link>
         </div>
-        <div className="ContainerImage2">
-          <img src={img} alt="" />
+          <Link to="/products" className="ContainerImage2">
+          <img src={img} alt="" onClick={()=> { dispatch(changeGender("w")); dispatch(changeMetal("All")); dispatch(changeGem("All")); dispatch(changeSearch("All")) }} />
           <video
+           onClick={()=> { dispatch(changeGender("m")); dispatch(changeMetal("All")); dispatch(changeGem("All")); dispatch(changeSearch("All")) }}
             src="https://res.cloudinary.com/dimqqgecs/video/upload/v1711984934/r3yisbaqkqdrs1b1grcl.mp4"
             autoPlay
             loop
             muted
             typeof="mp4"
-          ></video>
-        </div>
+            ></video>
+            </Link>
       </div>
              {/* CATEGORIES */}
       <div className="CatagoriesContainer">
@@ -264,6 +286,7 @@ const Home = () => {
             <div className="CatagoriesContainerAllCat ">
               <Slider {...settings}>
                 {categoriesData.map((item) => (
+                  <Link to='products' onClick={()=> { dispatch(changeGender("All")); dispatch(changeMetal("All")); dispatch(changeGem("All")); dispatch(changeSearch(item.name)) }}>
                   <div key={item._id} className="CatagoriesCont">
                     <div className="ImageOfCatagories rounded-t-xl">
                       <img src={item.src} alt="" />
@@ -275,6 +298,7 @@ const Home = () => {
                       </div>
                     </div>
                   </div>
+                  </Link>
                 ))}
               </Slider>
             </div>

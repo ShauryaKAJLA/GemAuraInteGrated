@@ -6,7 +6,28 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { FaAddressCard } from "react-icons/fa";
+import { userCart } from "../cart/CartSlice";
+import { useDispatch } from "react-redux";
+import axios from "axios";
 const Profile = () => {
+  const token = localStorage.getItem('token')
+  const dispatch=useDispatch();
+  useEffect(()=>{
+    (async()=>{
+        try{
+            const response = await axios.get('http://localhost:5000/cart/',{
+              params:{
+                token
+              }
+            })
+            dispatch(userCart(response.data.cart))
+            
+        }catch(err){
+          console.log(err)
+        }
+    })()
+  },[])
+
   const [UserData, setUserData] = useState({
     name: "Shaurya kajla",
     Male: "shauryakajla@gmail.com",
