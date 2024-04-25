@@ -11,13 +11,18 @@ import { MdError } from "react-icons/md";
 import "./cart.css";
 import { useEffect , useState } from "react";
 import axios from 'axios'
-
+import {  toast } from 'react-toastify';
+import { Bounce } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 export function Cart() {
+ 
   const [price,setPrice]=useState(0);
   const dispatch = useDispatch()
   const change=useSelector(state=>state.cart.cart)
   const [cartItems ,setCartItems ] = useState([])
   const token = localStorage.getItem('token')
+  const [address,setAddress]=useState("");
+  const [display,setDisplay]=useState(0);
   useEffect(()=>{
     (async()=>{
         try{
@@ -103,8 +108,57 @@ useEffect(()=>{
   setCartItems(change)
   console.log(change)
 },[change])
+const handleOrder=()=>{
+  if(token)
+  {
+    if(address!=="")
+    {
+  let q=0
+    cartItems.forEach(item=>{q+=item.quantity})
+  const newOrder={
+    // _id: from backend
+    quantity: q,
+    price:price,
+    addressDelevery: address,
+    //  status : 0-pending 1-inProcess ;
+    // status: 1, from backend
+    products: [...cartItems]
+  }
+  console.log(newOrder)
+  setDisplay(0);
+  setAddress("");
+}
+else
+{
+  toast.warn('Adress cannot be empty!', {
+    position: "bottom-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "dark",
+  transition:Bounce
+    });
+    setAddress("");
+}
+}
+}
   return (
-    <div className=" flex flex-col items-center py-8 min-h-[49vh]">
+    <div className=" flex flex-col items-center py-8 min-h-[49vh] relative">
+      {display? 
+      <div className="absolute top-[30%] mx-auto z-10 gap-2 flex flex-col justify-center items-center p-10 rounded-lg shadow-md shadow-black bg-[#2622229a] ">
+
+      <div className="text-2xl text-white">Add Order Address</div>
+        <textarea  value={address} onChange={(e)=>{setAddress(a=>e.target.value)}} rows={2} cols={30} className="inp" />
+        <input type="submit" onClick={handleOrder}  className="inp w-[100px]" />
+      </div>
+:<></>
+}
+
+
+
       <div className=" lg:h-[15vh] md:h-[9vh]  w-[100vw] h-[10vh] text-2xl flex justify-center items-center">
         Your cart items
       </div>
@@ -209,7 +263,7 @@ useEffect(()=>{
               <div className="flex gap-[5vw] items-center">
                 <div>Sub-Total &nbsp; Rs-{price}</div>
                 <div className="inp btn flex justify-center text-sm sm:w-[150px] sm:h-[45px] hover:scale-105">
-                  <button>Check Out</button>
+                  <button onClick={()=>setDisplay(1)}>Check Out</button>
                 </div>
               </div>
             )}

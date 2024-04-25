@@ -214,44 +214,7 @@ const Profile = () => {
       ]
     }
   ],
-    pastOrders: [
-      {
-        id: 15,
-        quantity: 2,
-        price: 2000000,
-        addressDelevery: "Bhai System Nagar , India",
-        //  status : 0-pending 1-inProcess -1 completed; 2 cancel
-        status: -1,
-        products: [
-          //details of products
-          {
-            id: "661c049fa3d128dce1a34c67",
-            name: "Colambia emerald ring",
-            desc: "rare emerald fitted in ring by experts",
-            metal: {
-              type: "White Gold",
-              pricePerGram: 6500,
-              weightInGram: 20,
-            },
-            Gem: {
-              type: "emerald",
-              weightInCaret: 3,
-              totalPrice: 100000,
-            },
-            gender: "m",
-            type_of: "ring",
-            images: [
-              '/src/assets/product1_1.png',
-              "/src/assets/product1_2.webp",
-              "/src/assets/product1_3.webp",
-              "/src/assets/product1_4.webp"
-            ],
-            instock: true,
-            size: 25,
-            quantity: 2
-          }]
-      }
-    ]
+  
   });
 
   const [display, setDisplay] = useState(1);
@@ -274,7 +237,6 @@ const Profile = () => {
       <div className="flex flex-col  sm:text-base text-sm gap-y-5 min-h-[70vh] ">
         <div onClick={()=>setDisplay(1)} className={`${display==1&&"bg-[#d9eafc]"} min-h-[10vh] flex justify-center items-center sm:w-[30vw] w-[30vw] `}>Details</div>
         <div onClick={()=>setDisplay(0)} className={`${display==0&&"bg-[#d9eafc]"} min-h-[10vh] flex justify-center items-center sm:w-[30vw] w-[30vw] `}>Current Orders</div>
-        <div onClick={()=>setDisplay(2)} className={`${display==2&&"bg-[#d9eafc]"} min-h-[10vh] flex justify-center items-center sm:w-[30vw] w-[30vw] `}>Order History</div>
       </div>
       <div>
         {display == 1 && <div className=" flex flex-col  sm:text-xl text-sm  gap-y-5 min-h-[70vh] ">
@@ -348,46 +310,7 @@ const Profile = () => {
             
           </div>)}
         </div>}
-        {display == 2 && <div className=" flex   sm:text-lg text-xs  gap-5 h-[70vh] overflow-y-auto overflow-x-hidden sm:w-[60vw] w-[70vw] flex-wrap justify-center">
-          {UserData.pastOrders.map((item, index) => <div key={index} className="bg-slate-300 w-[300px] h-[40vh] rounded-md shadow-md  items-center flex flex-col text-gray-900 overflow-hidden">
-            <div className="flex w-[80%] gap-4">
-             <div className="w-[60px]">id: </div> <div>{item.id}</div>
-            </div>
-            <div className="flex w-[80%] gap-4">
-            <div className="w-[60px]">Quantity: </div>  <div>{item.quantity}</div>
-            </div>
-            <div className="flex w-[80%] gap-4">
-             <div className="w-[60px]">Price: </div> <div> {item.price}</div>
-            </div>
-            <div className="flex w-[80%] gap-4">
-             <div  className="w-[60px]">Status: </div> <div>{item.status==0&&"Pending"}
-                                      {item.status==1&&"In Progress"}
-                                      {item.status==-1&&"Completed"}
-                                      {item.status==2&&"Cancelled"}
-                                      
-                                      </div>
-            </div>
-            <div className="flex flex-col w-[80%] my-5">
-              <div className="my-2">Ordered Products</div>
-              <div className="flex flex-col gap-y-5">
-              {item.products.map((i, ind) => <div key={ind}  >
-                <Link to={`/productInfo/${i.id}`}>
-                  <div className="flex  gap-4">
-                    <div>Name: </div>
-                    <div >{i.name}</div>
-
-                  </div>
-                  <div className="flex  gap-4">
-                    <div>Product Quantity: </div>
-                    <div >{i.quantity}</div>
-                  </div>
-                </Link>
-              </div>)}
-              </div>
-            </div>
-          </div>)}
-        </div>}
-             </div>
+                   </div>
     </div>
     </div>
   );
