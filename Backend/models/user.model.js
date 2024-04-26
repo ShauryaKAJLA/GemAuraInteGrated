@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema({
-  name:{
+  username:{
     type:String ,
     default : "User"
   },
@@ -13,6 +13,10 @@ const userSchema = mongoose.Schema({
     type:String,
     default : "none"
   },
+  phone:{
+      type:String,
+      required:[true,"Phone Number is necessary"],
+  },
   email: {
     type: String,
     required: [true, "Email field is necessary"],
@@ -20,6 +24,10 @@ const userSchema = mongoose.Schema({
   password: {
     type: String,
     required: [true, "Password field is necessary"],
+  },
+  passwordLength:{
+    type:Number,
+    default:0
   },
   cart: [
     {
@@ -43,12 +51,10 @@ const userSchema = mongoose.Schema({
   }],
   currentOrders:[{
     type : mongoose.Schema.Types.ObjectId,
-    ref : "Order"
+    ref : "Order",
+    default : []
   }],
-  pastOrders : [{
-    type : mongoose.Schema.Types.ObjectId,
-    ref : "Order"
-  }],
+  
 
 });
 

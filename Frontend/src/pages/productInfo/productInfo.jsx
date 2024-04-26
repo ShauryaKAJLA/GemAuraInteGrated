@@ -10,7 +10,21 @@ import axios from 'axios'
 const productInfo = () => {
   const {productId} = useParams()
   const [productDetails , setProductDetails] = useState(null)
-
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/cart/", {
+          params: {
+            token,
+          },
+        });
+        dispatch(userCart(response.data.cart));
+        // console.log('this is csrt : ',{response})
+      } catch (err) {
+        console.log(err);
+      }
+    })();
+  }, []);
   useEffect(()=>{
     (async()=>{
       try{
@@ -33,7 +47,7 @@ const productInfo = () => {
   // dispatch(setProductInfo(params));
 
   let item = useSelector((state) => state.productInfo.productInfo);
-  const [size, setSize] = useState(item.size ? item.size : 0.5);
+  const [size, setSize] = useState(item.size ? item.size : 10);
   // const [size, setSize] = useState(20)  ;
   console.log({size})
 
@@ -46,43 +60,33 @@ const productInfo = () => {
     setSize(e.target.value);
   };
   
-  const handleAddToCartState = () => {
-    // alert("add to cart under development")
-    let i = {
-      id: item.id,
-      name: item.name,
-      desc: item.desc,
-      metal: item.metal,
-      Gem: item.Gem,
-      type_of: item.type_of,
-      images: item.images,
-      instock: item.instock,
-      size: size,
-    };
 
-    let itemToBeAddedToCart ={
-      ...productDetails , size
-    }
-
-    i.size = size;
-
-    dispatch(addToCart(itemToBeAddedToCart));
-  };
-  
   const token = localStorage.getItem('token')
-   async function handleAddToCart(product){
+   async  function handleAddToCart(){
     try{
-     
+      console.log({productDetails})
       const response = await axios.post('http://localhost:5000/cart/add',{
-        productId,
+        productId : productDetails._id,
         token ,
-        size : productDetails.type_of==='ring'||productDetails.type_of==='Ring' ? size : undefined 
-
+        size : productDetails.type_of==='ring'||productDetails.type_of==='Ring' ? size : undefined ,
       })
       if(response.data.success === true){
-        handleAddToCartState()
+          // dispatch(addToCart(product))
+          let result=response.data.cart
+          if(productDetails.type_of==='ring'||productDetails.type_of==='Ring')
+          {
+            let newProduct=result.find(item=>(item.product._id==productDetails._id&&item.size==size));
+            console.log(newProduct)
+            dispatch(addToCart(newProduct))
+          }
+          else{
+          let newProduct=result.find(item=>item.product._id==productDetails._id);
+          console.log(newProduct)
+          dispatch(addToCart(newProduct))
+          }
       }
     }catch(err){
+      
       console.log(err )
     }    
   } 

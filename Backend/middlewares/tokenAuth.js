@@ -8,7 +8,7 @@ const tokenAuth = (req, res, next) => {
            token = req.query.token
         }
         if(!token){
-            return res.status(401).json({success:false , err: "Authentication failed , not JWT token found"})
+            return res.status(401).json({success:false , err: "Authentication failed , no JWT token found"})
         }
         const { user } = jwt.verify(token, process.env.JWT_SECRET_KEY);
         req.user = { ...user };

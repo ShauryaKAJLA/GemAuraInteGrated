@@ -25,12 +25,12 @@ const imageData=[
     {
         src:img4,
         dataHead:"Diamond Jewellery",
-        dataDesc:"bhai ka chautha desc"
+        dataDesc:"Diamond never gets old get latest designs"
     },
     {
         src:img5,
         dataHead:"Bracelets",
-        dataDesc:"bhai ka panchvan desc"
+        dataDesc:"Special collection of bracelets only at GemAura"
     },
 ]
 

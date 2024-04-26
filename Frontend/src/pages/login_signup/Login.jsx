@@ -29,6 +29,7 @@ const Login = () => {
         navigate("/");
       }
     } catch (err) {
+      setError('root',{message:err.response.data.message})
       console.log("ERROR : ", err.response.data.message);
     }
   };
@@ -57,6 +58,8 @@ const Login = () => {
               onSubmit={handleSubmit(onSubmit)}
               className="form flex flex-col justify-center"
             >
+
+           
               <input
                 className="pp inp fo hover:scale-105 transition-all text-white"
                 placeholder="Email"
@@ -105,6 +108,9 @@ const Login = () => {
               />
               <div className="flex justify-center w-full text-red-300 ">
                 {errors.dataVerified && errors.password.message}
+              </div>
+                <div className="flex justify-center ml-8 w-full text-red-500 text-l ">
+                {errors.root && errors.root.message}
               </div>
             </form>
           </div>

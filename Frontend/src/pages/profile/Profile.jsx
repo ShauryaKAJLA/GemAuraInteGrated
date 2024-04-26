@@ -28,207 +28,56 @@ const Profile = () => {
     })()
   },[])
 
-  const [UserData, setUserData] = useState({
-    name: "Shaurya kajla",
-    Male: "shauryakajla@gmail.com",
-    Password: 5,
-    address: "Bhai System Nagar ,dejfneaojfnf ;dnmf d;jfd lkfdlkf dlkfj aknfalk fal nfkla fllf aslkfklash fja fjfkjdeb fkjdbfkj adb, India",
-    phone: 8847542649,
-    CurrentOrders: [
-      {
-      id: 11,
-      quantity: 3,
-      price: 200000000,
-      addressDelevery: "Bhai System Nagar , India",
-      //  status : 0-pending 1-inProcess ;
-      status: 1,
-      products: [
-        //details of products
-        {
-          id: "661c049fa3d128dce1a34c67",
-          name: "Colambia emerald ring",
-          desc: "rare emerald fitted in ring by experts",
-          metal: {
-            type: "White Gold",
-            pricePerGram: 6500,
-            weightInGram: 20,
-          },
-          Gem: {
-            type: "emerald",
-            weightInCaret: 3,
-            totalPrice: 100000,
-          },
-          gender: "m",
-          type_of: "ring",
-          images: [
-            '/src/assets/product1_1.png',
-            "/src/assets/product1_2.webp",
-            "/src/assets/product1_3.webp",
-            "/src/assets/product1_4.webp"
-          ],
-          instock: true,
-          size: 20,
-          quantity: 3
-        },
-        {
-          id: "661c049fa3d128dce1a34c67",
-          name: "Colambia emerald ring",
-          desc: "rare emerald fitted in ring by experts",
-          metal: {
-            type: "White Gold",
-            pricePerGram: 6500,
-            weightInGram: 20,
-          },
-          Gem: {
-            type: "emerald",
-            weightInCaret: 3,
-            totalPrice: 100000,
-          },
-          gender: "m",
-          type_of: "ring",
-          images: [
-            '/src/assets/product1_1.png',
-            "/src/assets/product1_2.webp",
-            "/src/assets/product1_3.webp",
-            "/src/assets/product1_4.webp"
-          ],
-          instock: true,
-          size: 20,
-          quantity: 3
-        },
-        {
-          id: "661c049fa3d128dce1a34c67",
-          name: "Colambia emerald ring",
-          desc: "rare emerald fitted in ring by experts",
-          metal: {
-            type: "White Gold",
-            pricePerGram: 6500,
-            weightInGram: 20,
-          },
-          Gem: {
-            type: "emerald",
-            weightInCaret: 3,
-            totalPrice: 100000,
-          },
-          gender: "m",
-          type_of: "ring",
-          images: [
-            '/src/assets/product1_1.png',
-            "/src/assets/product1_2.webp",
-            "/src/assets/product1_3.webp",
-            "/src/assets/product1_4.webp"
-          ],
-          instock: true,
-          size: 20,
-          quantity: 3
-        },
-      ]
-    },
-      {
-      id: 11,
-      quantity: 3,
-      price: 200000000,
-      addressDelevery: "Bhai System Nagar , India",
-      //  status : 0-pending 1-inProcess ;
-      status: 1,
-      products: [
-        //details of products
-        {
-          id: "661c049fa3d128dce1a34c67",
-          name: "Colambia emerald ring",
-          desc: "rare emerald fitted in ring by experts",
-          metal: {
-            type: "White Gold",
-            pricePerGram: 6500,
-            weightInGram: 20,
-          },
-          Gem: {
-            type: "emerald",
-            weightInCaret: 3,
-            totalPrice: 100000,
-          },
-          gender: "m",
-          type_of: "ring",
-          images: [
-            '/src/assets/product1_1.png',
-            "/src/assets/product1_2.webp",
-            "/src/assets/product1_3.webp",
-            "/src/assets/product1_4.webp"
-          ],
-          instock: true,
-          size: 20,
-          quantity: 3
-        },
-        {
-          id: "661c049fa3d128dce1a34c67",
-          name: "Colambia emerald ring",
-          desc: "rare emerald fitted in ring by experts",
-          metal: {
-            type: "White Gold",
-            pricePerGram: 6500,
-            weightInGram: 20,
-          },
-          Gem: {
-            type: "emerald",
-            weightInCaret: 3,
-            totalPrice: 100000,
-          },
-          gender: "m",
-          type_of: "ring",
-          images: [
-            '/src/assets/product1_1.png',
-            "/src/assets/product1_2.webp",
-            "/src/assets/product1_3.webp",
-            "/src/assets/product1_4.webp"
-          ],
-          instock: true,
-          size: 20,
-          quantity: 3
-        },
-        {
-          id: "661c049fa3d128dce1a34c67",
-          name: "Colambia emerald ring",
-          desc: "rare emerald fitted in ring by experts",
-          metal: {
-            type: "White Gold",
-            pricePerGram: 6500,
-            weightInGram: 20,
-          },
-          Gem: {
-            type: "emerald",
-            weightInCaret: 3,
-            totalPrice: 100000,
-          },
-          gender: "m",
-          type_of: "ring",
-          images: [
-            '/src/assets/product1_1.png',
-            "/src/assets/product1_2.webp",
-            "/src/assets/product1_3.webp",
-            "/src/assets/product1_4.webp"
-          ],
-          instock: true,
-          size: 20,
-          quantity: 3
-        },
-      ]
-    }
-  ],
-  
-  });
+  // to get user basic details
+  const [UserData , setUserData] = useState(null)
+  useEffect(()=>{
+    (async()=>{
+      try{
+      const response = await axios.get('http://localhost:5000/profile',{
+        params:{
+          token
+        }
+      })
+      console.log('user',{response})
+      if(response.data.success === true)
+        setUserData(response.data.userDetails)
+      }catch(err){
+        console.log("ERR : ",err)
+      }
+    })()
+  },[])
+
+
+  // to get user currentOrders data
+  const [currentOrderItems , setCurrentOrderItems] = useState(null)
+  useEffect(()=>{
+    (async()=>{
+      try{
+        const response = await axios.get('http://localhost:5000/currentOrder',{
+          params:{
+            token,
+          }
+        })
+        console.log({response})
+        if(response.data.success===true)
+          setCurrentOrderItems(response.data.currentOrders)
+
+      }catch(err){
+        console.log("ERROR : ",err)
+      }
+    })()
+  },[])
 
   const [display, setDisplay] = useState(1);
   const printdot = () => {
     let str = '';
-    for (let i = 1; i <= UserData.Password; i++) {
+    for (let i = 1; i <= UserData.passwordLength; i++) {
       str += '* ';
     }
     return str;
   }
 
-  const handleDeleteOrder=(ind,orderIndex)=>{
-      
-  }
+ 
   return (
      
     <div className="h-[100vh] w-[100vw] flex flex-col justify-center items-center">
@@ -239,10 +88,10 @@ const Profile = () => {
         <div onClick={()=>setDisplay(0)} className={`${display==0&&"bg-[#d9eafc]"} min-h-[10vh] flex justify-center items-center sm:w-[30vw] w-[30vw] `}>Current Orders</div>
       </div>
       <div>
-        {display == 1 && <div className=" flex flex-col  sm:text-xl text-sm  gap-y-5 min-h-[70vh] ">
+        {UserData && display == 1 && <div className=" flex flex-col  sm:text-xl text-sm  gap-y-5 min-h-[70vh] ">
           <div  className="px-2 flex gap-2 bg-slate-200 min-h-[10vh] items-center rounded sm:w-[60vw] w-[70vw] justify-between">
            <div className="flex gap-4 h-[100%]  items-center"> <div><FaRegUser /> </div>
-            <div>{UserData.name}</div>
+            <div>{UserData.username}</div>
             </div>
             
 
@@ -255,7 +104,7 @@ const Profile = () => {
           </div>
           <div className="px-2 flex gap-2 bg-slate-200 min-h-[10vh] items-center rounded sm:w-[60vw] w-[70vw] ">
             <div className="h-[100%]  items-center"><IoIosMail /> </div>
-            <div>{UserData.Male}</div>
+            <div>{UserData.email}</div>
             
           </div>
           <div className="px-2 flex  gap-2 bg-slate-200 min-h-[10vh] items-center justify-between rounded sm:w-[60vw] w-[70vw] ">
@@ -272,34 +121,35 @@ const Profile = () => {
 
         </div>}
         {display == 0 && <div className=" flex   sm:text-lg text-xs  gap-5 h-[70vh] overflow-y-auto overflow-x-hidden sm:w-[60vw] w-[70vw] flex-wrap justify-center">
-          {UserData.CurrentOrders.map((item, index) => <div key={index} className="bg-slate-300 w-[300px] h-[50vh] rounded-md shadow-md  items-center flex flex-col text-gray-900 overflow-y-auto">
-            <div className="flex w-[80%] gap-4">
-             <div className="w-[70px]">id: </div> <div className="w-[150px]">{item.id}</div>
-            </div>
+          {currentOrderItems && currentOrderItems.map((item, index) => 
+          <div key={index} className="bg-slate-300 w-[300px] h-[50vh] rounded-md shadow-md  items-center flex flex-col text-gray-900 overflow-y-auto overflow-x-hidden">
+            {/* <div className="flex w-[80%] gap-4">
+             <div className="w-[70px]">id: </div> <div className="w-[150px]">{item._id}</div>
+            </div> */}
             <div className="flex w-[80%] gap-4">
             <div className="w-[70px]">Quantity: </div>  <div className="w-[150px]">{item.quantity}</div>
             </div>
             <div className="flex w-[80%] gap-4">
-             <div className="w-[70px]">Price: </div> <div className="w-[150px]"> {item.price}</div>
+             <div className="w-[70px]">Price: </div> <div className="w-[150px]">&#8377; {item.price}</div>
             </div>
             <div className="flex w-[80%] gap-4">
              <div  className="w-[70px]">Status: </div> <div className="w-[150px]">{item.status==0&&"Pending"}
                                       {item.status==1&&"In Progress"}</div>
             </div>
             <div className="flex w-[80%] gap-4">
-             <div className="w-[70px] ">Address: </div> <div className="w-[150px]"> {item.addressDelevery}</div>
+             <div className="w-[70px] ">Address: </div> <div className="w-[150px]"> {item.addressDelivery}</div>
             </div>
             <div className="flex flex-col w-[80%] my-5">
               <div className="my-2">Ordered Products</div>
               <div className="flex flex-col gap-y-5">
-              {item.products.map((i, ind) => <div key={ind}  >
-                <Link to={`/productInfo/${i.id}`}>
+              {item.items.map((i, ind) => <div key={ind} className="w-[80%]" >
+                <Link to={`/productInfo/${i.product._id}`}>
                   <div className="flex  gap-4">
-                    <div>Name: </div>
-                    <div >{i.name}</div>
+                    <div className="w-[50px]">Name: </div>
+                    <div className="w-[190px] ">{i.product.name}</div>
 
                   </div>
-                  <div className="flex  gap-4">
+                  <div className="flex  gap-4 ">
                     <div>Product Quantity: </div>
                     <div >{i.quantity}</div>
                   </div>
@@ -308,7 +158,8 @@ const Profile = () => {
               </div>
             </div>
             
-          </div>)}
+          </div>)
+          }
         </div>}
                    </div>
     </div>

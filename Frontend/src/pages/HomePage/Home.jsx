@@ -24,11 +24,6 @@ const Home = () => {
   const [categoriesData, setCategoriesData] = useState([]);
   const [productsDataForCarousel, setproductsDataForCarousel] = useState([]);  // will get only 6 products for carousel
 
-  // const [pdts, setpdts] = useState([]);
-
-  // useEffect(() => {
-  //   setpdts(products.filter((item, index) => index <= 6));
-  // }, [products]);
   useEffect(()=>{
     (async()=>{
         try{

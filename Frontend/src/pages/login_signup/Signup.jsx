@@ -26,7 +26,8 @@ const Signup = () => {
       const response = await axios.post("http://localhost:5000/auth/signup", {
         // Change added username  from the data from form 
         //now set api and set user's username to the sended one bro
-        data: { email: data.Email,username:data.username, password: data.password },
+        // XX          DONE BRO          XX
+        data: { email: data.Email,username:data.username,phone:data.phoneNumber, password: data.password },
       });
       if(response.data.success === true)
         navigate('/login_signup/login')
@@ -62,12 +63,20 @@ const Signup = () => {
               onSubmit={handleSubmit(onSubmit)}
               className="form flex flex-col justify-center"
             >
+              <input
+                className="pp inp fo hover:scale-105 transition-all"
+                placeholder="Phone Number"
+                {...register("phoneNumber", {
+                  required: { value: true, message: "This field is required" },
+                  minLength: { value: 10, message: "Invalid Phone Number" },
+                })}
+              />
                  <input
                 className="pp inp fo hover:scale-105 transition-all"
-                placeholder="UserName"
+                placeholder="Username"
                 {...register("username", {
                   required: { value: true, message: "This field is required" },
-                  minLength: { value: 2, message: "Invalid Email name" },
+                  minLength: { value: 2, message: "Invalid Username name" },
                 })}
               />
               <input
