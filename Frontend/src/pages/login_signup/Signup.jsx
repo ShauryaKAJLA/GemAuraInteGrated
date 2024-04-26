@@ -71,6 +71,9 @@ const Signup = () => {
                   minLength: { value: 10, message: "Invalid Phone Number" },
                 })}
               />
+              <div className="flex justify-center w-full text-red-300">
+              {errors.phoneNumber&&errors.phoneNumber.message}
+              </div>
                  <input
                 className="pp inp fo hover:scale-105 transition-all"
                 placeholder="Username"
@@ -79,6 +82,9 @@ const Signup = () => {
                   minLength: { value: 2, message: "Invalid Username name" },
                 })}
               />
+              <div className="flex justify-center w-full text-red-300">
+                {errors.username && errors.username.message}
+              </div>
               <input
                 className="pp inp fo hover:scale-105 transition-all"
                 placeholder="Email"
@@ -94,36 +100,8 @@ const Signup = () => {
               <div className="flex justify-center w-full text-red-300">
                 {errors.Email && errors.Email.message}
               </div>
-              <div className="relative">
-                <input
-                  type={isShown ? "text" : "password"}
-                  className="pp inp fo hover:scale-105 transition-all"
-                  placeholder="password"
-                  {...register("password", {
-                    required: {
-                      value: true,
-                      message: "This field is required",
-                    },
-                    minLength: { value: 8, message: "Enter longer password" },
-                    pattern: {
-                      value:
-                        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$/,
-                      message: "Generate a strong password",
-                    },
-                  })}
-                />
-                <div className="absolute top-[30%] right-3 hover:scale-110 text-white ">
-                  {" "}
-                  {isShown ? (
-                    <FaEye onClick={() => SetIsShown(!isShown)} />
-                  ) : (
-                    <FaEyeSlash onClick={() => SetIsShown(!isShown)} />
-                  )}
-                </div>
-              </div>
-              <div className="flex justify-center w-full text-red-300">
-                {errors.password && errors.password.message}
-              </div>
+              <div className='relative'><input type={isShown?"text":"password"}  className='pp inp fo hover:scale-105 transition-all' placeholder='password' {...register("password", { required:{value:true,message:"This field is required"},minLength:{value:8,message:"Enter longer password"},pattern:{value:/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$/,message:"Generate a strong password"}})} /><div className='absolute top-[30%] right-3 hover:scale-110 text-white '> {isShown?<FaEye onClick={()=>SetIsShown(!isShown)}/>:<FaEyeSlash  onClick={()=>SetIsShown(!isShown)}/>}</div></div>
+            <div className='flex justify-center w-full text-red-300'>{errors.password&&errors.password.message}</div>   
               <div className="relative">
                 <input
                   type={isShownMatch ? "text" : "password"}
@@ -159,7 +137,7 @@ const Signup = () => {
                 type="submit"
                 disabled={isSubmitting}
                 className=" sb hover:scale-105 transition-all flex justify-center flex-wrap items-center inp"
-                onClick={() => clearErrors("match")}
+                onClick={() => {clearErrors("match"); clearErrors("ErrorInSignup");}}
               />
               <div className='flex justify-center w-full text-red-300'>{errors.ErrorInSignup&&errors.ErrorInSignup.message}</div>   
             </form>
