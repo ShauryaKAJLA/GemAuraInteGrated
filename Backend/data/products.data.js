@@ -12,13 +12,13 @@ const productsData=[
             weightInCaret: 2,
             totalPrice: 30000
         },
-        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714276636/Emerald_chandelier_earrings_Emerald_long_Bridal_earrings_Dark_green_earrings_Swarovski_Emerald_Chandelier_earring_Emerald_drop_earring_x71qju.jpg",
+        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714310978/GemAura/gold_drop1_qnu80n.png",
 
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714276636/EFFY_Collection_Marquise-Cut_Emerald_and_0_26_CT._T.W_yff9ce.jpg",
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714310981/GemAura/gold_drop2_fmtwpk.png",
 
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714238900/GemAura_Images/Emerald_Diamante_Dangle_Drop_Earrings_bbsm1j.jpg",
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714310984/GemAura/gold_drop3_qseibu.png",
 
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714276793/Emerald_green_bmkh9n.jpg"],
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714310989/GemAura/gold_drop4_uvomkw.png"],
 
         gender: "w",
         type_of: "earrings",
@@ -37,13 +37,13 @@ const productsData=[
             weightInCaret: 1.5,
             totalPrice: 25000
         },
-        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714240532/GemAura_Images/Emerald_Flower_Studs_cawgsh.jpg",
+        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311177/GemAura/stud4_oahchk.png",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714240508/GemAura_Images/14k_Yellow_Gold_Gifts_For_Her_In_Green_Emerald___Riveting_Halo_Studs___Fascinating_Diamonds_wedding_vxsqyu.jpg",
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311172/GemAura/stud3_rwrr86.png",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714276923/Niche_Exquisite_Inlaid_Zircon_Versatile_Jewelry_Earrings_-_Sapphire_Blue_tlfdw6.jpg",
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311162/GemAura/stud2_lvh92p.png",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714240659/GemAura_Images/Macy_s_Sapphire_1-1_5_ct__t.w._and_White_Sapphire_1_6_ct._t.w_kmmmrg.jpg"],
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311158/GemAura/stud1_q52ser.png"],
 
         gender: "w",
         type_of: "earrings",
@@ -62,16 +62,16 @@ const productsData=[
             weightInCaret: 0,
             totalPrice: 0
         },
-        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714240907/GemAura_Images/download_2_cka9zy.jpg",
+        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311090/GemAura/hoop1_yqb9hy.png",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714240888/GemAura_Images/Simple_Hoop_Earrings_hpychp.jpg",
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311094/GemAura/hoop2_x8gdfp.png",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714241013/GemAura_Images/18K_Gold_Plated_Fat_Chunky_Hoop_Earrings___JDE948_locrky.jpg",
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311099/GemAura/hoop3_wnnocp.png",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714241015/GemAura_Images/Women_s_Hoop_Earrings___Silver_Hoops_with_Gold_Plating___Hoops_with_Beads___Earrings_with_Golden_Balls___Pair_of_Hoop_Earrings_and_Balls_tfmgjh.jpg"],
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311105/GemAura/hoop4_xpwjuw.png"],
 
         gender: "w",
-        type_of: "earrings",
+        type_of: "gold earrings",
         instock: true
     },
     {
@@ -87,16 +87,16 @@ const productsData=[
             weightInCaret: 0,
             totalPrice: 0
         },
-        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714241520/GemAura_Images/Gold_Earrings_Designs_pldrsw.jpg",
+        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311071/GemAura/drop1_gymagz.png",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714241385/GemAura_Images/Vintage_Carved_Flower_Design_Dangle_Earrings_Luxury_Ethnic_Style_Plated_Jewelry_Creative_Female_Ear_Ornaments_jrhnc3.jpg",
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311076/GemAura/drop2_zs158b.png",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714241518/GemAura_Images/viral_trending_gold_jewellery_hashtag_pnmyjx.jpg",
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311080/GemAura/drop3_fkiozb.png",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714241706/GemAura_Images/Designer_Light_Weight_Gold_Latkan_Earrings_-_Kurti_Blouse_BCD_ucoqmw.jpg"],
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311085/GemAura/drop4_dztgik.png"],
 
         gender: "w",
-        type_of: "earrings",
+        type_of: "gold earrings",
         instock: true
     },
     {
@@ -112,16 +112,16 @@ const productsData=[
             weightInCaret: 1,
             totalPrice: 80000
         },
-        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714242033/GemAura_Images/download_5_e4dmcy.jpg",
+        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311110/GemAura/necklace1_xj0ml6.png",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714241866/GemAura_Images/Unlocking_Elegance__The_Top_Jewelry_Trends_of_2024_Revealed_c7uiqa.jpg",
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311115/GemAura/necklace2_qlcqll.png",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714241870/GemAura_Images/download_4_rshc4y.jpg",
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311120/GemAura/necklace3_r0qntj.png",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714241876/GemAura_Images/download_3_jvzftt.jpg"],
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311125/GemAura/necklace4_kr5uf1.png"],
 
         gender: "w",
-        type_of: "necklace",
+        type_of: "diamond necklace",
         instock: true
     },
     {
@@ -137,16 +137,16 @@ const productsData=[
             weightInCaret: 0.75,
             totalPrice: 45000
         },
-        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714242804/GemAura_Images/Rose_Gold_Natural_Diamond_Solitaire_look_Pendant_Set_bcgmmz.jpg",
+        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311131/GemAura/pandent1_pblfdo.png",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714242800/GemAura_Images/Rose_Gold_Pressure_Setting_Pendant_Set__mxnvcx.jpg",
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311136/GemAura/pandent2_eweg9d.png",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714242797/GemAura_Images/download_6_zudpa3.jpg",
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311145/GemAura/pandent3_ku78ik.png",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714242484/GemAura_Images/Rose_gold_daimond_pendant_hvpxkb.jpg"],
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311150/GemAura/pandent4_zw9qbj.png"],
 
         gender: "w",
-        type_of: "necklace",
+        type_of: "diamond necklace",
         instock: true
     },
     {
@@ -162,16 +162,16 @@ const productsData=[
             weightInCaret: 0,
             totalPrice: 0
         },
-        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714242964/GemAura_Images/Discover_Unique_2024_Wedding_Ring_Ideas_-_Expert_Tips_for_Couples_brjijn.jpg",
+        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311185/GemAura/download_23_lpuh4w.jpg",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714242958/GemAura_Images/download_7_lrcyed.jpg",
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311190/GemAura/efe31e12-521c-4996-b3e0-5a27ca19039b_cxt0pj.jpg",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714242954/GemAura_Images/Find_many_great_new_used_options_and_get_the_best_deals_for_14K_Yellow_Gold_FN_Diamond_Bridal_Engagement_Ring_His_Her_Trio_Wedding_Band_Set_at_the_best_online_prices_at_eBay_Free_shipping_for_many_prod_ifqdmq.jpg",
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311196/GemAura/Perfect_Classic_Engagement_Rings_m9mq94.jpg",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714243067/GemAura_Images/wedding_ring_set_e9qwbv.jpg"],
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311204/GemAura/2PC_white_gold_couple_ring_EJZ180_clbaya.jpg"],
 
         gender: "m",
-        type_of: "ring",
+        type_of: "wedding ring",
         instock: true
     },
     {
@@ -187,16 +187,16 @@ const productsData=[
             weightInCaret: 0,
             totalPrice: 0
         },
-        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714243312/GemAura_Images/Creative_Wheat_Zircon_Couple_Rings_2pcs_set_Valentine_s_Day_Gift_Adjustable_Ring_faoedo.jpg",
+        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311293/GemAura/band1_cahern.png",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714243309/GemAura_Images/Couple_Rings_Set_Childhood_Sweethearts_Ring_Dainty_Flower_Shell_Charm_Woman_Ring_Plum_Bossom_____vxmyxj.jpg",
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311385/GemAura/band2_dslssl.png",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714243317/GemAura_Images/Couple_Rings_zbho8a.jpg",
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311392/GemAura/band3_adl5yh.png",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714243321/GemAura_Images/download_8_dymkbx.jpg"],
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311400/GemAura/band4_r4yh3u.png"],
 
         gender: "m",
-        type_of: "ring",
+        type_of: "wedding ring",
         instock: true
     },
     {
@@ -212,13 +212,13 @@ const productsData=[
             weightInCaret: 5,
             totalPrice: 40000
         },
-        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714277443/Sparkling_ColorFul_Zircon_Double-layer_Copper_Gold_Plated_Colour_Crystal_Bracelet_Beautiful_Lovers_For_Women_Birthday_Jewelry_Box_jsisni.jpg",
+        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311243/GemAura/gems1_w5vgvp.png",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714277444/Hermosa_Rose_Gold_Plated_Multicolor_Austria_Crystal_Elements_Jewelry_Set_Necklace_Earrings_Bracelet_and_Ring_vn4mbg.jpg",
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311248/GemAura/gems2_ycvmhf.png",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714277444/1aed4973-0139-4757-a16e-81c5c1077740_u1mmbh.jpg",
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311260/GemAura/gems3_cqurs0.png",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714277445/Rhinestone_Decor_Bracelet_szjn0g.jpg"],
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311273/GemAura/gems4_kra7ax.png"],
 
         gender: "w",
         type_of: "bracelets",
@@ -237,18 +237,21 @@ const productsData=[
             weightInCaret: 3,
             totalPrice: 35000
         },
-        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714243610/GemAura_Images/download_9_siat0b.jpg",
+        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311223/GemAura/Gold_Leaf_Pearl_Bracelet_freeshipping_-_Deegnt_mmugqj.jpg",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714243613/GemAura_Images/Gold_Leaf_Pearl_Bracelet_vyd0of.jpg",
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311216/GemAura/Gold_Leaf_Pearl_Bracelet_freeshipping_-_Deegnt_1_lkn6hv.jpg",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714243604/GemAura_Images/download_10_qmcyye.jpg",
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311210/GemAura/Gold_Leaf_Pearl_Bracelet_1_dkgk94.jpg",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714243600/GemAura_Images/%D0%96%D0%B5%D0%BC%D1%87%D1%83%D0%B6%D0%BD%D1%8B%D0%B9_%D0%B1%D1%80%D0%B0%D1%81%D0%BB%D0%B5%D1%82_%D1%81_%D1%84%D0%B8%D0%B0%D0%BD%D0%B8%D1%82%D0%BE%D0%BC_bspwm5.jpg"],
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311232/GemAura/Best_sellers_1_yqaclh.jpg"],
 
         gender: "w",
         type_of: "bracelets",
         instock: true
     },
+
+
+
     {
         name: "Gold Nose Pin",
         desc: "Elegant gold nose pin for a subtle statement",
@@ -262,13 +265,13 @@ const productsData=[
             weightInCaret: 0,
             totalPrice: 0
         },
-        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714277765/indian_nose_dtud_nose_ring_dangle_gold_flower_nose_stud_silver_dangle_nose_ring_titanium_nose_jewelr_f3bo6e.jpg",
+        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311575/GemAura/nosepin1_tm3v7h.png",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714277764/Gold_Plated_Nose_Stud_Sterling_Silver_Nose_Jewelry_Flower_Nose_Piercing_Spring_Love_Gold_Nose_Hoop_I_pwnhfb.jpg",
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311580/GemAura/nosepin2_g4wjuy.png",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714246319/GemAura_Images/Nose_pin_dup87z.jpg",
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311630/GemAura/nosepin3_ycyyxh.png",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714246319/GemAura_Images/Gold_Nose_Pin_Ideas_nosestud_ng9obn.jpg"],
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311634/GemAura/nosepin4_ysagwl.png"],
         gender: "w",
         type_of: "nose pin",
         instock: true
@@ -286,13 +289,13 @@ const productsData=[
             weightInCaret: 0.2,
             totalPrice: 15000
         },
-        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714246469/GemAura_Images/Star_Nose_Stud_Rose_Gold_Nose_Piercing_Indian_Nose_Ring_Rose_Gold_Nose_Stud_Indian_Nose_Screw_Indian_mrg7ol.jpg",
+        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311444/GemAura/Dnosepin2_klazxh.png",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714246470/GemAura_Images/download_13_h3bcwj.jpg",
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311438/GemAura/Dnosepin1_ovhzmx.png",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714246565/GemAura_Images/b6dbc5bb-3f68-4f92-b427-85dd879d9f7e_ilahle.jpg",
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311520/GemAura/Dnosepin4_n6fsal.png",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714246565/GemAura_Images/988f0f80-388f-480d-882a-566be0b87abc_yhopap.jpg"],
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311450/GemAura/Dnosepin3_oawqng.png"],
         gender: "w",
         type_of: "nose pin",
         instock: true
@@ -310,15 +313,14 @@ const productsData=[
             weightInCaret: 0,
             totalPrice: 0
         },
-        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714246763/GemAura_Images/download_15_cp9a5l.jpg",
+        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311560/GemAura/goldc1_gygdeb.png",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714246760/GemAura_Images/Gold_Baby____vsxmri.jpg",
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311566/GemAura/goldc2_xc6afj.png"
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714246759/GemAura_Images/Premium_Vector___Gold_coin_so82lu.jpg",
-        
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714246759/GemAura_Images/Muthoot_Precious_Metals_Corporation_24k_999_Lord_Krishna_8_gm_Yellow_Gold_Coin_wxy9oi.jpg"],
+       
+    ],
         gender: "k",
-        type_of: "coin",
+        type_of: "gold coins",
         instock: true
     },
     {
@@ -334,15 +336,12 @@ const productsData=[
             weightInCaret: 0,
             totalPrice: 0
         },
-        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714246965/GemAura_Images/silver1_zvbxuk.jpg",
+        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714313125/GemAura/_Ganesh_Coin_10_Gm_Pure_999_Silver_Coin_hallmarked_999_Silver_Ganesh_Om_Coin_Hindu_Religous_Coin_32mm_1_25___Silver_Coins__mkdpjn.jpg",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714246965/GemAura_Images/silver2_tcuhvv.jpg",
-        
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714247030/GemAura_Images/download_16_mlvz7b.jpg",
-        
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714247031/GemAura_Images/Lakshmi_Ganesh_Silver_Coins_USA___10_Gms___Diwali_Puja_Wedding_Housewarming_Return_Gifts_20839___Buy_Pure_Silver_Coin_Online_bkovyj.jpg"],
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714313114/GemAura/Ganesha_Lakshmi_Silver_coin_10_grams_999_Hallmark_ships_from_USA_cualfk.jpg"
+    ],
         gender: "k",
-        type_of: "coin",
+        type_of: "gold coins",
         instock: true
     },
     {
@@ -358,13 +357,13 @@ const productsData=[
             weightInCaret: 3,
             totalPrice: 60000
         },
-        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714247200/GemAura_Images/330_Rubellite_and_diamond_necklace_pmwk5w.jpg",
+        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311677/GemAura/ruby1_qplw23.png",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714247200/GemAura_Images/download_17_x1sesg.jpg",
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311682/GemAura/ruby2_otu8yh.png",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714247204/GemAura_Images/The_Ruby_Heart_Necklace_exvnul.jpg",
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311694/GemAura/ruby4_j9ljwe.png",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714247205/GemAura_Images/Certified_Ruby_And_Diamond_Necklace_ej8mu3.jpg"],
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311690/GemAura/ruby3_e4r4jf.png"],
         gender: "w",
         type_of: "necklace",
         instock: true
@@ -382,13 +381,13 @@ const productsData=[
             weightInCaret: 2,
             totalPrice: 25000
         },
-        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714247480/GemAura_Images/Violet_Blue_Sapphire_from_Sri_Lanka_ax9ds2.jpg",
+        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311730/GemAura/%D0%9F%D1%80%D0%B8%D1%80%D0%BE%D0%B4%D0%BD%D1%8B%D0%B9_%D1%82%D0%B0%D0%BD%D0%B7%D0%B0%D0%BD%D0%B8%D1%82_%D1%80%D0%B0%D0%B7%D0%BD%D0%BE%D0%B2%D0%B8%D0%B4%D0%BD%D0%BE%D1%81%D1%82%D1%8C%D1%8E_%D0%BC%D0%B8%D0%BD%D0%B5%D1%80%D0%B0%D0%BB%D0%B0_%D1%86%D0%BE%D0%B8%D0%B7%D0%B8%D1%82%D0%B0__%D0%94%D1%80%D0%B0%D0%B3%D0%BE%D1%86%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5_%D0%BA%D0%B0%D0%BC%D0%BD%D0%B8_hrisrp.jpg",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714247481/GemAura_Images/Buy_online_wholesale_loose_Kyanite_gemstones_at_an_effective_price_leh0jy.jpg",
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311820/GemAura/%D0%9F%D1%80%D0%B8%D1%80%D0%BE%D0%B4%D0%BD%D1%8B%D0%B9_%D1%82%D0%B0%D0%BD%D0%B7%D0%B0%D0%BD%D0%B8%D1%82_%D1%80%D0%B0%D0%B7%D0%BD%D0%BE%D0%B2%D0%B8%D0%B4%D0%BD%D0%BE%D1%81%D1%82%D1%8C%D1%8E_%D0%BC%D0%B8%D0%BD%D0%B5%D1%80%D0%B0%D0%BB%D0%B0_%D1%86%D0%BE%D0%B8%D0%B7%D0%B8%D1%82%D0%B0__%D0%94%D1%80%D0%B0%D0%B3%D0%BE%D1%86%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5_%D0%BA%D0%B0%D0%BC%D0%BD%D0%B8_1_kvgbui.jpg",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714247485/GemAura_Images/This_gemstone_could_easily_be_mistaken_for_a_blue_gm2dxy.jpg",
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311863/GemAura/5_30_mm_Cushion_0_dpfs7e.jpg",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714247489/GemAura_Images/0c8e6186-c118-4926-b3ae-9b6d6eaf5fcb_fuhxfl.jpg"],
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311869/GemAura/04219_-_2_23ct_-_Sapphire_-_Madagascar_7.30_x_6_mhrqop.jpg"],
         gender: "w",
         type_of: "gem stones",
         instock: true
@@ -406,13 +405,13 @@ const productsData=[
             weightInCaret: 0.5,
             totalPrice: 3000
         },
-        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714247696/GemAura_Images/Cellini_1_njp25e.jpg",
+        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714312052/GemAura/rubyb1_h6816i.png",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714247655/GemAura_Images/Ruby_and_White_Topaz_Tennis_Bracelet_in_Silver_July_Brithstone_bracelet_Women_Bracelet_party_wear_bracelet_fiance_Gift_bracelet_gift_her_uagz5g.jpg",
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714312167/GemAura/rubyb2_a48lhn.png",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714247652/GemAura_Images/4_62_Carat_Round_Cut_Ruby_And_Diamond_Tennis_Bracelet_In_14k_White_Gold_nwrrv9.jpg",
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714312180/GemAura/rubyb4_khjkow.png",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714247649/GemAura_Images/1stdibs_Ruby_Yellow_Gold_18_Karat_White_Tennis_Bracelet_Modern_fsbcld.jpg"],
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714312578/GemAura/rubyb1_mcvxea.png"],
         gender: "k",
         type_of: "bracelets",
         instock: true
@@ -430,13 +429,13 @@ const productsData=[
             weightInCaret: 0.3,
             totalPrice: 1500
         },
-        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714247789/GemAura_Images/2_24US__Cubic_Zircon_Party_Accessories_Jewelry___Blue_Cz_Zircon_Stud_Earrings_-_Luxury_Blue_-_Aliexpress_ctzkp3.jpg",
+        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714312238/GemAura/sear2_qg4cue.png",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714247788/GemAura_Images/Shiny_Stud_Earrings_Embellished_With_Colorful_Zircon_Vintage_Elegant_Style_Copper_Jewelry_Delicate_Gifts_For_Women_Dating_Wedding_gyd8bq.jpg",
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714312230/GemAura/sear3_mj57jx.png",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714247793/GemAura_Images/Blue_Sapphire_Stud_Earrings_Sapphire_Stud_Earrings_Diamond_Stud_Earrings_Bridal_Earrings_Sapphire_Earrings_Diamond_Stud_Gift_for_Her_-_Etsy_lbmc2s.jpg",
-        
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714247896/GemAura_Images/2Ct_Oval_Cut_Lab_Created_Blue_Topaz_Women_s_Solitaire_Beauty_Stud_Earrings_18K_Yellow_Gold_Plated_Pure_100_Sterling_Silver_mihwkw.jpg"],
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714312223/GemAura/sear4_vy58lx.png",
+
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714312260/GemAura/sear1_e3813e.png"],
         gender: "k",
         type_of: "earrings",
         instock: true
@@ -454,13 +453,13 @@ const productsData=[
             weightInCaret: 0,
             totalPrice: 0
         },
-        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714248075/GemAura_Images/download_20_nc9ewb.jpg",
+        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714313307/GemAura/22k_Gold_Bracelet_MEN_BOY_Yellow_Gold_Bracelet_Gold_Jewelry_Cuban_Curb_Bracelet_Gold_Men_Birthday_Gift_Excellent_Jewelry_From_India_-_Etsy_szdetc.jpg",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714248076/GemAura_Images/download_19_koetcl.jpg",
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714313298/GemAura/22k_Yellow_Gold_Bracelet_Indian_Handmade_Jewelry_Best_For_Gift_K3369___eBay_xri1mq.jpg",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714248082/GemAura_Images/download_18_nfevw3.jpg",
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714313291/GemAura/22k_Yellow_Gold_Bracelet_Indian_Handmade_Jewelry_Best_For_Gift_K3365___eBay_ohxhdr.jpg",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714248084/GemAura_Images/Fashion_Bracelets_for_sale___eBay_hn3p82.jpg"],
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714313281/GemAura/View_Men_Bracelets_by_morvijewels_on_Etsy_ncibxa.jpg"],
         gender: "m",
         type_of: "bracelets",
         instock: true
@@ -478,13 +477,13 @@ const productsData=[
             weightInCaret: 0.5,
             totalPrice: 30000
         },
-        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714248162/GemAura_Images/India_Jewelry_suuyyb.jpg",
+        images:["https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714313361/GemAura/diamondm1_ass3h9.png",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714248217/GemAura_Images/Iced_Out_White_Zircon_Band_Ring_Niche_Design_Luxury_Elegant_Copper_Finger_Ring_Jewelry_Accessory_glkaas.jpg",
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714313334/GemAura/diamondm2_ftfs7v.png",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714248165/GemAura_Images/Men_s_Rings_for_Sale_-_eBay_blhgef.jpg",
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714313326/GemAura/diamondm3_xyesbk.png",
         
-        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714248154/GemAura_Images/Wedding_Rings_Engagement_Hip_Hop_Bling_Round_Shape_Cool_Street_Men_Bling_Iced_Out_CZ_Ring_qazi2c.jpg"],
+        "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714313318/GemAura/diamondm4_leeboi.png"],
         gender: "m",
         type_of: "ring",
         instock: true

@@ -726,12 +726,14 @@ padding-right: 2vw;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+
 }
 .Products1ImageDiv img
 {
     width: 100%;
-    height: 80%;
-    object-fit: contain;
+    height: 100%;
+    object-fit: cover;
     object-position: center;
 }
 .Products1DataDiv
@@ -763,13 +765,7 @@ padding-right: 2vw;
     justify-content: center;
     align-items: center;
 }
-.Products1ImageDiv img
-{
-    width: 100%;
-    height: 80%;
-    object-fit: contain;
-    object-position: center;
-}
+
 .Products1DataDiv
 {
     width: 100%;
