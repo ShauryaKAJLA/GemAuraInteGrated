@@ -200,12 +200,12 @@ export function Product() {
                 className=" m-2 gap-y-1 w-[200px] h-[310px] flex flex-col proDiv justify-center">
                   
                 <Link to={`/productInfo/${item._id}`}>
-                  <div className=" bg-black w-[200px] h-[250px] rounded-[15px] flex justify-center flex-wrap items-center proUp">
+                  <div className=" bg-black w-[200px] h-[250px] rounded-[15px] flex justify-center flex-wrap overflow-hidden items-center proUp">
                     <img
                       src={item.images[0]}
-                      className="  w-[200px] h-[200px]  rounded-[15px]  object-contain object-center proImg"
+                      className="  w-[200px] h-[200px]   object-cover object-center proImg"
                     />
-                    <div className="text-white w-[200px] overflow-clip justify-center flex proName proNamePre">
+                    <div className="text-white  w-[200px] h-[48px]  overflow-clip justify-center text-center items-center flex proName proNamePre">
                       {item.name}
                     </div>
                   </div>

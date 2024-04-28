@@ -46,8 +46,8 @@
 
 .optionImg img
 {
-  width: 70px;
-  height: 80px;
+  width: 100%;
+  height: 100%;
 }
 .contMainImg
 {
@@ -62,8 +62,10 @@
 }
 .contMainImg img
 {
-   object-fit:contain;
-   object-position: center center;
+    width: 100%;
+    height: 100%;
+   object-fit:cover;
+   object-position: center;
    border-radius: 20px;
 }
 .continfo

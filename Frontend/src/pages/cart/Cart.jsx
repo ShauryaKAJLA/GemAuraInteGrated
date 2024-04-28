@@ -201,10 +201,10 @@ export function Cart() {
               >
                 <div className="flex gap-x-[2vw] h-[90px] ">
                   <Link to={`/productInfo/${item.product && item.product._id}`}>
-                    <div className="w-[90px] h-[90px] flex flex-col justify-center items-center rounded-[15%] bg-black">
+                    <div className="w-[90px] h-[90px] overflow-hidden flex flex-col justify-center items-center rounded-[15%] bg-black">
                       <img
                         src={item.product && item.product.images[0]}
-                        className="w-[60px] shrink-0 object-contain object-center  "
+                        className="w-[100%] h-[100%] shrink-0 object-cover object-center  "
                       />
                     </div>
                   </Link>

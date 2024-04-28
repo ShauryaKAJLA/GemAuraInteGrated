@@ -60,7 +60,7 @@ const NavBar = () => {
       <Link to="/" className='hover:scale-105 transition-all'><img src={UMMER} alt="" className='w-[100px]' /></Link>
       </div>
     <div className='MainMenu'>
-    <div className='aft' ><Link to="/Login_SignUp/" className='transition-all my-auto hover:scale-110 flex gap-2 text-1xl font-semibold justify-center'><FaRegUser  size={20}/>{token?"Profile":"Login/Signup"}</Link>{token&&<div className='logout bg-red-600 text-white rounded-md p-1 sm:text-base text-sm absolute top-2 left-[100px] ' onClick={()=>setDisplay(1)}><IoLogOut /></div>}</div>
+    <div className='aft' ><Link to={`${token?'/profile':'/Login_SignUp/'}`} className='transition-all my-auto hover:scale-110 flex gap-2 text-1xl font-semibold justify-center'><FaRegUser  size={20}/>{token?"Profile":"Login/Signup"}</Link>{token&&<div className='logout bg-red-600 text-white rounded-md p-1 sm:text-base text-sm absolute top-2 left-[100px] ' onClick={()=>setDisplay(1)}><IoLogOut /></div>}</div>
       <ul className='MainOpt flex gap-[5vw]'>
       <Link to="/"><li className='transition-all hover:scale-105 hover:underline'>Home</li></Link>
       <div className='products flex flex-col relative'><Link onClick={()=> { dispatch(changeGender("All")); dispatch(changeMetal("All")); dispatch(changeGem("All"));dispatch(changeSearch("All"));}  } to="/products/"><li className='transition-all hover:scale-105 hover:underline products w-auto'>Products</li></Link>

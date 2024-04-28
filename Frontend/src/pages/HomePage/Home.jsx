@@ -309,6 +309,7 @@ const Home = () => {
       {/* Banner1 */}
 
       <div className="Banner1Div">
+        <Link to='/products' onClick={()=> { dispatch(changeGender("All")); dispatch(changeMetal("All")); dispatch(changeGem("All")); dispatch(changeSearch("diamond silver earring")) }}>
         <div className="Banner1InnerDiv">
           <div className="Banner1FirstPhoto">
             <img src={BannerFirstPhoto} alt="" />
@@ -331,20 +332,23 @@ const Home = () => {
             <img src={BannerSecondPhoto} alt="" />
           </div>
         </div>
+        </Link>
       </div>
 
       {/* PRODUCTS */}
       
         <div className="Products1">
-       
+       <Link to='/products' onClick={()=> { dispatch(changeGender("All")); dispatch(changeMetal("All")); dispatch(changeGem("All")); dispatch(changeSearch("All") )}}>
         <div className="w-screen flex justify-end pr-[2vw] CustomCatagoryColor font-semibold">
           Check All Products &rarr;
         </div>
+      </Link>
         { productsDataForCarousel && productsDataForCarousel.length>0 ?
         <div className="Products1Maindiv">
           <Slider {...settings}>
             {productsDataForCarousel.map((item) => (
               <div key={item._id} className="Products1productDiv">
+                <Link to={`productInfo/${item._id}`}>
                 <div className="Products1ImageDiv rounded-t-2xl">
                   <img src={item.images[0]} alt="" />
                 </div>
@@ -362,14 +366,15 @@ const Home = () => {
                     <div
                       className={
                         item.instock
-                          ? "text-green-700 text-xs sm:text-sm"
-                          : "text-red-700 text-xs md:text-sm"
+                        ? "text-green-700 text-xs sm:text-sm"
+                        : "text-red-700 text-xs md:text-sm"
                       }
-                    >
+                      >
                       {item.instock ? "in stock" : "Out of stock"}
                     </div>
                   </div>
                 </div>
+                      </Link>
               </div>
             ))}
           </Slider>
@@ -388,16 +393,18 @@ const Home = () => {
         <div className="flex flex-wrap w-screen justify-around gap-y-[4vh]">
           {genderData.map((item) => (
             <div key={item.id} className="sm:w-[30vw] w-[300px] border bg-black rounded-2xl overflow-hidden">
+              <Link to={`/products`} onClick={()=> { dispatch(changeGender(item.set)); dispatch(changeMetal("All")); dispatch(changeGem("All")); dispatch(changeSearch("All") )}}>
               <div className="sm:w-[30vw] 300px h-[80%]">
                 <img
                   src={item.src}
                   className=" w-[100%] h-[100%] object-cover obj"
                   alt=""
-                />
+                  />
               </div>
               <div className="CustomCatagoryColor  text-xl justify-center flex items-center h-[20%]">
                 {item.name}
               </div>
+                  </Link>
             </div>
           ))}
         </div>

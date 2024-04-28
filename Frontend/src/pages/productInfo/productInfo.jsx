@@ -3,7 +3,7 @@ import "./productInfo.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { changeSize, setProductInfo } from "./productListSlice";
-import { addToCart } from "../cart/CartSlice";
+import { addToCart, userCart } from "../cart/CartSlice";
 import ErrorPage from "../Reusable/404Error/errorPage";
 import axios from 'axios'
 
@@ -116,7 +116,6 @@ const productInfo = () => {
               <div className="h-auto lg:w-[500px] w-[350px] flex justify-center">
                 All hand-made jewellery , premium quality , attractive and long
                 lasting
-                {/* {productDetails.desc} */}
               </div>
             </div>
           </div>
