@@ -10,27 +10,32 @@ const imageData=[
     {
         src:img1,
         dataHead:"Gold Design",
-        dataDesc:"Gold never Gets Old Get Best Quality Gold jewellery"
+        dataDesc:"Gold never Gets Old Get Best Quality Gold jewellery",
+        search:"gold"
     },
     {
         src:img2,
-        dataHead:"Blue Supphire",
-        dataDesc:"Best Gems fitted in rings"
+        dataHead:"Blue Sapphire",
+        dataDesc:"Best Gems fitted in rings",
+        search:"sapphire ring"
     },
     {
         src:img3,
-        dataHead:"Earings",
-        dataDesc:"Different and unique designs"
+        dataHead:"Earrings",
+        dataDesc:"Different and unique designs",
+        search:"earring"
     },
     {
         src:img4,
         dataHead:"Diamond Jewellery",
-        dataDesc:"Diamond never gets old get latest designs"
+        dataDesc:"Diamond never gets old get latest designs",
+        search:"diamond"
     },
     {
         src:img5,
         dataHead:"Bracelets",
-        dataDesc:"Special collection of bracelets only at GemAura"
+        dataDesc:"Special collection of bracelets only at GemAura",
+        search:"bracelets"
     },
 ]
 

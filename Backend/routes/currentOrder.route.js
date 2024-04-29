@@ -22,7 +22,7 @@ router.post('/add',tokenAuth,async(req,res)=>{
         const newOrderObject = await Order.create({...orderObjectToSave})
 
         fetchedUser.currentOrders.push(newOrderObject._id)
-
+        fetchedUser.address = order.addressDelivery
         await newOrderObject.save()
 
         fetchedUser.cart =[]

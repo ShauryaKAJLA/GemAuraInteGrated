@@ -21,7 +21,7 @@ const productsData=[
         "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714310989/GemAura/gold_drop4_uvomkw.png"],
 
         gender: "w",
-        type_of: "earrings",
+        type_of: "earring",
         instock: true
     },
     {
@@ -46,7 +46,7 @@ const productsData=[
         "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311158/GemAura/stud1_q52ser.png"],
 
         gender: "w",
-        type_of: "earrings",
+        type_of: "earring",
         instock: true
     },
     {
@@ -71,7 +71,7 @@ const productsData=[
         "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311105/GemAura/hoop4_xpwjuw.png"],
 
         gender: "w",
-        type_of: "gold earrings",
+        type_of: "earring",
         instock: true
     },
     {
@@ -96,7 +96,7 @@ const productsData=[
         "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311085/GemAura/drop4_dztgik.png"],
 
         gender: "w",
-        type_of: "gold earrings",
+        type_of: "earring",
         instock: true
     },
     {
@@ -121,7 +121,7 @@ const productsData=[
         "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311125/GemAura/necklace4_kr5uf1.png"],
 
         gender: "w",
-        type_of: "diamond necklace",
+        type_of: "necklace",
         instock: true
     },
     {
@@ -146,7 +146,7 @@ const productsData=[
         "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311150/GemAura/pandent4_zw9qbj.png"],
 
         gender: "w",
-        type_of: "diamond necklace",
+        type_of: "necklace",
         instock: true
     },
     {
@@ -171,7 +171,7 @@ const productsData=[
         "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311204/GemAura/2PC_white_gold_couple_ring_EJZ180_clbaya.jpg"],
 
         gender: "m",
-        type_of: "wedding ring",
+        type_of: "ring",
         instock: true
     },
     {
@@ -196,7 +196,7 @@ const productsData=[
         "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311400/GemAura/band4_r4yh3u.png"],
 
         gender: "m",
-        type_of: "wedding ring",
+        type_of: "ring",
         instock: true
     },
     {
@@ -221,7 +221,7 @@ const productsData=[
         "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311273/GemAura/gems4_kra7ax.png"],
 
         gender: "w",
-        type_of: "bracelets",
+        type_of: "bracelet",
         instock: true
     },
     {
@@ -246,7 +246,7 @@ const productsData=[
         "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311232/GemAura/Best_sellers_1_yqaclh.jpg"],
 
         gender: "w",
-        type_of: "bracelets",
+        type_of: "bracelet",
         instock: true
     },
 
@@ -320,7 +320,7 @@ const productsData=[
        
     ],
         gender: "k",
-        type_of: "gold coins",
+        type_of: "coin",
         instock: true
     },
     {
@@ -341,7 +341,7 @@ const productsData=[
         "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714313114/GemAura/Ganesha_Lakshmi_Silver_coin_10_grams_999_Hallmark_ships_from_USA_cualfk.jpg"
     ],
         gender: "k",
-        type_of: "gold coins",
+        type_of: "coin",
         instock: true
     },
     {
@@ -389,7 +389,7 @@ const productsData=[
         
         "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714311869/GemAura/04219_-_2_23ct_-_Sapphire_-_Madagascar_7.30_x_6_mhrqop.jpg"],
         gender: "w",
-        type_of: "gem stones",
+        type_of: "gem stone",
         instock: true
     },
     {
@@ -413,7 +413,7 @@ const productsData=[
         
         "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714312578/GemAura/rubyb1_mcvxea.png"],
         gender: "k",
-        type_of: "bracelets",
+        type_of: "bracelet",
         instock: true
     },
     {
@@ -437,7 +437,7 @@ const productsData=[
 
         "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714312260/GemAura/sear1_e3813e.png"],
         gender: "k",
-        type_of: "earrings",
+        type_of: "earring",
         instock: true
     },
     {
@@ -461,7 +461,7 @@ const productsData=[
         
         "https://res.cloudinary.com/dbbvlp6wi/image/upload/v1714313281/GemAura/View_Men_Bracelets_by_morvijewels_on_Etsy_ncibxa.jpg"],
         gender: "m",
-        type_of: "bracelets",
+        type_of: "bracelet",
         instock: true
     },
     {
@@ -503,7 +503,7 @@ const productsData=[
         },
         images:["https://res.cloudinary.com/dimqqgecs/image/upload/v1714238054/gemAura/qjitkekzbwencxdn3tup.webp","https://res.cloudinary.com/dimqqgecs/image/upload/v1714238053/gemAura/eyftjzm4kjjqgncucute.webp","https://res.cloudinary.com/dimqqgecs/image/upload/v1714238051/gemAura/ajbsoupqsqfxgyt9fbai.webp","https://res.cloudinary.com/dimqqgecs/image/upload/v1714238048/gemAura/yuhi6j4drrcsdnfqnouu.webp"],
         gender: "m",
-        type_of: "cufflinks",
+        type_of: "cufflink",
         instock: true
     },
     {
@@ -521,7 +521,7 @@ const productsData=[
         },
         images:["https://res.cloudinary.com/dimqqgecs/image/upload/v1714239131/gemAura/fu11x0i5lzatfwpehxed.avif","https://res.cloudinary.com/dimqqgecs/image/upload/v1714239132/gemAura/nirxmsfrmvkbfyjnur2v.avif","https://res.cloudinary.com/dimqqgecs/image/upload/v1714239133/gemAura/l0ei2lj7w729b2pdx2hz.avif","https://res.cloudinary.com/dimqqgecs/image/upload/v1714239133/gemAura/e9l8oc4xlnxcdahk2a4x.avif"],
         gender: "w",
-        type_of: "anklets",
+        type_of: "anklet",
         instock: true
     },
     {
@@ -539,7 +539,7 @@ const productsData=[
         },
         images:["https://res.cloudinary.com/dimqqgecs/image/upload/v1714239628/gemAura/m62jmnqfas4jy1jj5z7c.webp","https://res.cloudinary.com/dimqqgecs/image/upload/v1714239630/gemAura/ez8qo6nyqq0mufgehdo5.png","https://res.cloudinary.com/dimqqgecs/image/upload/v1714239630/gemAura/b2nfb4ughsrhshr2omlv.jpg","https://res.cloudinary.com/dimqqgecs/image/upload/v1714239630/gemAura/yaqhqazxetwvlps3pmxz.webp"],
         gender: "w",
-        type_of: "earrings",
+        type_of: "earring",
         instock: true
     },
     {
@@ -575,7 +575,7 @@ const productsData=[
         },
         images:["https://res.cloudinary.com/dimqqgecs/image/upload/v1714240409/gemAura/g8mvr6wo8nchel1vzjfy.jpg","https://res.cloudinary.com/dimqqgecs/image/upload/v1714240409/gemAura/e0hmdfdp1hqd27bopnxa.jpg","https://res.cloudinary.com/dimqqgecs/image/upload/v1714240409/gemAura/e7f7dxujgjpdtph8ftwo.jpg","https://res.cloudinary.com/dimqqgecs/image/upload/v1714240410/gemAura/fkltcadb92ybh1oezjci.jpg"],
         gender: "k",
-        type_of: "earrings",
+        type_of: "earring",
         instock: true
     },
     {
@@ -593,7 +593,7 @@ const productsData=[
         },
         images:["https://res.cloudinary.com/dimqqgecs/image/upload/v1714241050/gemAura/zr62hfodyhtxjx0glr0w.jpg","https://res.cloudinary.com/dimqqgecs/image/upload/v1714241050/gemAura/gbob2c7msyc1vq73l6sr.jpg","https://res.cloudinary.com/dimqqgecs/image/upload/v1714241051/gemAura/g5zp22rvanibymj3zkom.jpg","https://res.cloudinary.com/dimqqgecs/image/upload/v1714241054/gemAura/icixobbrj8h3f5cqjmej.jpg"],
         gender: "k",
-        type_of: "bracelets",
+        type_of: "bracelet",
         instock: true
     },
     {
@@ -611,7 +611,7 @@ const productsData=[
         },
         images:["https://res.cloudinary.com/dimqqgecs/image/upload/v1714241600/gemAura/ctu7lzumsmlpa1zy3dvo.jpg","https://res.cloudinary.com/dimqqgecs/image/upload/v1714241599/gemAura/li26kwjjny4lwps5ma12.jpg","https://res.cloudinary.com/dimqqgecs/image/upload/v1714241599/gemAura/vc17mzghprxsd92qeol9.jpg","https://res.cloudinary.com/dimqqgecs/image/upload/v1714241597/gemAura/rscij9nor6m0rk1oulli.jpg"],
         gender: "k",
-        type_of: "pendants",
+        type_of: "pendant",
         instock: true
     },
     {
@@ -629,7 +629,7 @@ const productsData=[
         },
         images:["https://res.cloudinary.com/dimqqgecs/image/upload/v1714242326/gemAura/kbv2t5hxqfgcnwjk1crg.jpg","https://res.cloudinary.com/dimqqgecs/image/upload/v1714242326/gemAura/anhbjrrmgjss12j6ylh1.jpg","https://res.cloudinary.com/dimqqgecs/image/upload/v1714242326/gemAura/pcjvryeus0jnyw0ldzok.jpg","https://res.cloudinary.com/dimqqgecs/image/upload/v1714242326/gemAura/agzuhhzxvr3auwndwany.jpg"],
         gender: "k",
-        type_of: "earrings",
+        type_of: "earring",
         instock: true
     },
     {
@@ -683,7 +683,7 @@ const productsData=[
         },
         images:["https://res.cloudinary.com/dimqqgecs/image/upload/v1714243733/gemAura/l5pgbb8kpovy0suy6wru.jpg","https://res.cloudinary.com/dimqqgecs/image/upload/v1714243733/gemAura/i7kvtvqp3jdqwfh61yny.jpg","https://res.cloudinary.com/dimqqgecs/image/upload/v1714243732/gemAura/ozlkrmtkgeyzchucbgsc.jpg","https://res.cloudinary.com/dimqqgecs/image/upload/v1714243732/gemAura/ol6ypanp9u2hqndhnovv.jpg"],
         gender: "k",
-        type_of: "pendants",
+        type_of: "pendant",
         instock: true
     },
     {

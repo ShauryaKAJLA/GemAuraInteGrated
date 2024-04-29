@@ -221,6 +221,11 @@ const Home = () => {
               <div className="text-4xl text-white CrousalHomeContainerTextDesc">
                 {item.dataDesc}
               </div>
+              <div className="CrousalHomeContainerTextHead">
+              <div className="md:text-4xl sm:text-3xl text-2xl  border rounded text-white p-1 sm:mb-0 mb-6  caveat-custom">
+                <Link to='/products' onClick={()=> { dispatch(changeGender("All")); dispatch(changeMetal("All")); dispatch(changeGem("All")); dispatch(changeSearch(item.search)) }}>Explore More</Link>
+              </div>
+              </div>
             </div>
           </div>
         ))}
@@ -309,17 +314,17 @@ const Home = () => {
       {/* Banner1 */}
 
       <div className="Banner1Div">
-        <Link to='/products' onClick={()=> { dispatch(changeGender("All")); dispatch(changeMetal("All")); dispatch(changeGem("All")); dispatch(changeSearch("diamond silver earring")) }}>
+        <Link to='/products' onClick={()=> { dispatch(changeGender("All")); dispatch(changeMetal("All")); dispatch(changeGem("All")); dispatch(changeSearch("diamond gold earring")) }}>
         <div className="Banner1InnerDiv">
           <div className="Banner1FirstPhoto">
             <img src={BannerFirstPhoto} alt="" />
           </div>
           <div className="Banner1Text">
             <div className="text-white sm:text-xl text-base">
-              Silver-Dimonds Earrings
+              Gold-Dimonds Earrings
             </div>
             <div className="text-white sm:text-sm text-xs font-thin flex text-center">
-              Indulge in the allure of our Silver Diamond Earrings, where
+              Indulge in the allure of our Platinum Diamond Earrings, where
               classic beauty meets contemporary design. Crafted with precision
               and passion, each piece is a testament to our commitment to
               quality and style.

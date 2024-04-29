@@ -24,9 +24,9 @@ const Footer=()=>{
             <div className="text-xl customfooterColor font-semibold mb-2">Social Links</div>
             <div className="contLink">
                 <ul className="contLink">
-                    <li className="linkData"><Link to="/">Facebook</Link></li>
-                    <li className="linkData"><Link to="/">Twitter</Link></li>
-                    <li className="linkData"><Link to="/">Instagram</Link></li>
+                    <li className="linkData"><Link to="https://www.facebook.com/thegemaura">Facebook</Link></li>
+                    <li className="linkData"><Link to="https://twitter.com/thegemaura">Twitter</Link></li>
+                    <li className="linkData"><Link to="https://www.instagram.com/gemaura._/?next=%2F">Instagram</Link></li>
                 </ul>
             </div>
         </div>
