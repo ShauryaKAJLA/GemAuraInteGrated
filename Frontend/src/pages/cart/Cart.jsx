@@ -21,7 +21,7 @@ export function Cart() {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get("http://localhost:5000/cart/", {
+        const response = await axios.get("https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/cart/", {
           params: {
             token,
           },
@@ -37,7 +37,7 @@ export function Cart() {
   async function removeItemHandler(item) {
     // console.log(item)
     try {
-      const response = await axios.post("http://localhost:5000/cart/remove", {
+      const response = await axios.post("https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/cart/remove", {
         token,
         productId: item.product._id,
         size: item.size !== undefined ? item.size : undefined,
@@ -52,7 +52,7 @@ export function Cart() {
 
   async function reduceQuantityHandler(item) {
     try {
-      const response = await axios.post("http://localhost:5000/cart/reduce", {
+      const response = await axios.post("https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/cart/reduce", {
         token,
         productId: item.product._id,
         size: item.size === undefined ? undefined : item.size,
@@ -68,7 +68,7 @@ export function Cart() {
 
   async function addQuantityHandler(item) {
     try {
-      const response = await axios.post("http://localhost:5000/cart/add", {
+      const response = await axios.post("https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/cart/add", {
         productId: item.product._id,
         token,
         size:
@@ -128,12 +128,23 @@ export function Cart() {
 
         try {
           const response = await axios.post(
-            "http://localhost:5000/currentOrder/add",{
+            "https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/currentOrder/add",{
               token,
               order:newOrder,
             }
           );
           setAddress("");
+          toast.info("Order Placed!", {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            transition: Bounce,
+          })
           dispatch(userCart([]));
           Navigate('/')
           // yaha cart ko empty set krde ..... 

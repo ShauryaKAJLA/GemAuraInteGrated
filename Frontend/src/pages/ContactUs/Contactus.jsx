@@ -7,6 +7,8 @@ import { IoIosMail } from "react-icons/io";
 import { CiLocationOn } from "react-icons/ci";
 import { userCart } from '../cart/CartSlice';
 import axios from 'axios';
+import { toast } from "react-toastify";
+import { Bounce } from "react-toastify";
 import { useDispatch } from 'react-redux';
 const Contactus = () => {
   const token = localStorage.getItem('token')
@@ -14,7 +16,7 @@ const Contactus = () => {
   useEffect(()=>{
     (async()=>{
         try{
-            const response = await axios.get('http://localhost:5000/cart/',{
+            const response = await axios.get('https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/cart/',{
               params:{
                 token
               }
@@ -41,12 +43,23 @@ const Contactus = () => {
       console.log({data})
       try {
         console.log('i am clicked')
-        const response = await axios.post('http://localhost:5000/feedback/submit', {
+        const response = await axios.post('https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/feedback/submit', {
           token,
           data : {name : data.name , email:data.Email , message : data.Message}
         });
         if(response.data.success){
           setMessage(response.data.message);
+          toast.info("Feedback was submitted", {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            transition: Bounce,
+          })
           reset()
         }
       } catch (error) {

@@ -6,14 +6,16 @@ import { changeSize, setProductInfo } from "./productListSlice";
 import { addToCart, userCart } from "../cart/CartSlice";
 import ErrorPage from "../Reusable/404Error/errorPage";
 import axios from 'axios'
-
+import { toast } from "react-toastify";
+import { Bounce } from "react-toastify";
 const productInfo = () => {
   const {productId} = useParams()
+  const [error,setError]=useState(1);
   const [productDetails , setProductDetails] = useState(null)
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get("http://localhost:5000/cart/", {
+        const response = await axios.get("https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/cart/", {
           params: {
             token,
           },
@@ -28,11 +30,13 @@ const productInfo = () => {
   useEffect(()=>{
     (async()=>{
       try{
-        const response = await axios.get(`http://localhost:5000/products/${productId}`)
+        const response = await axios.get(`https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/products/${productId}`)
         setProductDetails(response.data.product)
+        setError(1)
         console.log(response)
       }catch(err){
         console.log(err)
+        setError(0)
       }
     })()
   },[])
@@ -65,7 +69,7 @@ const productInfo = () => {
    async  function handleAddToCart(){
     try{
       console.log({productDetails})
-      const response = await axios.post('http://localhost:5000/cart/add',{
+      const response = await axios.post('https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/cart/add',{
         productId : productDetails._id,
         token ,
         size : productDetails.type_of==='ring'||productDetails.type_of==='Ring' ? size : undefined ,
@@ -147,7 +151,17 @@ const productInfo = () => {
                 </div>
               )}
               <button
-                onClick={handleAddToCart}
+                onClick={()=>token?handleAddToCart():toast.warn("Please Login to access cart!", {
+                  position: "bottom-right",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "dark",
+                  transition: Bounce,
+                })}
                 className="inp w-[200px] h-[45px]"
               >
                 Add to Cart
@@ -189,7 +203,7 @@ const productInfo = () => {
           </div>
         </>
       ) : (
-        <ErrorPage />
+        !error && <ErrorPage />
       )}
     </div>
     

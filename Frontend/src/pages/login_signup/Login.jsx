@@ -6,7 +6,8 @@ import logo from "../../assets/Backless_bg.png";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import axios from "axios";
-
+import { toast } from "react-toastify";
+import { Bounce } from "react-toastify";
 const Login = () => {
   const [isShown, SetIsShown] = useState(false);
   const navigate = useNavigate();
@@ -20,12 +21,23 @@ const Login = () => {
   // api call
   const submitData = async (data) => {
     try {
-      const response = await axios.post("http://localhost:5000/auth/login", {
+      const response = await axios.post("https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/auth/login", {
         data: { email: data.Email, password: data.password },
       });
 
       if (response.data.success === true) {
         localStorage.setItem("token", response.data.user.token);
+        toast.info("Logged In!", {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          transition: Bounce,
+        })
         navigate("/");
       }
     } catch (err) {

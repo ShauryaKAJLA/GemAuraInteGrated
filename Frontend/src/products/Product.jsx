@@ -10,6 +10,8 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios, { all } from 'axios'
 import { addProducts } from "./FilteredProductsSlice";
+import { toast } from "react-toastify";
+import { Bounce } from "react-toastify";
 export function Product() {
   const change =useSelector((state) => state.FilteredProducts.products)
   const [productsData,setProductsData] =useState(null);
@@ -21,7 +23,7 @@ export function Product() {
    useEffect(()=>{
     (async()=>{
         try{
-            const response = await axios.get('http://localhost:5000/cart/',{
+            const response = await axios.get('https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/cart/',{
               params:{
                 token
               }
@@ -37,7 +39,7 @@ export function Product() {
   useEffect(()=>{
     (async()=>{
       try{
-        const response = await axios.get('http://localhost:5000/products')
+        const response = await axios.get('https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/products')
         if(response.data.success===true)
         {
           console.log("HELLO")
@@ -127,7 +129,7 @@ export function Product() {
    async  function handleAddToCart(product){
     try{
       console.log({product})
-      const response = await axios.post('http://localhost:5000/cart/add',{
+      const response = await axios.post('https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/cart/add',{
         productId : product._id,
         token ,
         size : product.type_of==='ring'||product.type_of==='Ring' ? size : undefined ,
@@ -239,7 +241,17 @@ export function Product() {
                     <div
                       className="text-white  bg-black w-[165px] h-[30px] rounded-[4px] flex justify-center text-sm proCart"
                       // onClick={() => dispatch(addToCart(item))}
-                      onClick={(e) => handleAddToCart(item)}
+                      onClick={(e) => token?handleAddToCart(item):toast.warn("Please Login to access cart!", {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                        transition: Bounce,
+                      })}
                     >
                       <button>+ Add To Cart</button>
                     </div>
