@@ -11,6 +11,7 @@ const productSchema = new mongoose.Schema({
   metal: {
     type: {
       type: String,
+      enum: ["Silver", "Gold", "Platinum", "White Gold"],
     },
     pricePerGram: {
       type: Number,
@@ -24,6 +25,7 @@ const productSchema = new mongoose.Schema({
   Gem: {
     type: {
       type: String,
+      enum: ["Diamond", "Emerald","None"],
     },
     weightInCaret: {
       type: Number,
@@ -38,6 +40,7 @@ const productSchema = new mongoose.Schema({
   },
   type_of: {
     type: String,
+    enum: ["Earring","Ring","Necklace","Bracelet"],
   },
   images: [
     {

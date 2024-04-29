@@ -27,7 +27,7 @@ const Home = () => {
   useEffect(()=>{
     (async()=>{
         try{
-            const response = await axios.get('https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/cart/',{
+            const response = await axios.get('http://localhost:5000/cart/',{
               params:{
                 token
               }
@@ -44,7 +44,7 @@ const Home = () => {
     
           (async()=>{
               try{
-                  const response = await axios.get('https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/products')
+                  const response = await axios.get('http://localhost:5000/products')
                   if(response.data.success===true)
                   {
                      addProducts(response.data.products)
@@ -59,7 +59,7 @@ const Home = () => {
   useEffect(()=>{
     (async()=>{
       try{
-        const response = await axios.get('https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/home',{
+        const response = await axios.get('http://localhost:5000/home',{
           params:{
             token
           }
@@ -75,7 +75,7 @@ const Home = () => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get("https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/categories");
+        const response = await axios.get("http://localhost:5000/categories");
         setCategoriesData(response.data.categories);
       } catch (err) {
         console.log("ERROR : ", err);
@@ -89,7 +89,7 @@ const Home = () => {
    useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get("https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/products/carousel");
+        const response = await axios.get("http://localhost:5000/products/carousel");
         console.log({ response });
         setproductsDataForCarousel(response.data.products);
       } catch (error) {

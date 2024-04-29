@@ -13,7 +13,7 @@ const productInfo = () => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get("https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/cart/", {
+        const response = await axios.get("http://localhost:5000/cart/", {
           params: {
             token,
           },
@@ -28,7 +28,7 @@ const productInfo = () => {
   useEffect(()=>{
     (async()=>{
       try{
-        const response = await axios.get(`https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/products/${productId}`)
+        const response = await axios.get(`http://localhost:5000/products/${productId}`)
         setProductDetails(response.data.product)
         console.log(response)
       }catch(err){
@@ -65,7 +65,7 @@ const productInfo = () => {
    async  function handleAddToCart(){
     try{
       console.log({productDetails})
-      const response = await axios.post('https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/cart/add',{
+      const response = await axios.post('http://localhost:5000/cart/add',{
         productId : productDetails._id,
         token ,
         size : productDetails.type_of==='ring'||productDetails.type_of==='Ring' ? size : undefined ,

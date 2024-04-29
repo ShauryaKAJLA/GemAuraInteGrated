@@ -7,7 +7,8 @@ router.use(express.json());
 
 
 router.post('/signup',async(req,res)=>{
-    const {data:{email,password,username,phone}} = req.body
+    const {data:{email,password,username,phone}} = req.body 
+    console.log({phone})
     try{
         const user = await User.findOne({email})
         if(user){
@@ -15,7 +16,7 @@ router.post('/signup',async(req,res)=>{
         }
         
         const hashedPassword = await bcrypt.hash(password , 10)
-        const newUser = await User.create({email,password:hashedPassword,username,phone,passwordLength:password.length})
+        const newUser = await User.create({email,password:hashedPassword,username,passwordLength:password.length,phone})
         const userDetailsToReturn  = {...newUser , password:undefined ,__v:undefined,passwordLength:undefined}
 
         return res.status(200).json({success:true , user:userDetailsToReturn})
@@ -24,6 +25,7 @@ router.post('/signup',async(req,res)=>{
         return res.status(422).json({success:false , message:err.message})
     }
 
+    
     
 })
 

@@ -15,7 +15,7 @@ const Profile = () => {
   useEffect(()=>{
     (async()=>{
         try{
-            const response = await axios.get('https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/cart/',{
+            const response = await axios.get('http://localhost:5000/cart/',{
               params:{
                 token
               }
@@ -33,7 +33,7 @@ const Profile = () => {
   useEffect(()=>{
     (async()=>{
       try{
-      const response = await axios.get('https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/profile',{
+      const response = await axios.get('http://localhost:5000/profile',{
         params:{
           token
         }
@@ -53,7 +53,7 @@ const Profile = () => {
   useEffect(()=>{
     (async()=>{
       try{
-        const response = await axios.get('https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/currentOrder',{
+        const response = await axios.get('http://localhost:5000/currentOrder',{
           params:{
             token,
           }

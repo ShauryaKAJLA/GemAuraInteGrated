@@ -1,11 +1,11 @@
 const CatagoriesData=[
     {
         src:"https://res.cloudinary.com/dimqqgecs/image/upload/v1711994514/catagories/pwso1wfkrjankgcch8lx.png",
-        name:"Earrings"
+        name:"Earings"
     },
     {
         src:"https://res.cloudinary.com/dimqqgecs/image/upload/v1711994514/catagories/wznghdhrn7myxcavqpl3.png",
-        name:"Gold Earrings"
+        name:"Gold Earings"
     },
     {
         src:"https://res.cloudinary.com/dimqqgecs/image/upload/v1711994513/catagories/pbeudlzsnyubm8iq5tn5.png",

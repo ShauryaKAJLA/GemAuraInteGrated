@@ -7,15 +7,11 @@ const userSchema = mongoose.Schema({
   },
   phone: {
     type : String,
-    default : "1234567890"    
+    default : "currently not set"    
   },
   address:{
     type:String,
     default : "none"
-  },
-  phone:{
-      type:String,
-      required:[true,"Phone Number is necessary"],
   },
   email: {
     type: String,
