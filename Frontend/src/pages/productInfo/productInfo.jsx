@@ -13,7 +13,7 @@ const productInfo = () => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get("http://localhost:5000/cart/", {
+        const response = await axios.get("https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/cart/", {
           params: {
             token,
           },
@@ -28,7 +28,7 @@ const productInfo = () => {
   useEffect(()=>{
     (async()=>{
       try{
-        const response = await axios.get(`http://localhost:5000/products/${productId}`)
+        const response = await axios.get(`https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/products/${productId}`)
         setProductDetails(response.data.product)
         console.log(response)
       }catch(err){
@@ -65,7 +65,7 @@ const productInfo = () => {
    async  function handleAddToCart(){
     try{
       console.log({productDetails})
-      const response = await axios.post('http://localhost:5000/cart/add',{
+      const response = await axios.post('https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/cart/add',{
         productId : productDetails._id,
         token ,
         size : productDetails.type_of==='ring'||productDetails.type_of==='Ring' ? size : undefined ,
@@ -113,7 +113,7 @@ const productInfo = () => {
               </div>
             </div>
             <div className="text-2xl my-10 flex  justify-center lg:w-[500px] w-[350px] font-semibold h-auto desc">
-              <div className="h-auto lg:w-[500px] w-[350px] flex justify-center">
+              <div className="h-auto lg:w-[500px] w-[350px] flex justify-center text-center">
                 All hand-made jewellery , premium quality , attractive and long
                 lasting
               </div>
@@ -153,7 +153,7 @@ const productInfo = () => {
                 Add to Cart
               </button>
             </div>
-            <div className="my-[7vh] md:my-[5vh] continfo ">
+            <div className="my-[7vh] md:my-[5vh] continfo bg-white">
               {productDetails.type_of.toLowerCase() == "ring" && (
                 <div className="flex md:gap-[1vw]  gap-0 Phonegap">
                   {" "}

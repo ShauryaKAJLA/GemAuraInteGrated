@@ -16,7 +16,7 @@ const handelCheckMenu=()=>{
   return (
     <div className='overflow-hidden app '>
       <NavBar />
-      <div className="min-h-[92vh] h-[92.2vh]   overflow-x-hidden overflow-y-scroll relative flex flex-col justify-between" onMouseEnter={handelCheckMenu}>
+      <div className="min-h-[92vh] h-[92.2vh]   overflow-x-hidden overflow-y-scroll relative flex flex-col justify-between bg-[#f5f5f5]" onMouseEnter={handelCheckMenu}>
       <Outlet />
       <Footer/>
       </div>

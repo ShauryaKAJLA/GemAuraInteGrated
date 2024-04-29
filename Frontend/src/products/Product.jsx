@@ -12,7 +12,7 @@ import axios, { all } from 'axios'
 import { addProducts } from "./FilteredProductsSlice";
 export function Product() {
   const change =useSelector((state) => state.FilteredProducts.products)
-  const [productsData,setProductsData] =useState( null);
+  const [productsData,setProductsData] =useState(null);
   // state.products = respons
   const dispatch = useDispatch();
   const[mx,setMx]=useState(0);
@@ -21,7 +21,7 @@ export function Product() {
    useEffect(()=>{
     (async()=>{
         try{
-            const response = await axios.get('http://localhost:5000/cart/',{
+            const response = await axios.get('https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/cart/',{
               params:{
                 token
               }
@@ -37,7 +37,7 @@ export function Product() {
   useEffect(()=>{
     (async()=>{
       try{
-        const response = await axios.get('http://localhost:5000/products')
+        const response = await axios.get('https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/products')
         if(response.data.success===true)
         {
           console.log("HELLO")
@@ -127,7 +127,7 @@ export function Product() {
    async  function handleAddToCart(product){
     try{
       console.log({product})
-      const response = await axios.post('http://localhost:5000/cart/add',{
+      const response = await axios.post('https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/cart/add',{
         productId : product._id,
         token ,
         size : product.type_of==='ring'||product.type_of==='Ring' ? size : undefined ,

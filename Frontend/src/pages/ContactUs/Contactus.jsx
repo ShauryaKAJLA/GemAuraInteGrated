@@ -14,7 +14,7 @@ const Contactus = () => {
   useEffect(()=>{
     (async()=>{
         try{
-            const response = await axios.get('http://localhost:5000/cart/',{
+            const response = await axios.get('https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/cart/',{
               params:{
                 token
               }
@@ -41,7 +41,7 @@ const Contactus = () => {
       console.log({data})
       try {
         console.log('i am clicked')
-        const response = await axios.post('http://localhost:5000/feedback/submit', {
+        const response = await axios.post('https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/feedback/submit', {
           token,
           data : {name : data.name , email:data.Email , message : data.Message}
         });
@@ -58,11 +58,11 @@ const Contactus = () => {
   return (
     <div>
         <div className='ContactImgContainer realtive'>
-            <div className=' absolute top-5 right-[40vw] md:text-7xl sm:text-5xl text-4xl w-[100vw] flex items-center justify-center font-semibold text-white  dancing-script-Customtext'>Contact us</div>
+            <div className=' absolute top-5 md:right-[30vw] sm:right-[20vw] right-[20vw] md:text-7xl sm:text-5xl text-4xl w-[100vw] flex items-center justify-center font-semibold text-white  dancing-script-Customtext'>Contact us</div>
             <img src={image} alt="" />
 
         </div>
-        <div className='flex flex-wrap'>
+        <div className='flex flex-wrap w-[100vw]'>
       <div className="ContinerOfContent">
         <div className="gmap_canvas">
             <iframe className="gmap_iframe" frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=goal market, mandi gobindgarh, punjab&amp;t=&amp;z=20&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
