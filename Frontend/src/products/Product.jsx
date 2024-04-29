@@ -192,12 +192,12 @@ export function Product() {
         <div className="my-4 text-2xl w-[100vw] flex justify-center  h-7 font-semibold ">
           All Products
         </div>
-        <div className="flex h-auto w-[100vw] flex-wrap overflow-y-scroll proCont pb-4 ">
+        <div className="flex h-auto w-[100vw] flex-wrap overflow-y-scroll proCont pb-4 justify-center ">
           {productsData ? (productsData.length>0 ? (
             productsData.map((item) => (
               <div
                 key={item._id}
-                className=" m-2 gap-y-1 w-[200px] h-[310px] flex flex-col proDiv justify-center">
+                className=" m-2 gap-y-1 w-[200px] h-[310px] flex flex-col proDiv justify-center items">
                   
                 <Link to={`/productInfo/${item._id}`}>
                   <div className=" bg-black w-[200px] h-[250px] rounded-[15px] flex justify-center flex-wrap overflow-hidden items-center proUp">

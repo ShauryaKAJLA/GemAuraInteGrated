@@ -122,7 +122,7 @@ const Profile = () => {
         </div>}
         {display == 0 && <div className=" flex   sm:text-lg text-xs  gap-5 h-[70vh] overflow-y-auto overflow-x-hidden sm:w-[60vw] w-[70vw] flex-wrap justify-center">
           {currentOrderItems && currentOrderItems.map((item, index) => 
-          <div key={index} className="bg-slate-300 w-[230px] p-[10px] h-[40vh] rounded-lg shadow-md  items-center flex flex-col text-gray-900 overflow-y-auto overflow-x-hidden">
+          <div key={index} className="bg-slate-300 w-[300px] p-[10px] h-[40vh] rounded-lg shadow-md  items-center flex flex-col text-gray-900 overflow-y-auto overflow-x-hidden">
             {/* <div className="flex w-[80%] gap-4">
              <div className="w-[70px]">id: </div> <div className="w-[150px]">{item._id}</div>
             </div> */}
