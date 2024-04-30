@@ -237,7 +237,7 @@ export function Product() {
                       </div>
                     </div>
                   </Link>
-                  <div className="flex w-[200px] justify-between flex-wrap items-center proDown">
+                  <div className="flex w-[200px] justify-center flex-wrap items-center proDown">
                     <div
                       className="text-white  bg-black w-[165px] h-[30px] rounded-[4px] flex justify-center text-sm proCart"
                       // onClick={() => dispatch(addToCart(item))}
@@ -255,9 +255,7 @@ export function Product() {
                     >
                       <button>+ Add To Cart</button>
                     </div>
-                    <div className=" custom-bg w-[30px] h-[30px] rounded-[4px] flex justify-center flex-wrap items-center proWish">
-                      <FaRegHeart />
-                    </div>
+                  
                   </div>
                 </div>
               </div>
