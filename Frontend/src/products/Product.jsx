@@ -22,15 +22,11 @@ export function Product() {
 
    useEffect(()=>{
     (async()=>{
-        try{
-            const response = await axios.get('https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/cart/',{
-              params:{
-                token
-              }
-            })
-            dispatch(userCart(response.data.cart))
-            
-        }catch(err){
+      try {
+        const response = await axios.get("http://localhost:3000/users/getAllCartItems",{withCredentials:true});
+        dispatch(userCart(response.data.data));
+        // console.log('this is csrt : ',{response})
+      } catch(err){
           console.log(err)
         }
     })()
@@ -39,14 +35,14 @@ export function Product() {
   useEffect(()=>{
     (async()=>{
       try{
-        const response = await axios.get('https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/products')
+        const response = await axios.get("http://localhost:3000/products/getAllProducts")
+        console.log(response)
         if(response.data.success===true)
         {
-          console.log("HELLO")
-          dispatch(addProducts(response.data.products))
-          setProductsData(response.data.products)
+          dispatch(addProducts(response.data.data))
+          setProductsData(response.data.data)
           let l=0
-          response.data.products.forEach(item=>{
+          response.data.data.forEach(item=>{
               if(l<item.metal.pricePerGram*item.metal.weightInGram+item.Gem.totalPrice)
               {
                   l=item.metal.pricePerGram*item.metal.weightInGram+item.Gem.totalPrice;
@@ -62,7 +58,7 @@ export function Product() {
           })
           setMx(l)
           setValue(l);
-          response.data.products.forEach(item=>{
+          response.data.data.forEach(item=>{
             if(l>item.metal.pricePerGram*item.metal.weightInGram+item.Gem.totalPrice)
             {
                 l=item.metal.pricePerGram*item.metal.weightInGram+item.Gem.totalPrice;
@@ -129,25 +125,16 @@ export function Product() {
    async  function handleAddToCart(product){
     try{
       console.log({product})
-      const response = await axios.post('https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/cart/add',{
-        productId : product._id,
-        token ,
-        size : product.type_of==='ring'||product.type_of==='Ring' ? size : undefined ,
-      })
+      const response = await axios.post('http://localhost:3000/users/addToCart',{
+        data:{
+          productId : product._id,
+          size : product.type_of==='ring'||product.type_of==='Ring' ? size : undefined ,
+        }
+      },{withCredentials:true})
       if(response.data.success === true){
           // dispatch(addToCart(product))
-          let result=response.data.cart
-          if(product.type_of==='ring'||product.type_of==='Ring')
-          {
-            let newProduct=result.find(item=>(item.product._id==product._id&&item.size==size));
-            console.log(newProduct)
-            dispatch(addToCart(newProduct))
-          }
-          else{
-          let newProduct=result.find(item=>item.product._id==product._id);
-          console.log(newProduct)
-          dispatch(addToCart(newProduct))
-          }
+          dispatch(addToCart(response.data.data))
+          
       }
     }catch(err){
       

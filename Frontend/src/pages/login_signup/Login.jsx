@@ -21,12 +21,11 @@ const Login = () => {
   // api call
   const submitData = async (data) => {
     try {
-      const response = await axios.post("https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/auth/login", {
+      const response = await axios.post("http://localhost:3000/users/loginUser", {
         data: { email: data.Email, password: data.password },
-      });
+      },{withCredentials:true});
 
       if (response.data.success === true) {
-        localStorage.setItem("token", response.data.user.token);
         toast.info("Logged In!", {
           position: "bottom-right",
           autoClose: 5000,
@@ -38,9 +37,11 @@ const Login = () => {
           theme: "dark",
           transition: Bounce,
         })
+        localStorage.setItem("token",true)
         navigate("/");
       }
     } catch (err) {
+      console.log(err)
       setError('root',{message:err.response.data.message})
       console.log("ERROR : ", err.response.data.message);
     }

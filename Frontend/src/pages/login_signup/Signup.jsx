@@ -25,11 +25,11 @@ const Signup = () => {
 
   const submitData = async (data) => {
     try {
-      const response = await axios.post("https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/auth/signup", {
+      const response = await axios.post("http://localhost:3000/users/registerUser", {
         // Change added username  from the data from form 
         //now set api and set user's username to the sended one bro
         // XX          DONE BRO          XX
-        data: { email: data.Email,username:data.username,phone:data.phoneNumber, password: data.password },
+        data: { email: data.Email,username:data.username,phoneNumber:data.phoneNumber, password: data.password },
       });
       if(response.data.success === true)
       toast.info("User was created", {

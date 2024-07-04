@@ -14,13 +14,9 @@ const productInfo = () => {
   const [productDetails , setProductDetails] = useState(null)
   useEffect(() => {
     (async () => {
-      try {
-        const response = await axios.get("https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/cart/", {
-          params: {
-            token,
-          },
-        });
-        dispatch(userCart(response.data.cart));
+    try {
+        const response = await axios.get("http://localhost:3000/users/getAllCartItems",{withCredentials:true});
+        dispatch(userCart(response.data.data));
         // console.log('this is csrt : ',{response})
       } catch (err) {
         console.log(err);
@@ -30,8 +26,8 @@ const productInfo = () => {
   useEffect(()=>{
     (async()=>{
       try{
-        const response = await axios.get(`https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/products/${productId}`)
-        setProductDetails(response.data.product)
+        const response = await axios.get(`http://localhost:3000/products/getProductInfo/${productId}`)
+        setProductDetails(response.data.data)
         setError(1)
         console.log(response)
       }catch(err){
@@ -69,25 +65,15 @@ const productInfo = () => {
    async  function handleAddToCart(){
     try{
       console.log({productDetails})
-      const response = await axios.post('https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/cart/add',{
-        productId : productDetails._id,
-        token ,
-        size : productDetails.type_of==='ring'||productDetails.type_of==='Ring' ? size : undefined ,
-      })
+      const response = await axios.post('http://localhost:3000/users/addToCart',{
+        data:{
+          productId : productDetails._id,
+          size : productDetails.type_of==='ring'||productDetails.type_of==='Ring' ? size : undefined
+        }
+      },{withCredentials:true})
       if(response.data.success === true){
           // dispatch(addToCart(product))
-          let result=response.data.cart
-          if(productDetails.type_of==='ring'||productDetails.type_of==='Ring')
-          {
-            let newProduct=result.find(item=>(item.product._id==productDetails._id&&item.size==size));
-            console.log(newProduct)
-            dispatch(addToCart(newProduct))
-          }
-          else{
-          let newProduct=result.find(item=>item.product._id==productDetails._id);
-          console.log(newProduct)
-          dispatch(addToCart(newProduct))
-          }
+          dispatch(addToCart(response.data.data))
       }
     }catch(err){
       

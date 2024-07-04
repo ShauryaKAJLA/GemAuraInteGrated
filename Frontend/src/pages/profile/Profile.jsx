@@ -14,15 +14,11 @@ const Profile = () => {
   const dispatch=useDispatch();
   useEffect(()=>{
     (async()=>{
-        try{
-            const response = await axios.get('https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/cart/',{
-              params:{
-                token
-              }
-            })
-            dispatch(userCart(response.data.cart))
-            
-        }catch(err){
+      try {
+        const response = await axios.get("http://localhost:3000/users/getAllCartItems",{withCredentials:true});
+        dispatch(userCart(response.data.data));
+        // console.log('this is csrt : ',{response})
+      }catch(err){
           console.log(err)
         }
     })()
@@ -33,10 +29,8 @@ const Profile = () => {
   useEffect(()=>{
     (async()=>{
       try{
-      const response = await axios.get('https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/profile',{
-        params:{
-          token
-        }
+      const response = await axios.get('http://localhost:3000/users/getProfile',{
+        withCredentials:true
       })
       console.log('user',{response})
       if(response.data.success === true)
@@ -48,25 +42,7 @@ const Profile = () => {
   },[])
 
 
-  // to get user currentOrders data
-  const [currentOrderItems , setCurrentOrderItems] = useState(null)
-  useEffect(()=>{
-    (async()=>{
-      try{
-        const response = await axios.get('https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/currentOrder',{
-          params:{
-            token,
-          }
-        })
-        console.log({response})
-        if(response.data.success===true)
-          setCurrentOrderItems(response.data.currentOrders)
-
-      }catch(err){
-        console.log("ERROR : ",err)
-      }
-    })()
-  },[])
+  
 
   const [display, setDisplay] = useState(1);
   const printdot = () => {
@@ -85,7 +61,6 @@ const Profile = () => {
     <div className="h-[90vh] flex w-[100vw] justify-center items-center">
       <div className="flex flex-col  sm:text-base text-sm gap-y-5 min-h-[70vh] ">
         <div onClick={()=>setDisplay(1)} className={`${display==1&&"bg-[#d9eafc]"} min-h-[10vh] flex justify-center items-center sm:w-[30vw] w-[30vw] `}>Details</div>
-        <div onClick={()=>setDisplay(0)} className={`${display==0&&"bg-[#d9eafc]"} min-h-[10vh] flex justify-center items-center sm:w-[30vw] w-[30vw] `}>Current Orders</div>
       </div>
       <div>
         {UserData && display == 1 && <div className=" flex flex-col  sm:text-xl text-sm  gap-y-5 min-h-[70vh] ">
@@ -98,7 +73,7 @@ const Profile = () => {
           </div>
           <div className="px-2 flex gap-2 bg-slate-200 min-h-[10vh] items-center justify-between rounded sm:w-[60vw] w-[70vw] ">
           <div className="flex gap-4 h-[100%]  items-center">  <div><FaPhoneAlt /> </div>
-            <div>{UserData.phone}</div></div>
+            <div>{UserData.phoneNumber}</div></div>
             
 
           </div>
@@ -120,47 +95,7 @@ const Profile = () => {
           </div>
 
         </div>}
-        {display == 0 && <div className=" flex   sm:text-lg text-xs  gap-5 h-[70vh] overflow-y-auto overflow-x-hidden sm:w-[60vw] w-[70vw] flex-wrap justify-center">
-          {currentOrderItems && currentOrderItems.map((item, index) => 
-          <div key={index} className="bg-slate-300 w-[300px] p-[10px] h-[40vh] rounded-lg shadow-md  items-center flex flex-col text-gray-900 overflow-y-auto overflow-x-hidden">
-            {/* <div className="flex w-[80%] gap-4">
-             <div className="w-[70px]">id: </div> <div className="w-[150px]">{item._id}</div>
-            </div> */}
-            <div className="flex w-[80%] gap-4">
-            <div className="w-[70px]">Quantity: </div>  <div className="w-[150px]">{item.quantity}</div>
-            </div>
-            <div className="flex w-[80%] gap-4">
-             <div className="w-[70px]">Price: </div> <div className="w-[150px]">&#8377; {item.price}</div>
-            </div>
-            <div className="flex w-[80%] gap-4">
-             <div  className="w-[70px]">Status: </div> <div className="w-[150px]">{item.status==0&&"Pending"}
-                                      {item.status==1&&"In Progress"}</div>
-            </div>
-            <div className="flex w-[80%] gap-4">
-             <div className="w-[70px] ">Address: </div> <div className="w-[150px]"> {item.addressDelivery}</div>
-            </div>
-            <div className="flex flex-col w-[80%] my-5">
-              <div className="my-2">Ordered Products</div>
-              <div className="flex flex-col gap-y-5">
-              {item.items.map((i, ind) => <div key={ind} className="w-[80%]" >
-                <Link to={`/productInfo/${i.product._id}`}>
-                  <div className="flex  gap-4">
-                    <div className="w-[50px]">Name: </div>
-                    <div className="w-[190px] ">{i.product.name}</div>
-
-                  </div>
-                  <div className="flex  gap-4 ">
-                    <div>Product Quantity: </div>
-                    <div >{i.quantity}</div>
-                  </div>
-                </Link>
-              </div>)}
-              </div>
-            </div>
-            
-          </div>)
-          }
-        </div>}
+      
                    </div>
     </div>
     </div>

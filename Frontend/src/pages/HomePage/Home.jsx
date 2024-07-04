@@ -26,15 +26,11 @@ const Home = () => {
 
   useEffect(()=>{
     (async()=>{
-        try{
-            const response = await axios.get('https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/cart/',{
-              params:{
-                token
-              }
-            })
-            dispatch(userCart(response.data.cart))
-            
-        }catch(err){
+      try {
+        const response = await axios.get("http://localhost:3000/users/getAllCartItems",{withCredentials:true});
+        dispatch(userCart(response.data.data));
+        // console.log('this is csrt : ',{response})
+      } catch(err){
           console.log(err)
         }
     })()
@@ -43,13 +39,13 @@ const Home = () => {
   useEffect(()=>{
     
           (async()=>{
-              try{
-                  const response = await axios.get('https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/products')
-                  if(response.data.success===true)
-                  {
-                     addProducts(response.data.products)
-                  }
-              }catch(err){
+            try{
+              const response = await axios.get('http://localhost:3000/products/getAllProducts')
+              if(response.data.success===true)
+              {
+                 addProducts(response.data.data)
+              }
+          }catch(err){
                   console.log(err)
               }
           })()
@@ -75,23 +71,22 @@ const Home = () => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get("https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/categories");
-        setCategoriesData(response.data.categories);
+        const response = await axios.get("http://localhost:3000/catagory/getAllCatagory");
+        setCategoriesData(response.data.data);
       } catch (err) {
         console.log("ERROR : ", err);
       }
     })();
   }, []);
   
-  // get only 6 from api
 
    // setting products data from api call
    useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get("https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/products/carousel");
+        const response = await axios.get("http://localhost:3000/products/getSampleProducts");
         console.log({ response });
-        setproductsDataForCarousel(response.data.products);
+        setproductsDataForCarousel(response.data.data);
       } catch (error) {
         console.log("ERROR : ", error);
       }

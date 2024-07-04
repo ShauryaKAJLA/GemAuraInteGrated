@@ -1,11 +1,11 @@
-const CatagoriesData=[
+export const CatagoriesData=[
     {
         src:"https://res.cloudinary.com/dimqqgecs/image/upload/v1711994514/catagories/pwso1wfkrjankgcch8lx.png",
-        name:"Earings"
+        name:"Earrings"
     },
     {
         src:"https://res.cloudinary.com/dimqqgecs/image/upload/v1711994514/catagories/wznghdhrn7myxcavqpl3.png",
-        name:"Gold Earings"
+        name:"Gold Earrings"
     },
     {
         src:"https://res.cloudinary.com/dimqqgecs/image/upload/v1711994513/catagories/pbeudlzsnyubm8iq5tn5.png",
@@ -40,5 +40,3 @@ const CatagoriesData=[
         name:"Gem Stones"
     },
     ]
-
-module.exports= {CatagoriesData}

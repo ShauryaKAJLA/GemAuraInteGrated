@@ -21,12 +21,8 @@ export function Cart() {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get("https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/cart/", {
-          params: {
-            token,
-          },
-        });
-        dispatch(userCart(response.data.cart));
+        const response = await axios.get("http://localhost:3000/users/getAllCartItems",{withCredentials:true});
+        dispatch(userCart(response.data.data));
         // console.log('this is csrt : ',{response})
       } catch (err) {
         console.log(err);
@@ -37,10 +33,9 @@ export function Cart() {
   async function removeItemHandler(item) {
     // console.log(item)
     try {
-      const response = await axios.post("https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/cart/remove", {
-        token,
-        productId: item.product._id,
-        size: item.size !== undefined ? item.size : undefined,
+      const response = await axios.delete("http://localhost:3000/users/deleteItem", {
+        data: { data:{itemId: item._id} },
+        withCredentials: true
       });
       if (response.data.success === true) {
         dispatch(removeItem(item));
@@ -52,11 +47,9 @@ export function Cart() {
 
   async function reduceQuantityHandler(item) {
     try {
-      const response = await axios.post("https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/cart/reduce", {
-        token,
-        productId: item.product._id,
-        size: item.size === undefined ? undefined : item.size,
-      });
+      const response = await axios.post("http://localhost:3000/users/reduceQuantity", {
+        data:{itemId: item._id},
+      },{withCredentials:true});
 
       if (response.data.success === true) {
         dispatch(reduceQuantity(item));
@@ -68,14 +61,9 @@ export function Cart() {
 
   async function addQuantityHandler(item) {
     try {
-      const response = await axios.post("https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/cart/add", {
-        productId: item.product._id,
-        token,
-        size:
-          item.product.type_of === "ring" || item.product.type_of === "Ring"
-            ? item.size
-            : undefined,
-      });
+      const response = await axios.post("http://localhost:3000/users/addQuantity", {
+        data:{itemId: item._id},
+      },{withCredentials:true});
       if (response.data.success === true) {
         console.log("Hello");
         dispatch(addQuantity(item));
@@ -102,75 +90,6 @@ export function Cart() {
     console.log(change);
   }, [change]);
 
-  const handleOrder = async () => {
-    console.log('handlng')
-    if (token) {
-      if (address.trim() !== "") {
-        let q = 0;
-        cartItems.forEach((item) => {
-
-          console.log({item})
-          q += item.quantity;
-        });
-        const newOrder = {
-          // _id: from backend
-          quantity: q,
-          price: price,
-          addressDelivery: address,
-          //  status : 0-pending 1-inProcess ;
-          // status: 1, from backend
-          items: [...cartItems],  // yaha 'products' tha , change kra 'items' me
-          
-        };
-        console.log(newOrder);
-        setDisplay(0);
-       
-
-        try {
-          const response = await axios.post(
-            "https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/currentOrder/add",{
-              token,
-              order:newOrder,
-            }
-          );
-          setAddress("");
-          toast.info("Order Placed!", {
-            position: "bottom-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-            transition: Bounce,
-          })
-          dispatch(userCart([]));
-          Navigate('/')
-          // yaha cart ko empty set krde ..... 
-          // to make cart null once current cart is checkout
-          
-        } catch (err) {
-          console.log("ERROR : ", err);
-        }
-      } 
-      else {
-        toast.warn("Adress cannot be empty!", {
-          position: "bottom-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-          transition: Bounce,
-        });
-        setAddress("");
-        
-      }
-    }
-  };
   return (
     <div className=" flex flex-col items-center py-8 min-h-[49vh] relative">
       {display ? (
@@ -187,7 +106,6 @@ export function Cart() {
           />
           <input
             type="submit"
-            onClick={handleOrder}
             className="inp w-[100px]"
           />
         </div>

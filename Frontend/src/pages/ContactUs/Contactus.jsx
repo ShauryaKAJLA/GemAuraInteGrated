@@ -15,14 +15,11 @@ const Contactus = () => {
   const dispatch=useDispatch()
   useEffect(()=>{
     (async()=>{
-        try{
-            const response = await axios.get('https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/cart/',{
-              params:{
-                token
-              }
-            })
-             dispatch(userCart(response.data.cart))
-        }catch(err){
+      try {
+        const response = await axios.get("http://localhost:3000/users/getAllCartItems",{withCredentials:true});
+        dispatch(userCart(response.data.data));
+        // console.log('this is csrt : ',{response})
+      } catch(err){
           console.log(err)
         }
     })()
@@ -43,10 +40,9 @@ const Contactus = () => {
       console.log({data})
       try {
         console.log('i am clicked')
-        const response = await axios.post('https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/feedback/submit', {
-          token,
+        const response = await axios.post("http://localhost:3000/users/addFeedback", {
           data : {name : data.name , email:data.Email , message : data.Message}
-        });
+        },{withCredentials:true});
         if(response.data.success){
           setMessage(response.data.message);
           toast.info("Feedback was submitted", {

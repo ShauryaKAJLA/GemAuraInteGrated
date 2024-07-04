@@ -1,4 +1,5 @@
-const mongoose = require("mongoose");
+import mongoose from 'mongoose'
+
 
 const productSchema = new mongoose.Schema({
   name: {
@@ -11,7 +12,6 @@ const productSchema = new mongoose.Schema({
   metal: {
     type: {
       type: String,
-      enum: ["Silver", "Gold", "Platinum", "White Gold"],
     },
     pricePerGram: {
       type: Number,
@@ -25,7 +25,6 @@ const productSchema = new mongoose.Schema({
   Gem: {
     type: {
       type: String,
-      enum: ["Diamond", "Emerald","None"],
     },
     weightInCaret: {
       type: Number,
@@ -40,7 +39,6 @@ const productSchema = new mongoose.Schema({
   },
   type_of: {
     type: String,
-    enum: ["Earring","Ring","Necklace","Bracelet"],
   },
   images: [
     {
@@ -55,6 +53,4 @@ const productSchema = new mongoose.Schema({
 });
 
 
-const Product = mongoose.model('Product',productSchema)
-
-module.exports=Product
+export const Product = mongoose.model('Product',productSchema)

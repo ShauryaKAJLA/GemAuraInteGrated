@@ -11,14 +11,11 @@ const About_us=()=>{
   const dispatch=useDispatch()
   useEffect(()=>{
     (async()=>{
-        try{
-            const response = await axios.get('http://localhost:5000/cart/',{
-              params:{
-                token
-              }
-            })
-             dispatch(userCart(response.data.cart))
-        }catch(err){
+        try {
+        const response = await axios.get("http://localhost:3000/users/getAllCartItems",{withCredentials:true});
+        dispatch(userCart(response.data.data));
+        // console.log('this is csrt : ',{response})
+      } catch(err){
           console.log(err)
         }
     })()
