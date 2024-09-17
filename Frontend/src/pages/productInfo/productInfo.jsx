@@ -8,6 +8,7 @@ import ErrorPage from "../Reusable/404Error/errorPage";
 import axios from 'axios'
 import { toast } from "react-toastify";
 import { Bounce } from "react-toastify";
+import Cookies from 'js-cookie'
 const productInfo = () => {
   const {productId} = useParams()
   const [error,setError]=useState(1);
@@ -61,7 +62,7 @@ const productInfo = () => {
   };
   
 
-  const token = localStorage.getItem('token')
+  const token = Cookies.get("isLoggedIn")
    async  function handleAddToCart(){
     try{
       console.log({productDetails})

@@ -9,15 +9,137 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Cookies from 'js-cookie'
+import { FaRegCheckCircle } from "react-icons/fa";
+import { FaRegCircle } from "react-icons/fa";
+import { FaPlusCircle } from "react-icons/fa";
 export function Cart() {
   const Navigate=useNavigate();
   const [price, setPrice] = useState(0);
   const dispatch = useDispatch();
   const change = useSelector((state) => state.cart.cart);
   const [cartItems, setCartItems] = useState([]);
-  const token = localStorage.getItem("token");
-  const [address, setAddress] = useState("");
+  const token = Cookies.get("isLoggedIn");
   const [display, setDisplay] = useState(0);
+  const [shipping,setShipping]=useState({
+    name:"",pincode:null,address:"",phoneNumber:null,email:null
+  });
+  const [addressDisplay,setAD]=useState(1);
+  const [address,setAddress]=useState("");
+  const [user,setUser]=useState(null);
+
+  const handlePlaceOrder=async ()=>{
+    if(shipping.name.trim()=="")
+    {
+      toast.error("Name is required", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,
+      })
+      return null;
+    }
+    if(!shipping.pincode)
+    {
+      toast.error("Pincode is required", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,
+      })
+      return null;
+    }
+    if(!shipping.address||shipping.address?.trim()=="")
+      {
+        toast.error("Address is required", {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          transition: Bounce,
+        })
+        return null;
+      }
+      if(!shipping.phoneNumber)
+        {
+          toast.error("Phone Number is required", {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            transition: Bounce,
+          })
+          return null;
+        }
+        if(!shipping.email||shipping.email.trim()=="")
+          {
+            toast.error("Pincode is required", {
+              position: "bottom-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "dark",
+              transition: Bounce,
+            })
+            return null;
+          }
+          try {
+            const response=await axios.post("http://localhost:3000/users/placeOrder",{data:{
+              ...shipping,totalPrice:price
+            }},{withCredentials:true});
+            console.log(response)
+            toast.success(response.data.message, {
+              position: "bottom-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "dark",
+              transition: Bounce,
+            })
+            setTimeout(()=>{
+              location.reload();
+            },[5000])
+          } catch (error) {
+            console.log(error)
+            toast.error(error.response.data.message, {
+              position: "bottom-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "dark",
+              transition: Bounce,
+            })
+          }
+  }
+
+
   useEffect(() => {
     (async () => {
       try {
@@ -29,7 +151,24 @@ export function Cart() {
       }
     })();
   }, []);
-
+  const getData=async ()=>{
+    try{
+      const response = await axios.get('http://localhost:3000/users/getProfile',{
+        withCredentials:true
+      })
+      console.log('user',response.data.userDetails)
+      if(response.data.success === true){
+        setUser(response.data.userDetails)
+      }
+      }catch(err){
+        console.log("ERR : ",err)
+      }
+  }
+  useEffect(()=>{
+    console.log(user)
+    if(user)
+    setShipping({name:user?.username,phoneNumber:user?.phoneNumber,email:user?.email})
+  },[user])
   async function removeItemHandler(item) {
     // console.log(item)
     try {
@@ -89,29 +228,62 @@ export function Cart() {
     setCartItems(change);
     console.log(change);
   }, [change]);
+  const handleAddAddress=async ()=>{
+    if(address.trim()!="")
+    {
+      try {
+          await axios.post("http://localhost:3000/users/addAddress", {
+          data:{newAddress: address},
+           },{withCredentials:true}).then(()=>{
+            let add=user.address;
+            add.push(address)
+            setAddress("");
+             setUser({...user,address:add})
+             setAD(1)
+           })
 
+      } catch (error) {
+        console.log(error)
+      }
+
+    }
+  }
   return (
-    <div className=" flex flex-col items-center py-8 min-h-[49vh] relative">
+    <div className=" flex flex-col justify-center items-center py-8 min-h-[49vh] relative">
       {display ? (
-        <div className="absolute top-[30%] mx-auto z-10 gap-2 flex flex-col justify-center items-center p-10 rounded-lg shadow-md shadow-black bg-[#2622229a] ">
-          <div className="text-2xl text-white">Add Order Address</div>
-          <textarea
-            value={address}
-            onChange={(e) => {
-              setAddress((a) => e.target.value);
-            }}
-            rows={2}
-            cols={30}
-            className="inp"
-          />
-          <input
-            type="submit"
-            className="inp w-[100px]"
-          />
+        <div className="md:w-[70vw] w-[90vw]  gap-12 p-2 shadow-[#662b2b62] rounded-lg min-h-[80vh] flex flex-col  items-center  ">
+            <div className="text-2xl font-bold text-[#DD6A6A]">Shipping Details</div>
+            <div className="flex flex-col items-center justify-center gap-4">
+              <div><input type="text" placeholder="Name" value={shipping.name} onChange={(e)=>setShipping({...shipping,name:e.target.value})} className="inp1 w-[60vw] md:w-[40vw] lg:w-[30vw]"/></div>
+              <div><input type="text" placeholder="Pincode" value={shipping.pincode} onChange={(e)=>setShipping({...shipping,pincode:e.target.value})} className="inp1 w-[60vw] md:w-[40vw] lg:w-[30vw]"/></div>
+              <div className="flex w-[60vw] md:w-[40vw] lg:w-[30vw]">
+                {addressDisplay==1&&user?.address?.length!=0?<div className="flex flex-col  w-[60vw] md:w-[40vw] lg:w-[30vw]">
+                  <div className="font-bold p-2 text-[#DD6A6A]">Select Address</div>
+                  <div className="h-[200px] overflow-x-auto ">
+                        {user?.address?.map((item,index)=><div key={index} className="my-3 flex justify-center items-center inp1  h-[80px] ">
+                          <div className="p-2 font-extrabold  text-xl">{shipping.address==item?<FaRegCheckCircle />:<FaRegCircle onClick={()=>{setShipping({...shipping,address:item})}}/>}</div>
+                            <div className="h-[80px] w-[90%] overflow-y-scroll overflow-x-hidden">{item}</div>
+                        </div> )}
+                  </div>
+                        <button onClick={()=>setAD(2)} className="font-bold border-[#DD6A6A] shadow-lg border bg-white text-xs p-1 text-center justify-center rounded-md  w-[70px] text-[#DD6A6A] flex items-center">Add New</button>
+                </div>:
+                 <div>
+                 <div>Add Address</div>
+                    <textarea name="Address" placeholder="Address" value={address} onChange={(e)=>setAddress(e.target.value)} className="inp1 w-[60vw] md:w-[40vw] lg:w-[30vw]"></textarea>
+                    <div onClick={handleAddAddress}>Add</div>
+               </div>
+                }
+              </div>
+              <div className="inp1 w-[60vw] md:w-[40vw] lg:w-[30vw]">{shipping?.phoneNumber}</div>
+              <div className="inp1 w-[60vw] md:w-[40vw] lg:w-[30vw]">{shipping?.email}</div>
+              <div className="flex gap-4 p-5">
+                <button className="inp1 md:w-[13vw] text-sm " onClick={handlePlaceOrder}>Place Order</button>
+                <button className="inp1 md:w-[13vw] text-sm " onClick={()=>setDisplay(0)}>Cancel Order</button>
+              </div>
+            </div>
         </div>
       ) : (
-        <></>
-      )}
+        <>
 
       <div className=" lg:h-[15vh] md:h-[9vh]  w-[100vw] h-[10vh] text-2xl flex justify-center items-center">
         Your cart items
@@ -225,7 +397,7 @@ export function Cart() {
                 <div className="flex gap-[5vw] items-center">
                   <div>Sub-Total &nbsp; Rs-{price}</div>
                   <div className="inp btn flex justify-center text-sm sm:w-[150px] sm:h-[45px] hover:scale-105">
-                    <button onClick={() => setDisplay(1)}>Check Out</button>
+                    <button onClick={() =>{ setDisplay(1); getData()}}>Check Out</button>
                   </div>
                 </div>
               )}
@@ -237,6 +409,10 @@ export function Cart() {
       ) : (
         <div>Loading ...</div>
       )}
+      </>
+      )}
     </div>
+    
   );
+  
 }

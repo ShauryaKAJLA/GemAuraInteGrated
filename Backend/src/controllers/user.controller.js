@@ -1,5 +1,6 @@
 
 import { Feedback } from '../models/feedback.model.js'
+import { Orders } from '../models/orders.model.js'
 import { Product } from '../models/product.model.js'
 import { User } from '../models/user.model.js'
 import { apiError } from '../utils/apiError.js'
@@ -34,7 +35,7 @@ const registerUser=asyncHandler(async (req,res)=>{
             return res.status(400).json(new apiError(400,"User already exists with this email"))
         }
         const registerUser=await User.create({
-            username,email,phoneNumber,password,passwordLength:password.length
+            username,email,phoneNumber,password,passwordLength:password.length,address:[]
         })
         const user=await User.findById(registerUser._id).select("-password -cart -feedback -currentOrders -address")
         if(!user)
@@ -72,12 +73,19 @@ const loginUser=asyncHandler(async (req,res)=>{
                 const options={
                     httpOnly:true,
                     secure:true,
-                    expires:new Date(Date.now()+((86400000)*10))
-                }
-            return res.status(200).cookie("accessToken",accessToken,options).json(new apiResponse(200,{user,accessToken},"User was logged in successfully"))
+                    }
+            return res.status(200).cookie("isLoggedIn",true).cookie("accessToken",accessToken,options).json(new apiResponse(200,{user,accessToken},"User was logged in successfully"))
 
 })
 
+const logoutUser=asyncHandler(async (req,res)=>{
+    console.log("hello")
+    const options={
+        httpOnly:true,
+        secure:true,
+    }
+    return res.status(200).clearCookie("isLoggedIn").clearCookie("accessToken",options).json(new apiResponse(200,{},"User was logout successfully"))
+})
 const addFeedback=asyncHandler(async (req,res)=>{
     const name=req.body?.data?.name 
     const email=req.body?.data?.email 
@@ -218,4 +226,159 @@ const getProfile=asyncHandler(async(req,res)=>{
         return res.status(400).json({success:false , message : err.message})
     }
 })
-export {registerUser,loginUser,addFeedback,addToCart,addQuantity,reduceQuantity,deleteCartItem,allCartItems,getProfile}
+
+const addAddress=asyncHandler(async (req,res)=>{
+    const newAddress= req.body?.data?.newAddress?req.body.data.newAddress:NULL;
+    if(!newAddress||newAddress?.trim()==="")
+    {
+        return res.status(400).json(new apiResponse(400,{},"Address is required"))
+    }
+   const user= await User.findById(req.user.id)
+    user.address.push(newAddress)
+    await user.save();
+    return res.status(200).json(new apiResponse(200,newAddress,"new address added"))
+})
+
+const placeOrder=asyncHandler(async (req,res)=>{
+    const name= req.body?.data?.name?req.body.data.name:null;
+    const address= req.body?.data?.address?req.body.data.address:null;
+    const pincode= req.body?.data?.pincode?req.body.data.pincode:null;
+    const phoneNumber= req.body?.data?.phoneNumber?req.body.data.phoneNumber:null;
+    const email= req.body?.data?.email?req.body.data.email:null;
+    const totalPrice= req.body?.data?.totalPrice?req.body.data.totalPrice:null;
+
+    if(!name)
+    {
+        return res.status(400).json(new apiError(400,"Name is Required"))
+    }
+    if(!address)
+    {
+        return res.status(400).json(new apiError(400,"Address is Required"))
+    }
+    if(!pincode)
+    {
+        return res.status(400).json(new apiError(400,"Pincode is Required"))
+    }
+    if(!phoneNumber)
+    {
+        return res.status(400).json(new apiError(400,"Phone number is Required"))
+    }
+    if(!email)
+    {
+        return res.status(400).json(new apiError(400,"Email is Required"))
+    }
+    if(!totalPrice)
+    {
+        return res.status(400).json(new apiError(400,"Total price is Required"))
+    }
+
+    try 
+    {
+        const user=await User.findById(req.user._id)
+        await  Orders.create({
+            user,name,address,pincode,phoneNumber,email,products:user.cart,totalPrice
+        })
+        user.cart=[];
+        await user.save();
+        return res.status(200).json(new apiResponse(200,{},"Order was placed"))
+    } 
+    catch (error) {
+        console.log(error)
+        return res.status(500).json(new apiError(500,"Problem while placing order",error))
+    }
+})
+
+const changeUsername=asyncHandler(async (req,res)=>{
+    const username=req.body?.data?.username?req.body.data.username:null;
+    if(!username)
+    {
+        return res.status(400).json(new apiResponse(400,{},"Username is required"))
+    }
+    try {
+        await User.findByIdAndUpdate(req.user.id,{
+            $set:{
+                username
+            }
+        })
+        return res.status(200).json(new apiResponse(200,{},"Updated successfully"))
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json(new apiResponse(500,{},"There was a problem while updating username try again after some time"))
+    }
+})
+
+const deleteAddress=asyncHandler(async (req,res)=>{
+    const index=req.data?.body?.index?req.data.body.index:null;
+    if(!index)
+    {
+        return res.status(400).json(new apiResponse(400,{},"Invalid request"))
+    }
+    try {
+        const user=await User.findById(req.user._id);
+        user.cart=user.cart.filter((_,i)=>i!=index)
+        await user.save();
+        return res.status(200).json(new apiResponse(200,{},"Deleted successfully"))
+    } catch (error) {
+        
+    }
+})
+
+const changePhone=asyncHandler(async (req,res)=>{
+    const phone=req.body?.data?.phone?req.body.data.phone:null;
+    if(!phone)
+    {
+        return res.status(400).json(new apiResponse(400,{},"Phone Number is required"))
+    }
+    try {
+        await User.findByIdAndUpdate(req.user.id,{
+            $set:{
+                phoneNumber:phone
+            }
+        })
+        return res.status(200).json(new apiResponse(200,{},"Updated successfully"))
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json(new apiResponse(500,{},"There was a problem while updating username try again after some time"))
+    }
+})
+
+const changeEmail=asyncHandler(async (req,res)=>{
+    const email=req.body?.data?.email?req.body.data.email:null;
+    if(!email)
+    {
+        return res.status(400).json(new apiResponse(400,{},"Email is required"))
+    }
+    try {
+        await User.findByIdAndUpdate(req.user.id,{
+            $set:{
+                email
+            }
+        })
+        return res.status(200).json(new apiResponse(200,{},"Updated successfully"))
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json(new apiResponse(500,{},"There was a problem while updating username try again after some time"))
+    }
+})
+
+const changePassword=asyncHandler(async (req,res)=>{
+    const password=req.body?.data?.password?req.body.data.password:null;
+    if(!password)
+    {
+        return res.status(400).json(new apiResponse(400,{},"Password is required"))
+    }
+    try {
+        await User.findByIdAndUpdate(req.user.id,{
+            $set:{
+                password
+            }
+        })
+        return res.status(200).json(new apiResponse(200,{},"Updated successfully"))
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json(new apiResponse(500,{},"There was a problem while updating username try again after some time"))
+    }
+})
+
+
+export {registerUser,loginUser,addFeedback,addToCart,addQuantity,reduceQuantity,deleteCartItem,allCartItems,getProfile,logoutUser,addAddress,placeOrder}

@@ -93,6 +93,8 @@ const Home = () => {
     })();
   }, []);
   
+  
+  const [selectedImage, setSelectedImage] = useState(0);
   function Arrow(props) {
     const { className, style, onClick } = props;
     return (
@@ -108,8 +110,6 @@ const Home = () => {
       />
     );
   }
-
-  const [selectedImage, setSelectedImage] = useState(0);
 
   var settings = {
     dots: true,

@@ -9,8 +9,9 @@ import { FaAddressCard } from "react-icons/fa";
 import { userCart } from "../cart/CartSlice";
 import { useDispatch } from "react-redux";
 import axios from "axios";
+import Cookies from 'js-cookie'
 const Profile = () => {
-  const token = localStorage.getItem('token')
+  const token = Cookies.get("isLoggedIn")
   const dispatch=useDispatch();
   useEffect(()=>{
     (async()=>{
@@ -58,46 +59,7 @@ const Profile = () => {
      
     <div className="h-[100vh] w-[100vw] flex flex-col justify-center items-center">
         <div className="md:text-3xl text-slate-500 font-semiboldpx-2 ">Your Profile</div>
-    <div className="h-[90vh] flex w-[100vw] justify-center items-center">
-      <div className="flex flex-col  sm:text-base text-sm gap-y-5 min-h-[70vh] ">
-        <div onClick={()=>setDisplay(1)} className={`${display==1&&"bg-[#d9eafc]"} min-h-[10vh] flex justify-center items-center sm:w-[30vw] w-[30vw] `}>Details</div>
-      </div>
-      <div>
-        {UserData && display == 1 && <div className=" flex flex-col  sm:text-xl text-sm  gap-y-5 min-h-[70vh] ">
-          <div  className="px-2 flex gap-2 bg-slate-200 min-h-[10vh] items-center rounded sm:w-[60vw] w-[70vw] justify-between">
-           <div className="flex gap-4 h-[100%]  items-center"> <div><FaRegUser /> </div>
-            <div>{UserData.username}</div>
-            </div>
-            
-
-          </div>
-          <div className="px-2 flex gap-2 bg-slate-200 min-h-[10vh] items-center justify-between rounded sm:w-[60vw] w-[70vw] ">
-          <div className="flex gap-4 h-[100%]  items-center">  <div><FaPhoneAlt /> </div>
-            <div>{UserData.phoneNumber}</div></div>
-            
-
-          </div>
-          <div className="px-2 flex gap-2 bg-slate-200 min-h-[10vh] items-center rounded sm:w-[60vw] w-[70vw] ">
-            <div className="h-[100%]  items-center"><IoIosMail /> </div>
-            <div>{UserData.email}</div>
-            
-          </div>
-          <div className="px-2 flex  gap-2 bg-slate-200 min-h-[10vh] items-center justify-between rounded sm:w-[60vw] w-[70vw] ">
-          <div className="flex gap-4 h-[100%]  items-center">   <div>< RiLockPasswordFill /> </div>
-            <div>{printdot()}</div></div>
-            
-
-          </div>
-          <div className="px-2 flex gap-2 bg-slate-200 min-h-[10vh] justify-between items-center rounded sm:w-[60vw] w-[70vw] ">
-          <div className="flex gap-4 w-[80%] h-[100%]  items-center py-5 "><div>< FaAddressCard /> </div>
-            <div className="w-[100%]">{UserData.address}</div></div>
-            
-          </div>
-
-        </div>}
-      
-                   </div>
-    </div>
+   
     </div>
   );
 };

@@ -37,7 +37,6 @@ const Login = () => {
           theme: "dark",
           transition: Bounce,
         })
-        localStorage.setItem("token",true)
         navigate("/");
       }
     } catch (err) {

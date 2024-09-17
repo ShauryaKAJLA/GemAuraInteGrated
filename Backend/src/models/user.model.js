@@ -7,10 +7,10 @@ const userSchema = mongoose.Schema({
     type:String ,
     required:true   
   },
-  address:{
+  address:[{
     type:String,
-    default : "none"
-  },
+    required:true,
+  }],
   phoneNumber:{
       type:String,
       required:[true,"Phone Number is necessary"],
@@ -40,7 +40,6 @@ const userSchema = mongoose.Schema({
       size:{
         type: Number , 
       },
-
     }
   ],
   

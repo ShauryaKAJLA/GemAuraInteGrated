@@ -12,6 +12,7 @@ import axios, { all } from 'axios'
 import { addProducts } from "./FilteredProductsSlice";
 import { toast } from "react-toastify";
 import { Bounce } from "react-toastify";
+import Cookies from 'js-cookie'
 export function Product() {
   const change =useSelector((state) => state.FilteredProducts.products)
   const [productsData,setProductsData] =useState(null);
@@ -121,7 +122,7 @@ export function Product() {
       setProductsData(change)
   },[change])
   // const cart = useSelector((state) => state.cart);
-  const token = localStorage.getItem('token')
+  const token = Cookies.get("isLoggedIn")
    async  function handleAddToCart(product){
     try{
       console.log({product})
