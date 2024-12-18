@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import {  addAddress, addFeedback, addQuantity, addToCart, allCartItems, changeEmail, changePassword, changePhone, changeUsername, deleteAddress, deleteCartItem, getProfile, handleGetOrders, loginUser, logoutUser, placeOrder, reduceQuantity, registerUser } from '../controllers/user.controller.js'
+import {  addAddress, addFeedback, addQuantity, addToCart, adminLogin, allCartItems, changeEmail, changePassword, changePhone, changeUsername, deleteAddress, deleteCartItem, getProfile, handleGetOrders, loginUser, logoutUser, placeOrder, reduceQuantity, registerUser } from '../controllers/user.controller.js'
 import verifyJWT from '../middlewares/auth.middleware.js'
 
 
@@ -23,4 +23,5 @@ router.route('/changeEmail').post(verifyJWT,changeEmail)
 router.route('/changePassword').post(verifyJWT,changePassword)
 router.route('/deleteAddress').post(verifyJWT,deleteAddress)
 router.route('/getOrders').post(verifyJWT,handleGetOrders)
+router.route('/adminLogin').post(verifyJWT,adminLogin)
 export default router

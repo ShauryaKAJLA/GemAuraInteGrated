@@ -16,6 +16,7 @@ import Orders from "./Orders";
 const Profile = () => {
   const token = Cookies.get("isLoggedIn")
   const [choose,setChoose]=useState(1);
+  const [ad,setAd]=useState(false);
   const dispatch=useDispatch();
   useEffect(()=>{
     (async()=>{
@@ -28,15 +29,30 @@ const Profile = () => {
         }
     })()
   },[])
- 
+  useEffect(()=>{
+    (async()=>{
+      try {
+        const response = await axios.post("http://localhost:3000/users/adminLogin",{},{withCredentials:true});
+        console.log(response)
+        setAd(true);
+      }catch(err){
+          console.log(err)
+        }
+    })()
+  },[])
   return (
      
     <div className="min-h-[100vh]  bg-white w-[100vw] flex flex-col items-center">
         <div className="md:text-3xl flex w-[100vw]   text-2xl text-[#662B2B] font-semibold p-5 ">Your Profile</div>
-        <div className="w-[100vw] h-[30px] flex gap-1 sm:gap-5 md:gap-10 px-2 sm:px-5 md:px-15 sm:text-sm md:text-base text-xs">
+        <div className="w-[100vw] h-[30px] flex gap-1 sm:gap-5 md:gap-10 px-2 sm:px-5 md:px-15 sm:text-sm md:text-base text-xs overflow-x-auto ">
           <div onClick={()=>setChoose(1)} className={`px-3 ${choose==1&&"border-b-[#662B2B] border-b-2 "}`}>Profile</div>
           <div onClick={()=>setChoose(2)} className={`px-3 ${choose==2&&"border-b-[#662B2B] border-b-2 "}`}>Orders</div>
           <div onClick={()=>setChoose(3)} className={`px-3 ${choose==3&&"border-b-[#662B2B] border-b-2 "}`}>Settings</div>
+          <div onClick={()=>setChoose(3)} className={`px-3 ${choose==4&&"border-b-[#662B2B] border-b-2 "} ${ad==true?'flex':'hidden'}`}>Manage Users</div>
+          <div onClick={()=>setChoose(3)} className={`px-3 ${choose==5&&"border-b-[#662B2B] border-b-2 "} ${ad==true?'flex':'hidden'}`}>Manage Products</div>
+          <div onClick={()=>setChoose(3)} className={`px-3 ${choose==6&&"border-b-[#662B2B] border-b-2 "} ${ad==true?'flex':'hidden'}`}>Manage Orders</div>
+          <div onClick={()=>setChoose(3)} className={`px-3 ${choose==7&&"border-b-[#662B2B] border-b-2 "} ${ad==true?'flex':'hidden'}`}>Manage Admins</div>
+
         </div>
         <div className="w-[100vw] border-2"></div>
         <div className="">

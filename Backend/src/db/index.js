@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 import { DB_NAME } from '../constants.js'
 import { productsData } from '../../data/products.data.js'
 import { CatagoriesData } from '../../data/categories.data.js'
-import { admin } from '../models/admin.model.js'
+import { Admin } from '../models/admin.model.js'
 const connectDb=async ()=>{
     try {
         

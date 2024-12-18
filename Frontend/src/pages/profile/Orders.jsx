@@ -44,6 +44,9 @@ const Orders = () => {
                 </div>
             </div> )}
       </div>
+      <div className={`${Orders&&Orders.length>0?"disabled:":"flex"} `} >
+                            No orders yet
+      </div>
     </div>
   )
 }

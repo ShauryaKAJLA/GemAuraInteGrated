@@ -63,6 +63,7 @@
 /* width */
 ::-webkit-scrollbar {
     width: 0px;
+    height: 0px;
   }
   
   /* Track */
@@ -80,7 +81,6 @@
     background: rgba(209, 69, 69, 0.80);
   }
   
-
 
 
 

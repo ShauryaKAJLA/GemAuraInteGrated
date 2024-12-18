@@ -6,6 +6,7 @@ import { User } from '../models/user.model.js'
 import { apiError } from '../utils/apiError.js'
 import {apiResponse} from '../utils/apiResponse.js'
 import { asyncHandler } from '../utils/asyncHandler.js'
+import { Admin } from '../models/admin.model.js'
 
 
 const registerUser=asyncHandler(async (req,res)=>{
@@ -411,4 +412,27 @@ const handleGetOrders=asyncHandler(async (req,res)=>{
     
 })
 
-export {registerUser,loginUser,addFeedback,addToCart,addQuantity,reduceQuantity,deleteCartItem,allCartItems,getProfile,logoutUser,addAddress,placeOrder,changeUsername,changeEmail,changePassword,changePhone,deleteAddress,handleGetOrders}
+const adminLogin=asyncHandler(async (req,res)=>{
+    try {
+        const user=req.user
+        const existingUser=await User.findById(user._id);
+        if(!existingUser)
+        {
+            return res.status(400).json(new apiError(400,"User not found"))
+        }
+        const checkAdmin=await Admin.findOne({email:existingUser.email,password:existingUser.password})
+        console.log("OKK",checkAdmin)
+        if(!checkAdmin)
+        {
+            return res.status(400).json(new apiError(400,"Admin not found"))
+        }
+        return res.status(200).json(new apiResponse(200,{admin:true},"Admin logged"))
+
+    } catch (error) {
+
+        console.log(error)
+        return res.status(400).json(new apiError(400,"Problem while admin login",error))
+    }
+})
+
+export {registerUser,loginUser,addFeedback,addToCart,addQuantity,reduceQuantity,deleteCartItem,allCartItems,getProfile,logoutUser,addAddress,placeOrder,changeUsername,changeEmail,changePassword,changePhone,deleteAddress,handleGetOrders,adminLogin}
