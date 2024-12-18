@@ -9,6 +9,11 @@ const orderSchema=new mongoose.Schema({
         type:String,
         required:true,
     },
+    status:{
+      type:String,
+      enum:["pending","completed"],
+      default:"pending"
+    },
     address:{
         type:String,
         required:true,
@@ -24,6 +29,10 @@ const orderSchema=new mongoose.Schema({
       email: {
         type: String,
         required: [true, "Email field is necessary"],
+      },
+      totalQnt:{
+        type:Number,
+        required:true,
       },
     products:[
         {

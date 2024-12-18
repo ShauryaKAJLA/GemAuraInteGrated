@@ -86,6 +86,7 @@ const logoutUser=asyncHandler(async (req,res)=>{
     }
     return res.status(200).clearCookie("isLoggedIn").clearCookie("accessToken",options).json(new apiResponse(200,{},"User was logout successfully"))
 })
+
 const addFeedback=asyncHandler(async (req,res)=>{
     const name=req.body?.data?.name 
     const email=req.body?.data?.email 
@@ -182,6 +183,7 @@ const reduceQuantity=asyncHandler(async (req,res)=>{
     await user.save();
     return res.status(200).json(new apiResponse(200,{},"Quantity reduced successfully"))
 })
+
 const deleteCartItem=asyncHandler(async (req,res)=>{
     const itemId=req.body?.data?.itemId 
     if(!itemId)
@@ -275,8 +277,10 @@ const placeOrder=asyncHandler(async (req,res)=>{
     try 
     {
         const user=await User.findById(req.user._id)
+        let totalQnt=0;
+        user.cart?.forEach(item=>{totalQnt+=item.quantity})
         await  Orders.create({
-            user,name,address,pincode,phoneNumber,email,products:user.cart,totalPrice
+            user,name,address,pincode,phoneNumber,email,products:user.cart,totalPrice,totalQnt
         })
         user.cart=[];
         await user.save();
@@ -292,9 +296,14 @@ const changeUsername=asyncHandler(async (req,res)=>{
     const username=req.body?.data?.username?req.body.data.username:null;
     if(!username)
     {
-        return res.status(400).json(new apiResponse(400,{},"Username is required"))
+        return res.status(400).json(new apiError(400,"Username is required"))
     }
     try {
+        const exists=await User.findOne({username});
+        if(exists)
+        {
+            return res.status(400).json(new apiError(400,"User exists with this Username"))
+        }
         await User.findByIdAndUpdate(req.user.id,{
             $set:{
                 username
@@ -303,23 +312,24 @@ const changeUsername=asyncHandler(async (req,res)=>{
         return res.status(200).json(new apiResponse(200,{},"Updated successfully"))
     } catch (error) {
         console.log(error)
-        return res.status(500).json(new apiResponse(500,{},"There was a problem while updating username try again after some time"))
+        return res.status(500).json(new apiError(500,{},"There was a problem while updating username try again after some time"))
     }
 })
 
 const deleteAddress=asyncHandler(async (req,res)=>{
-    const index=req.data?.body?.index?req.data.body.index:null;
-    if(!index)
+    const index=req.body?.data?.index!=null?req.body.data.index:null;
+    console.log(index)
+    if(index==null)
     {
-        return res.status(400).json(new apiResponse(400,{},"Invalid request"))
+        return res.status(400).json(new apiError(400,"Invalid request"))
     }
     try {
         const user=await User.findById(req.user._id);
-        user.cart=user.cart.filter((_,i)=>i!=index)
+        user.address=user.address.filter((_,i)=>i!=index)
         await user.save();
         return res.status(200).json(new apiResponse(200,{},"Deleted successfully"))
     } catch (error) {
-        
+        return res.status(500).json(new apiError(500,"There was a problem while deleting the address"))
     }
 })
 
@@ -327,9 +337,14 @@ const changePhone=asyncHandler(async (req,res)=>{
     const phone=req.body?.data?.phone?req.body.data.phone:null;
     if(!phone)
     {
-        return res.status(400).json(new apiResponse(400,{},"Phone Number is required"))
+        return res.status(400).json(new apiError(400,"Phone Number is required"))
     }
     try {
+        const exists=await User.findOne({phoneNumber:phone});
+        if(exists)
+        {
+            return res.status(400).json(new apiError(400,"User exists with this Phone Number"))
+        }
         await User.findByIdAndUpdate(req.user.id,{
             $set:{
                 phoneNumber:phone
@@ -338,7 +353,7 @@ const changePhone=asyncHandler(async (req,res)=>{
         return res.status(200).json(new apiResponse(200,{},"Updated successfully"))
     } catch (error) {
         console.log(error)
-        return res.status(500).json(new apiResponse(500,{},"There was a problem while updating username try again after some time"))
+        return res.status(500).json(new apiResponse(500,{},"There was a problem while updating Phonenumber try again after some time"))
     }
 })
 
@@ -346,9 +361,14 @@ const changeEmail=asyncHandler(async (req,res)=>{
     const email=req.body?.data?.email?req.body.data.email:null;
     if(!email)
     {
-        return res.status(400).json(new apiResponse(400,{},"Email is required"))
+        return res.status(400).json(new apiError(400,"Email is required"))
     }
     try {
+        const exists=await User.findOne({email});
+        if(exists)
+        {
+            return res.status(400).json(new apiError(400,"User exists with this Email"))
+        }
         await User.findByIdAndUpdate(req.user.id,{
             $set:{
                 email
@@ -357,7 +377,7 @@ const changeEmail=asyncHandler(async (req,res)=>{
         return res.status(200).json(new apiResponse(200,{},"Updated successfully"))
     } catch (error) {
         console.log(error)
-        return res.status(500).json(new apiResponse(500,{},"There was a problem while updating username try again after some time"))
+        return res.status(500).json(new apiResponse(500,{},"There was a problem while updating email try again after some time"))
     }
 })
 
@@ -365,7 +385,7 @@ const changePassword=asyncHandler(async (req,res)=>{
     const password=req.body?.data?.password?req.body.data.password:null;
     if(!password)
     {
-        return res.status(400).json(new apiResponse(400,{},"Password is required"))
+        return res.status(400).json(new apiError(400,"Password is required"))
     }
     try {
         await User.findByIdAndUpdate(req.user.id,{
@@ -381,4 +401,14 @@ const changePassword=asyncHandler(async (req,res)=>{
 })
 
 
-export {registerUser,loginUser,addFeedback,addToCart,addQuantity,reduceQuantity,deleteCartItem,allCartItems,getProfile,logoutUser,addAddress,placeOrder}
+const handleGetOrders=asyncHandler(async (req,res)=>{
+    try {
+        const orders=await Orders.find({user:req.user._id}).populate("products.product")
+        return res.status(200).json(new apiResponse(200,orders,"Orders were returned successfully"));
+    } catch (error) {
+        return res.status(400).json(new apiError(400,"There was a problem while returning the orders"));
+    }
+    
+})
+
+export {registerUser,loginUser,addFeedback,addToCart,addQuantity,reduceQuantity,deleteCartItem,allCartItems,getProfile,logoutUser,addAddress,placeOrder,changeUsername,changeEmail,changePassword,changePhone,deleteAddress,handleGetOrders}
