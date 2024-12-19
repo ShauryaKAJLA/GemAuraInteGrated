@@ -13,6 +13,10 @@ import Cookies from 'js-cookie'
 import UserDetails from "./userDetails";
 import Settings from "./Settings";
 import Orders from "./Orders";
+import ManageUsers from "./ManageUsers";
+import ManageProducts from "./ManageProducts";
+import ManageOrders from "./ManageOrders";
+import ManageAdmins from "./ManageAdmins";
 const Profile = () => {
   const token = Cookies.get("isLoggedIn")
   const [choose,setChoose]=useState(1);
@@ -48,10 +52,10 @@ const Profile = () => {
           <div onClick={()=>setChoose(1)} className={`px-3 ${choose==1&&"border-b-[#662B2B] border-b-2 "}`}>Profile</div>
           <div onClick={()=>setChoose(2)} className={`px-3 ${choose==2&&"border-b-[#662B2B] border-b-2 "}`}>Orders</div>
           <div onClick={()=>setChoose(3)} className={`px-3 ${choose==3&&"border-b-[#662B2B] border-b-2 "}`}>Settings</div>
-          <div onClick={()=>setChoose(3)} className={`px-3 ${choose==4&&"border-b-[#662B2B] border-b-2 "} ${ad==true?'flex':'hidden'}`}>Manage Users</div>
-          <div onClick={()=>setChoose(3)} className={`px-3 ${choose==5&&"border-b-[#662B2B] border-b-2 "} ${ad==true?'flex':'hidden'}`}>Manage Products</div>
-          <div onClick={()=>setChoose(3)} className={`px-3 ${choose==6&&"border-b-[#662B2B] border-b-2 "} ${ad==true?'flex':'hidden'}`}>Manage Orders</div>
-          <div onClick={()=>setChoose(3)} className={`px-3 ${choose==7&&"border-b-[#662B2B] border-b-2 "} ${ad==true?'flex':'hidden'}`}>Manage Admins</div>
+          <div onClick={()=>setChoose(4)} className={`px-3 ${choose==4&&"border-b-[#662B2B] border-b-2 "} ${ad==true?'flex':'hidden'}`}>Manage Users</div>
+          <div onClick={()=>setChoose(5)} className={`px-3 ${choose==5&&"border-b-[#662B2B] border-b-2 "} ${ad==true?'flex':'hidden'}`}>Manage Products</div>
+          <div onClick={()=>setChoose(6)} className={`px-3 ${choose==6&&"border-b-[#662B2B] border-b-2 "} ${ad==true?'flex':'hidden'}`}>Manage Orders</div>
+          <div onClick={()=>setChoose(7)} className={`px-3 ${choose==7&&"border-b-[#662B2B] border-b-2 "} ${ad==true?'flex':'hidden'}`}>Manage Admins</div>
 
         </div>
         <div className="w-[100vw] border-2"></div>
@@ -59,6 +63,10 @@ const Profile = () => {
             {choose==1&& <UserDetails/> }
             {choose==2&& <Orders/> }
             {choose==3&& <Settings/> }
+            {choose==4&& <ManageUsers/> }
+            {choose==5&& <ManageProducts/> }
+            {choose==6&& <ManageOrders/> }
+            {choose==7&& <ManageAdmins/> }
         </div>
     </div>
   );
