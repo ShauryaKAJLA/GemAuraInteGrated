@@ -190,7 +190,7 @@ const Settings = () => {
 
   return (
     <div className='flex flex-col gap-4 justify-center items-center w-[100vw] '>
-        <div  className='flex  text-xl font-semibold md:w-[50vw] sm:w-[60vw] w-[90vw] '>Personal Information</div>
+<div className='border-b-2 border-b-[#662B2B] w-[90vw] text-xl my-2 pb-3 font-semibold text-[#662B2B]'>Edit Profile</div>
         <div className='w-[100vw] flex flex-col justify-center items-center  font-semibold gap-4 my-3'>
            {inputUs==0? <div className='md:w-[50vw] sm:w-[60vw] w-[90vw] flex flex-col gap-2'><div className='text-sm text-[#662B2B]'>Username</div> <div className='border sm:max-w-[80%] md:max-w-[60%] max-w-[100%] rounded-md text-sm ml-10 p-2 shadow-md '>{UserData?.username}</div><button className='bg-[#662B2B] p-1 w-[50px] font-bold flex justify-center items-center rounded-md text-xs text-white'  onClick={()=>setInputUs(1)}>Edit</button></div> : 
             <div>
