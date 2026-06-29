@@ -5,20 +5,21 @@ import { Outlet } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import axios from "axios"
 import { addProducts } from "./products/FilteredProductsSlice"
+import './App.css'
 function App() {
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
 
-const handelCheckMenu=()=>{
+  const handelCheckMenu = () => {
 
-  if(document.querySelector(".MainMenu").style.display=="flex")
-  document.querySelector(".MainMenu").style.display="none"
-}
+    if (document.querySelector(".MainMenu").style.display == "flex")
+      document.querySelector(".MainMenu").style.display = "none"
+  }
   return (
     <div className='overflow-hidden app '>
       <NavBar />
       <div className="min-h-[92vh] h-[92.2vh]   overflow-x-hidden overflow-y-scroll relative flex flex-col justify-between bg-[#f5f5f5]" onMouseEnter={handelCheckMenu}>
-      <Outlet />
-      <Footer/>
+        <Outlet />
+        <Footer />
       </div>
     </div>
   )

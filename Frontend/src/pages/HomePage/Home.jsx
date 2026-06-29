@@ -20,71 +20,70 @@ import { userCart } from "../cart/CartSlice";
 import { Link } from "react-router-dom";
 import { changeGem, changeGender, changeMetal, changeSearch } from "../../products/filterSlice";
 const Home = () => {
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
   const [categoriesData, setCategoriesData] = useState([]);
   const [productsDataForCarousel, setproductsDataForCarousel] = useState([]);  // will get only 6 products for carousel
 
-  useEffect(()=>{
-    (async()=>{
+  useEffect(() => {
+    (async () => {
       try {
-        const response = await axios.get("http://localhost:3000/users/getAllCartItems",{withCredentials:true});
+        const response = await axios.get(`${import.meta.env.VITE_SERVER}/users/getAllCartItems`, { withCredentials: true });
         dispatch(userCart(response.data.data));
         // console.log('this is csrt : ',{response})
-      } catch(err){
-          console.log(err)
-        }
-    })()
-  },[])
-
-  useEffect(()=>{
-    
-          (async()=>{
-            try{
-              const response = await axios.get('http://localhost:3000/products/getAllProducts')
-              if(response.data.success===true)
-              {
-                 addProducts(response.data.data)
-              }
-          }catch(err){
-                  console.log(err)
-              }
-          })()
-      },[])
-  const token = localStorage.getItem('token')
-  // to get cart Length
-  useEffect(()=>{
-    (async()=>{
-      try{
-        const response = await axios.get('https://d39fd1a1-5a86-4e84-afd0-d86000ff2a04-00-2luop8xvaunv9.riker.replit.dev/home',{
-          params:{
-            token
-          }
-        
-        })
-        console.log('home : ',{response})
-      }catch(err){
-        console.log("ERROR : ",err)
+      } catch (err) {
+        console.log(err)
       }
     })()
-  },[])
+  }, [])
+
+  useEffect(() => {
+
+    (async () => {
+      try {
+        const response = await axios.get(`${import.meta.env.VITE_SERVER}/products/getAllProducts`)
+        if (response.data.success === true) {
+          addProducts(response.data.data)
+        }
+      } catch (err) {
+        console.log(err)
+      }
+    })()
+  }, [])
+  const token = localStorage.getItem('token')
+  // to get cart Length
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await axios.get(`${import.meta.env.VITE_SERVER}/home`, {
+          params: {
+            token
+          }
+
+        })
+        console.log('home : ', { response })
+      } catch (err) {
+        console.log("ERROR : ", err)
+      }
+    })()
+  }, [])
   // setting categories data from api call
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get("http://localhost:3000/catagory/getAllCatagory");
+        const response = await axios.get(`${import.meta.env.VITE_SERVER}/catagory/getAllCatagory`);
         setCategoriesData(response.data.data);
       } catch (err) {
         console.log("ERROR : ", err);
       }
     })();
   }, []);
-  
 
-   // setting products data from api call
-   useEffect(() => {
+
+  // setting products data from api call
+  useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get("http://localhost:3000/products/getSampleProducts");
+        const response = await axios.get(`${import.meta.env.VITE_SERVER}/products/getSampleProducts`);
         console.log({ response });
         setproductsDataForCarousel(response.data.data);
       } catch (error) {
@@ -92,8 +91,8 @@ const Home = () => {
       }
     })();
   }, []);
-  
-  
+
+
   const [selectedImage, setSelectedImage] = useState(0);
   function Arrow(props) {
     const { className, style, onClick } = props;
@@ -217,9 +216,9 @@ const Home = () => {
                 {item.dataDesc}
               </div>
               <div className="CrousalHomeContainerTextHead">
-              <div className="md:text-4xl sm:text-3xl text-2xl  border rounded text-white p-1 sm:mb-0 mb-6  caveat-custom">
-                <Link to='/products' onClick={()=> { dispatch(changeGender("All")); dispatch(changeMetal("All")); dispatch(changeGem("All")); dispatch(changeSearch(item.search)) }}>Explore More</Link>
-              </div>
+                <div className="md:text-4xl sm:text-3xl text-2xl  border rounded text-white p-1 sm:mb-0 mb-6  caveat-custom">
+                  <Link to='/products' onClick={() => { dispatch(changeGender("All")); dispatch(changeMetal("All")); dispatch(changeGem("All")); dispatch(changeSearch(item.search)) }}>Explore More</Link>
+                </div>
               </div>
             </div>
           </div>
@@ -237,36 +236,36 @@ const Home = () => {
       </div>
       <div className="ContainerImages2 ">
         <div className="ContainerImage4 relative">
-        <Link to='/products'  onClick={()=> { dispatch(changeGender("All")); dispatch(changeMetal("Silver")); dispatch(changeGem("All")); dispatch(changeSearch("All")) }}>
-          <div className="absolute dancing-script-Customtext  sm:text-3xl md:text-4xl lg:text-5xl text-3xl Image4Text">
-            {" "}
-            <div className=" inTextImage4 text-black p-[1vw]">
+          <Link to='/products' onClick={() => { dispatch(changeGender("All")); dispatch(changeMetal("Silver")); dispatch(changeGem("All")); dispatch(changeSearch("All")) }}>
+            <div className="absolute dancing-script-Customtext  sm:text-3xl md:text-4xl lg:text-5xl text-3xl Image4Text">
               {" "}
-              <div> Silver Jewellery</div>{" "}
-              <div className="w-full flex justify-center font-serif font-extralight sm:text-xl text-sm">
-                Shop Now
+              <div className=" inTextImage4 text-black p-[1vw]">
+                {" "}
+                <div> Silver Jewellery</div>{" "}
+                <div className="w-full flex justify-center font-serif font-extralight sm:text-xl text-sm">
+                  Shop Now
+                </div>
               </div>
             </div>
-          </div>
-          <img
-            src="https://res.cloudinary.com/dimqqgecs/image/upload/v1711947279/xppscsjah7nrysq9vqmh.png"
-            alt=""
-          />
+            <img
+              src="https://res.cloudinary.com/dimqqgecs/image/upload/v1711947279/xppscsjah7nrysq9vqmh.png"
+              alt=""
+            />
           </Link>
         </div>
-          <Link to="/products" className="ContainerImage2">
-          <img src={img} alt="" onClick={()=> { dispatch(changeGender("w")); dispatch(changeMetal("All")); dispatch(changeGem("All")); dispatch(changeSearch("All")) }} />
+        <Link to="/products" className="ContainerImage2">
+          <img src={img} alt="" onClick={() => { dispatch(changeGender("w")); dispatch(changeMetal("All")); dispatch(changeGem("All")); dispatch(changeSearch("All")) }} />
           <video
-           onClick={()=> { dispatch(changeGender("m")); dispatch(changeMetal("All")); dispatch(changeGem("All")); dispatch(changeSearch("All")) }}
+            onClick={() => { dispatch(changeGender("m")); dispatch(changeMetal("All")); dispatch(changeGem("All")); dispatch(changeSearch("All")) }}
             src="https://res.cloudinary.com/dimqqgecs/video/upload/v1711984934/r3yisbaqkqdrs1b1grcl.mp4"
             autoPlay
             loop
             muted
             typeof="mp4"
-            ></video>
-            </Link>
+          ></video>
+        </Link>
       </div>
-             {/* CATEGORIES */}
+      {/* CATEGORIES */}
       <div className="CatagoriesContainer">
         <div className="CatagoriesContainerText">
           <div className="sm:text-4xl text-2xl font-semibold CatagoriesContainerMainHead">
@@ -276,12 +275,12 @@ const Home = () => {
             Browse through your favourite categories. We've got them all!
           </div>
         </div>
-        
-        {categoriesData  && categoriesData.length > 0 ? (
-            <div className="CatagoriesContainerAllCat ">
-              <Slider {...settings}>
-                {categoriesData.map((item) => (
-                  <Link to='products' key={item._id} onClick={()=> { dispatch(changeGender("All")); dispatch(changeMetal("All")); dispatch(changeGem("All")); dispatch(changeSearch(item.name)) }}>
+
+        {categoriesData && categoriesData.length > 0 ? (
+          <div className="CatagoriesContainerAllCat ">
+            <Slider {...settings}>
+              {categoriesData.map((item) => (
+                <Link to='products' key={item._id} onClick={() => { dispatch(changeGender("All")); dispatch(changeMetal("All")); dispatch(changeGem("All")); dispatch(changeSearch(item.name)) }}>
                   <div key={item._id} className="CatagoriesCont">
                     <div className="ImageOfCatagories rounded-t-xl">
                       <img src={item.src} alt="" />
@@ -293,15 +292,15 @@ const Home = () => {
                       </div>
                     </div>
                   </div>
-                  </Link>
-                ))}
-              </Slider>
-            </div>
-          ) : (
-            <div className="flex justify-center items-center">
-              No category Found
-            </div>
-          )
+                </Link>
+              ))}
+            </Slider>
+          </div>
+        ) : (
+          <div className="flex justify-center items-center">
+            No category Found
+          </div>
+        )
         }
       </div>
 
@@ -309,79 +308,79 @@ const Home = () => {
       {/* Banner1 */}
 
       <div className="Banner1Div">
-        <Link to='/products' onClick={()=> { dispatch(changeGender("All")); dispatch(changeMetal("All")); dispatch(changeGem("All")); dispatch(changeSearch("diamond gold earring")) }}>
-        <div className="Banner1InnerDiv">
-          <div className="Banner1FirstPhoto">
-            <img src={BannerFirstPhoto} alt="" />
-          </div>
-          <div className="Banner1Text">
-            <div className="text-white sm:text-xl text-base">
-              Gold-Dimonds Earrings
+        <Link to='/products' onClick={() => { dispatch(changeGender("All")); dispatch(changeMetal("All")); dispatch(changeGem("All")); dispatch(changeSearch("diamond gold earring")) }}>
+          <div className="Banner1InnerDiv">
+            <div className="Banner1FirstPhoto">
+              <img src={BannerFirstPhoto} alt="" />
             </div>
-            <div className="text-white sm:text-sm text-xs font-thin flex text-center">
-              Indulge in the allure of our Platinum Diamond Earrings, where
-              classic beauty meets contemporary design. Crafted with precision
-              and passion, each piece is a testament to our commitment to
-              quality and style.
+            <div className="Banner1Text">
+              <div className="text-white sm:text-xl text-base">
+                Gold-Dimonds Earrings
+              </div>
+              <div className="text-white sm:text-sm text-xs font-thin flex text-center">
+                Indulge in the allure of our Platinum Diamond Earrings, where
+                classic beauty meets contemporary design. Crafted with precision
+                and passion, each piece is a testament to our commitment to
+                quality and style.
+              </div>
+              <div className="CustomCatagoryColor sm:text-sm text-xs underline">
+                VIEW PRODUCTS
+              </div>
             </div>
-            <div className="CustomCatagoryColor sm:text-sm text-xs underline">
-              VIEW PRODUCTS
+            <div className="Banner1SecondPhoto">
+              <img src={BannerSecondPhoto} alt="" />
             </div>
           </div>
-          <div className="Banner1SecondPhoto">
-            <img src={BannerSecondPhoto} alt="" />
-          </div>
-        </div>
         </Link>
       </div>
 
       {/* PRODUCTS */}
-      
-        <div className="Products1">
-       <Link to='/products' onClick={()=> { dispatch(changeGender("All")); dispatch(changeMetal("All")); dispatch(changeGem("All")); dispatch(changeSearch("All") )}}>
-        <div className="w-screen flex justify-end pr-[2vw] CustomCatagoryColor font-semibold">
-          Check All Products &rarr;
-        </div>
-      </Link>
-        { productsDataForCarousel && productsDataForCarousel.length>0 ?
-        <div className="Products1Maindiv">
-          <Slider {...settings}>
-            {productsDataForCarousel.map((item) => (
-              <div key={item._id} className="Products1productDiv">
-                <Link to={`productInfo/${item._id}`}>
-                <div className="Products1ImageDiv rounded-t-2xl">
-                  <img src={item.images[0]} alt="" />
-                </div>
-                <div className="Products1DataDiv rounded-b-2xl flex flex-col gap-[2vh]">
-                  <div className="w-[100%] flex justify-center items-center md:text-sm text-xs">
-                    {item.name}
-                  </div>
-                  <div className="flex justify-between px-1  md:px-2">
-                    <div className=" text-xs font-thin md:text-sm">
-                      {" "}
-                      &#8377;{" "}
-                      {item.metal.weightInGram * item.metal.pricePerGram +
-                        item.Gem.totalPrice}
+
+      <div className="Products1">
+        <Link to='/products' onClick={() => { dispatch(changeGender("All")); dispatch(changeMetal("All")); dispatch(changeGem("All")); dispatch(changeSearch("All")) }}>
+          <div className="w-screen flex justify-end pr-[2vw] CustomCatagoryColor font-semibold">
+            Check All Products &rarr;
+          </div>
+        </Link>
+        {productsDataForCarousel && productsDataForCarousel.length > 0 ?
+          <div className="Products1Maindiv">
+            <Slider {...settings}>
+              {productsDataForCarousel.map((item) => (
+                <div key={item._id} className="Products1productDiv">
+                  <Link to={`productInfo/${item._id}`}>
+                    <div className="Products1ImageDiv rounded-t-2xl">
+                      <img src={item.images[0]} alt="" />
                     </div>
-                    <div
-                      className={
-                        item.instock
-                        ? "text-green-700 text-xs sm:text-sm"
-                        : "text-red-700 text-xs md:text-sm"
-                      }
-                      >
-                      {item.instock ? "in stock" : "Out of stock"}
+                    <div className="Products1DataDiv rounded-b-2xl flex flex-col gap-[2vh]">
+                      <div className="w-[100%] flex justify-center items-center md:text-sm text-xs">
+                        {item.name}
+                      </div>
+                      <div className="flex justify-between px-1  md:px-2">
+                        <div className=" text-xs font-thin md:text-sm">
+                          {" "}
+                          &#8377;{" "}
+                          {item.metal.weightInGram * item.metal.pricePerGram +
+                            item.Gem.totalPrice}
+                        </div>
+                        <div
+                          className={
+                            item.instock
+                              ? "text-green-700 text-xs sm:text-sm"
+                              : "text-red-700 text-xs md:text-sm"
+                          }
+                        >
+                          {item.instock ? "in stock" : "Out of stock"}
+                        </div>
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 </div>
-                      </Link>
-              </div>
-            ))}
-          </Slider>
-        </div>
+              ))}
+            </Slider>
+          </div>
           :
-        <div className="flex justify-center items-center">No products found</div>
-      }
+          <div className="flex justify-center items-center">No products found</div>
+        }
       </div>
 
       {/* Gender */}
@@ -393,18 +392,18 @@ const Home = () => {
         <div className="flex flex-wrap w-screen justify-around gap-y-[4vh]">
           {genderData.map((item) => (
             <div key={item.id} className="sm:w-[30vw] w-[300px] border bg-black rounded-2xl overflow-hidden">
-              <Link to={`/products`} onClick={()=> { dispatch(changeGender(item.set)); dispatch(changeMetal("All")); dispatch(changeGem("All")); dispatch(changeSearch("All") )}}>
-              <div className="sm:w-[30vw] 300px h-[80%]">
-                <img
-                  src={item.src}
-                  className=" w-[100%] h-[100%] object-cover obj"
-                  alt=""
+              <Link to={`/products`} onClick={() => { dispatch(changeGender(item.set)); dispatch(changeMetal("All")); dispatch(changeGem("All")); dispatch(changeSearch("All")) }}>
+                <div className="sm:w-[30vw] 300px h-[80%]">
+                  <img
+                    src={item.src}
+                    className=" w-[100%] h-[100%] object-cover obj"
+                    alt=""
                   />
-              </div>
-              <div className="CustomCatagoryColor  text-xl justify-center flex items-center h-[20%]">
-                {item.name}
-              </div>
-                  </Link>
+                </div>
+                <div className="CustomCatagoryColor  text-xl justify-center flex items-center h-[20%]">
+                  {item.name}
+                </div>
+              </Link>
             </div>
           ))}
         </div>

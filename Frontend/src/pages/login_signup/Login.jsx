@@ -21,9 +21,9 @@ const Login = () => {
   // api call
   const submitData = async (data) => {
     try {
-      const response = await axios.post("http://localhost:3000/users/loginUser", {
+      const response = await axios.post(`${import.meta.env.VITE_SERVER}/users/loginUser`, {
         data: { email: data.Email, password: data.password },
-      },{withCredentials:true});
+      }, { withCredentials: true });
 
       if (response.data.success === true) {
         toast.info("Logged In!", {
@@ -41,7 +41,7 @@ const Login = () => {
       }
     } catch (err) {
       console.log(err)
-      setError('root',{message:err.response.data.message})
+      setError('root', { message: err.response.data.message })
       console.log("ERROR : ", err.response.data.message);
     }
   };
@@ -71,7 +71,7 @@ const Login = () => {
               className="form flex flex-col justify-center"
             >
 
-           
+
               <input
                 className="pp inp fo hover:scale-105 transition-all text-white"
                 placeholder="Email"
@@ -121,7 +121,7 @@ const Login = () => {
               <div className="flex justify-center w-full text-red-300 ">
                 {errors.dataVerified && errors.password.message}
               </div>
-                <div className="flex justify-center ml-8 w-full text-red-500 text-l ">
+              <div className="flex justify-center ml-8 w-full text-red-500 text-l ">
                 {errors.root && errors.root.message}
               </div>
             </form>

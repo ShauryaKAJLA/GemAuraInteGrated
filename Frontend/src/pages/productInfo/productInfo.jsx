@@ -1,4 +1,4 @@
-import React, { useEffect , useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./productInfo.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -10,13 +10,13 @@ import { toast } from "react-toastify";
 import { Bounce } from "react-toastify";
 import Cookies from 'js-cookie'
 const productInfo = () => {
-  const {productId} = useParams()
-  const [error,setError]=useState(1);
-  const [productDetails , setProductDetails] = useState(null)
+  const { productId } = useParams()
+  const [error, setError] = useState(1);
+  const [productDetails, setProductDetails] = useState(null)
   useEffect(() => {
     (async () => {
-    try {
-        const response = await axios.get("http://localhost:3000/users/getAllCartItems",{withCredentials:true});
+      try {
+        const response = await axios.get(`${import.meta.env.VITE_SERVER}/users/getAllCartItems`, { withCredentials: true });
         dispatch(userCart(response.data.data));
         // console.log('this is csrt : ',{response})
       } catch (err) {
@@ -24,23 +24,23 @@ const productInfo = () => {
       }
     })();
   }, []);
-  useEffect(()=>{
-    (async()=>{
-      try{
-        const response = await axios.get(`http://localhost:3000/products/getProductInfo/${productId}`)
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await axios.get(`${import.meta.env.VITE_SERVER} / products / getProductInfo / ${productId}`)
         setProductDetails(response.data.data)
         setError(1)
         console.log(response)
-      }catch(err){
+      } catch (err) {
         console.log(err)
         setError(0)
       }
     })()
-  },[])
-  
-  
-  
-  
+  }, [])
+
+
+
+
   const params = useParams();
   const [num, setNum] = useState(0);
 
@@ -50,37 +50,37 @@ const productInfo = () => {
   let item = useSelector((state) => state.productInfo.productInfo);
   const [size, setSize] = useState(item.size ? item.size : 10);
   // const [size, setSize] = useState(20)  ;
-  console.log({size})
+  console.log({ size })
 
 
-    // useEffect(() => {
-    //   dispatch(changeSize(size));
-    // }, [size]);
-  
+  // useEffect(() => {
+  //   dispatch(changeSize(size));
+  // }, [size]);
+
   const handleChangeSize = (e) => {
     setSize(e.target.value);
   };
-  
+
 
   const token = Cookies.get("isLoggedIn")
-   async  function handleAddToCart(){
-    try{
-      console.log({productDetails})
-      const response = await axios.post('http://localhost:3000/users/addToCart',{
-        data:{
-          productId : productDetails._id,
-          size : productDetails.type_of==='ring'||productDetails.type_of==='Ring' ? size : undefined
+  async function handleAddToCart() {
+    try {
+      console.log({ productDetails })
+      const response = await axios.post(`${import.meta.env.VITE_SERVER}/users/addToCart`, {
+        data: {
+          productId: productDetails._id,
+          size: productDetails.type_of === 'ring' || productDetails.type_of === 'Ring' ? size : undefined
         }
-      },{withCredentials:true})
-      if(response.data.success === true){
-          // dispatch(addToCart(product))
-          dispatch(addToCart(response.data.data))
+      }, { withCredentials: true })
+      if (response.data.success === true) {
+        // dispatch(addToCart(product))
+        dispatch(addToCart(response.data.data))
       }
-    }catch(err){
-      
-      console.log(err )
-    }    
-  } 
+    } catch (err) {
+
+      console.log(err)
+    }
+  }
 
   return (
     <div className=" w-[100vw] contProductInfo">
@@ -138,7 +138,7 @@ const productInfo = () => {
                 </div>
               )}
               <button
-                onClick={()=>token?handleAddToCart():toast.warn("Please Login to access cart!", {
+                onClick={() => token ? handleAddToCart() : toast.warn("Please Login to access cart!", {
                   position: "bottom-right",
                   autoClose: 5000,
                   hideProgressBar: false,
@@ -193,7 +193,7 @@ const productInfo = () => {
         !error && <ErrorPage />
       )}
     </div>
-    
+
   );
 };
 

@@ -1,4 +1,7 @@
 import mongoose from 'mongoose'
+import { Category } from './categories.models.js';
+import { productsData } from '../../data/products.data.js';
+import { CatagoriesData } from '../../data/categories.data.js';
 
 
 const productSchema = new mongoose.Schema({
@@ -53,4 +56,13 @@ const productSchema = new mongoose.Schema({
 });
 
 
-export const Product = mongoose.model('Product',productSchema)
+export const Product = mongoose.model('Product', productSchema)
+
+// let count = 0;
+// (async () => {
+//   if (count == 0) {
+//     await Product.insertMany(productsData);
+//     await Category.insertMany(CatagoriesData)
+//     count++;
+//   }
+// })();
