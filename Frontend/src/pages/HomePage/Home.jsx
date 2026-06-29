@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import imageData from "./imageData";
 import "./Home.css";
 import { GoDotFill } from "react-icons/go";
@@ -19,103 +19,128 @@ import { addProducts, changeProducts } from "../../products/FilteredProductsSlic
 import { userCart } from "../cart/CartSlice";
 import { Link } from "react-router-dom";
 import { changeGem, changeGender, changeMetal, changeSearch } from "../../products/filterSlice";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 const Home = () => {
   const dispatch = useDispatch();
   const [categoriesData, setCategoriesData] = useState([]);
-  const [productsDataForCarousel, setproductsDataForCarousel] = useState([]);  // will get only 6 products for carousel
+  const [productsDataForCarousel, setproductsDataForCarousel] = useState([]);
 
   useEffect(() => {
     (async () => {
       try {
         const response = await axios.get(`${import.meta.env.VITE_SERVER}/users/getAllCartItems`, {
-          headers: {
-            "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
-          }
+          headers: { "Authorization": `Bearer ${localStorage.getItem("accessToken")}` }
         }, { withCredentials: true });
         dispatch(userCart(response.data.data));
-        // console.log('this is csrt : ',{response})
-      } catch (err) {
-        console.log(err)
-      }
+      } catch (err) { console.log(err) }
     })()
   }, [])
 
   useEffect(() => {
-
     (async () => {
       try {
         const response = await axios.get(`${import.meta.env.VITE_SERVER}/products/getAllProducts`, {
-          headers: {
-            "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
-          }
+          headers: { "Authorization": `Bearer ${localStorage.getItem("accessToken")}` }
         })
-        if (response.data.success === true) {
-          addProducts(response.data.data)
-        }
-      } catch (err) {
-        console.log(err)
-      }
+        if (response.data.success === true) { addProducts(response.data.data) }
+      } catch (err) { console.log(err) }
     })()
   }, [])
+
   const token = localStorage.getItem('token')
-  // to get cart Length
-  // useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       const response = await axios.get(`${import.meta.env.VITE_SERVER}/home`, {
-  //         headers: {
-  //           "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
-  //         }
-  //       })
-  //       console.log('home : ', { response })
-  //     } catch (err) {
-  //       console.log("ERROR : ", err)
-  //     }
-  //   })()
-  // }, [])
-  // setting categories data from api call
+
   useEffect(() => {
     (async () => {
       try {
         const response = await axios.get(`${import.meta.env.VITE_SERVER}/catagory/getAllCatagory`, {
-          headers: {
-            "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
-          }
+          headers: { "Authorization": `Bearer ${localStorage.getItem("accessToken")}` }
         });
         setCategoriesData(response.data.data);
-      } catch (err) {
-        console.log("ERROR : ", err);
-      }
+      } catch (err) { console.log("ERROR : ", err); }
     })();
   }, []);
 
-
-  // setting products data from api call
   useEffect(() => {
     (async () => {
       try {
         const response = await axios.get(`${import.meta.env.VITE_SERVER}/products/getSampleProducts`);
         console.log({ response });
         setproductsDataForCarousel(response.data.data);
-      } catch (error) {
-        console.log("ERROR : ", error);
-      }
+      } catch (error) { console.log("ERROR : ", error); }
     })();
   }, []);
 
-
   const [selectedImage, setSelectedImage] = useState(0);
+
+  // refs
+  const heroTextRef = useRef(null);
+  const section2Ref = useRef(null);
+  const section3Ref = useRef(null);
+  const section4Ref = useRef(null);
+  const section5Ref = useRef(null);
+  const section6Ref = useRef(null);
+
+  // Hero text animation on slide change
+  useEffect(() => {
+    if (!heroTextRef.current) return;
+    gsap.fromTo(
+      heroTextRef.current.children,
+      { opacity: 0, y: 40 },
+      { opacity: 1, y: 0, duration: 0.7, stagger: 0.15, ease: "power3.out" }
+    );
+  }, [selectedImage]);
+
+  // Scroll reveal using Intersection Observer — 100% safe, no visibility issues
+  useEffect(() => {
+    const sections = [
+      section2Ref.current,
+      section3Ref.current,
+      section4Ref.current,
+      section5Ref.current,
+      section6Ref.current,
+    ];
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // element entered viewport — animate in
+            gsap.to(entry.target, {
+              y: 0,
+              opacity: 1,
+              scale: 1,
+              duration: 0.9,
+              ease: "power3.out",
+            });
+          } else {
+            // element left viewport — reset so it animates again next time
+            gsap.set(entry.target, { y: 60, opacity: 0, scale: 0.96 });
+          }
+        });
+      },
+      { threshold: 0.1 } // fires when 10% of element is visible
+    );
+
+    sections.forEach((el) => {
+      if (!el) return;
+      // set initial hidden state directly on the element — AFTER refs are ready
+      gsap.set(el, { y: 60, opacity: 0, scale: 0.96 });
+      observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   function Arrow(props) {
     const { className, style, onClick } = props;
     return (
       <div
         className={className}
-        style={{
-          ...style,
-          display: "block",
-          background: "black",
-          borderRadius: "50%",
-        }}
+        style={{ ...style, display: "block", background: "black", borderRadius: "50%" }}
         onClick={onClick}
       />
     );
@@ -130,102 +155,57 @@ const Home = () => {
     nextArrow: <Arrow />,
     prevArrow: <Arrow />,
     responsive: [
-      {
-        breakpoint: 1445,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 2,
-        },
-      },
-      {
-        breakpoint: 743,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 2,
-        },
-      },
-      {
-        breakpoint: 500,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-        },
-      },
+      { breakpoint: 1445, settings: { slidesToShow: 4, slidesToScroll: 2 } },
+      { breakpoint: 743, settings: { slidesToShow: 3, slidesToScroll: 2 } },
+      { breakpoint: 500, settings: { slidesToShow: 2, slidesToScroll: 2 } },
     ],
   };
 
   let timeout = setTimeout(() => {
-    if (selectedImage <= 3) {
-      setSelectedImage(selectedImage + 1);
-    } else {
-      setSelectedImage(0);
-    }
+    if (selectedImage <= 3) { setSelectedImage(selectedImage + 1); }
+    else { setSelectedImage(0); }
   }, 5000);
 
   const HandleCrosalLeft = () => {
-    if (selectedImage > 0) {
-      setSelectedImage(selectedImage - 1);
-    } else {
-      setSelectedImage(4);
-    }
+    if (selectedImage > 0) { setSelectedImage(selectedImage - 1); }
+    else { setSelectedImage(4); }
     setTimeout(timeout);
   };
 
   const HandleCrosalRight = () => {
-    if (selectedImage <= 3) {
-      setSelectedImage(selectedImage + 1);
-    } else {
-      setSelectedImage(0);
-    }
+    if (selectedImage <= 3) { setSelectedImage(selectedImage + 1); }
+    else { setSelectedImage(0); }
     setTimeout(timeout);
   };
 
   return (
     <div className="min-h-[100vh]">
+      {/* First element */}
       <div className="CrousalHomeMainContainer ">
         <FaChevronLeft
           className="absolute z-[3] left-2 top-1/2  text-white"
           size={30}
-          onClick={() => {
-            clearTimeout(timeout);
-            HandleCrosalLeft();
-          }}
+          onClick={() => { clearTimeout(timeout); HandleCrosalLeft(); }}
         />
         <FaChevronRight
           className="absolute z-[3] right-2 top-[50%] text-white"
           size={30}
-          onClick={() => {
-            clearTimeout(timeout);
-            HandleCrosalRight();
-          }}
+          onClick={() => { clearTimeout(timeout); HandleCrosalRight(); }}
         />
-
         {imageData.map((item, index) => (
           <div
             key={index}
-            className={
-              selectedImage == index
-                ? "CrousalHomeContainerImageDiv isSelected"
-                : "isNotSelected"
-            }
+            className={selectedImage == index ? "CrousalHomeContainerImageDiv isSelected" : "isNotSelected"}
           >
             <div className="absolute w-full h-full top-0 z-[1] CrousalHomeContainerOverlay"></div>{" "}
             <img
               src={item.src}
               alt=""
-              className={
-                index == 2 || index == 4
-                  ? "CrousalHomeContainerImage object-right"
-                  : "CrousalHomeContainerImage object-center"
-              }
+              className={index == 2 || index == 4 ? "CrousalHomeContainerImage object-right" : "CrousalHomeContainerImage object-center"}
             />
-            <div className="CrousalHomeContainerTextDiv">
-              <div className=" text-6xl text-white CrousalHomeContainerTextHead caveat-custom">
-                {item.dataHead}
-              </div>
-              <div className="text-4xl text-white CrousalHomeContainerTextDesc">
-                {item.dataDesc}
-              </div>
+            <div className="CrousalHomeContainerTextDiv" ref={selectedImage === index ? heroTextRef : null}>
+              <div className=" text-6xl text-white CrousalHomeContainerTextHead caveat-custom">{item.dataHead}</div>
+              <div className="text-4xl text-white CrousalHomeContainerTextDesc">{item.dataDesc}</div>
               <div className="CrousalHomeContainerTextHead">
                 <div className="md:text-4xl sm:text-3xl text-2xl  border rounded text-white p-1 sm:mb-0 mb-6  caveat-custom">
                   <Link to='/products' onClick={() => { dispatch(changeGender("All")); dispatch(changeMetal("All")); dispatch(changeGem("All")); dispatch(changeSearch(item.search)) }}>Explore More</Link>
@@ -236,16 +216,13 @@ const Home = () => {
         ))}
         <div className="absolute bottom-4 flex w-[100vw] justify-center z-[2]">
           {imageData.map((item, index) => (
-            <GoDotFill
-              key={index}
-              className={
-                selectedImage == index ? "text-rose-900" : "text-white "
-              }
-            />
+            <GoDotFill key={index} className={selectedImage == index ? "text-rose-900" : "text-white "} />
           ))}
         </div>
       </div>
-      <div className="ContainerImages2 ">
+
+      {/* second element */}
+      <div className="ContainerImages2 " ref={section2Ref}>
         <div className="ContainerImage4 relative">
           <Link to='/products' onClick={() => { dispatch(changeGender("All")); dispatch(changeMetal("Silver")); dispatch(changeGem("All")); dispatch(changeSearch("All")) }}>
             <div className="absolute dancing-script-Customtext  sm:text-3xl md:text-4xl lg:text-5xl text-3xl Image4Text">
@@ -253,15 +230,10 @@ const Home = () => {
               <div className=" inTextImage4 text-black p-[1vw]">
                 {" "}
                 <div> Silver Jewellery</div>{" "}
-                <div className="w-full flex justify-center font-serif font-extralight sm:text-xl text-sm">
-                  Shop Now
-                </div>
+                <div className="w-full flex justify-center font-serif font-extralight sm:text-xl text-sm">Shop Now</div>
               </div>
             </div>
-            <img
-              src="https://res.cloudinary.com/dimqqgecs/image/upload/v1711947279/xppscsjah7nrysq9vqmh.png"
-              alt=""
-            />
+            <img src="https://res.cloudinary.com/dimqqgecs/image/upload/v1711947279/xppscsjah7nrysq9vqmh.png" alt="" />
           </Link>
         </div>
         <Link to="/products" className="ContainerImage2">
@@ -269,38 +241,27 @@ const Home = () => {
           <video
             onClick={() => { dispatch(changeGender("m")); dispatch(changeMetal("All")); dispatch(changeGem("All")); dispatch(changeSearch("All")) }}
             src="https://res.cloudinary.com/dimqqgecs/video/upload/v1711984934/r3yisbaqkqdrs1b1grcl.mp4"
-            autoPlay
-            loop
-            muted
-            typeof="mp4"
+            autoPlay loop muted typeof="mp4"
           ></video>
         </Link>
       </div>
-      {/* CATEGORIES */}
-      <div className="CatagoriesContainer">
-        <div className="CatagoriesContainerText">
-          <div className="sm:text-4xl text-2xl font-semibold CatagoriesContainerMainHead">
-            Shop by category
-          </div>
-          <div className="sm:text-xl text-xs CatagoriesContainerDesc">
-            Browse through your favourite categories. We've got them all!
-          </div>
-        </div>
 
+      {/* third element */}
+      <div className="CatagoriesContainer" ref={section3Ref}>
+        <div className="CatagoriesContainerText">
+          <div className="sm:text-4xl text-2xl font-semibold CatagoriesContainerMainHead">Shop by category</div>
+          <div className="sm:text-xl text-xs CatagoriesContainerDesc">Browse through your favourite categories. We've got them all!</div>
+        </div>
         {categoriesData && categoriesData.length > 0 ? (
           <div className="CatagoriesContainerAllCat ">
             <Slider {...settings}>
               {categoriesData.map((item) => (
                 <Link to='products' key={item._id} onClick={() => { dispatch(changeGender("All")); dispatch(changeMetal("All")); dispatch(changeGem("All")); dispatch(changeSearch(item.name)) }}>
                   <div key={item._id} className="CatagoriesCont">
-                    <div className="ImageOfCatagories rounded-t-xl">
-                      <img src={item.src} alt="" />
-                    </div>
+                    <div className="ImageOfCatagories rounded-t-xl"><img src={item.src} alt="" /></div>
                     <div className="Catagoriesdata rounded-b-xl">
                       <div className="CustomCatagoryColor ">{item.name}</div>
-                      <div className="text-white text-xs font-thin">
-                        Explore &gt;
-                      </div>
+                      <div className="text-white text-xs font-thin">Explore &gt;</div>
                     </div>
                   </div>
                 </Link>
@@ -308,50 +269,31 @@ const Home = () => {
             </Slider>
           </div>
         ) : (
-          <div className="flex justify-center items-center">
-            No category Found
-          </div>
-        )
-        }
+          <div className="flex justify-center items-center">No category Found</div>
+        )}
       </div>
 
-
-      {/* Banner1 */}
-
-      <div className="Banner1Div">
+      {/* fourth element */}
+      <div className="Banner1Div" ref={section4Ref}>
         <Link to='/products' onClick={() => { dispatch(changeGender("All")); dispatch(changeMetal("All")); dispatch(changeGem("All")); dispatch(changeSearch("diamond gold earring")) }}>
           <div className="Banner1InnerDiv">
-            <div className="Banner1FirstPhoto">
-              <img src={BannerFirstPhoto} alt="" />
-            </div>
+            <div className="Banner1FirstPhoto"><img src={BannerFirstPhoto} alt="" /></div>
             <div className="Banner1Text">
-              <div className="text-white sm:text-xl text-base">
-                Gold-Dimonds Earrings
-              </div>
+              <div className="text-white sm:text-xl text-base">Gold-Dimonds Earrings</div>
               <div className="text-white sm:text-sm text-xs font-thin flex text-center">
-                Indulge in the allure of our Platinum Diamond Earrings, where
-                classic beauty meets contemporary design. Crafted with precision
-                and passion, each piece is a testament to our commitment to
-                quality and style.
+                Indulge in the allure of our Platinum Diamond Earrings, where classic beauty meets contemporary design. Crafted with precision and passion, each piece is a testament to our commitment to quality and style.
               </div>
-              <div className="CustomCatagoryColor sm:text-sm text-xs underline">
-                VIEW PRODUCTS
-              </div>
+              <div className="CustomCatagoryColor sm:text-sm text-xs underline">VIEW PRODUCTS</div>
             </div>
-            <div className="Banner1SecondPhoto">
-              <img src={BannerSecondPhoto} alt="" />
-            </div>
+            <div className="Banner1SecondPhoto"><img src={BannerSecondPhoto} alt="" /></div>
           </div>
         </Link>
       </div>
 
-      {/* PRODUCTS */}
-
-      <div className="Products1">
+      {/* fifth element */}
+      <div className="Products1" ref={section5Ref}>
         <Link to='/products' onClick={() => { dispatch(changeGender("All")); dispatch(changeMetal("All")); dispatch(changeGem("All")); dispatch(changeSearch("All")) }}>
-          <div className="w-screen flex justify-end pr-[2vw] CustomCatagoryColor font-semibold">
-            Check All Products &rarr;
-          </div>
+          <div className="w-screen flex justify-end pr-[2vw] CustomCatagoryColor font-semibold">Check All Products &rarr;</div>
         </Link>
         {productsDataForCarousel && productsDataForCarousel.length > 0 ?
           <div className="Products1Maindiv">
@@ -359,27 +301,12 @@ const Home = () => {
               {productsDataForCarousel.map((item) => (
                 <div key={item._id} className="Products1productDiv">
                   <Link to={`productInfo/${item._id}`}>
-                    <div className="Products1ImageDiv rounded-t-2xl">
-                      <img src={item.images[0]} alt="" />
-                    </div>
+                    <div className="Products1ImageDiv rounded-t-2xl"><img src={item.images[0]} alt="" /></div>
                     <div className="Products1DataDiv rounded-b-2xl flex flex-col gap-[2vh]">
-                      <div className="w-[100%] flex justify-center items-center md:text-sm text-xs">
-                        {item.name}
-                      </div>
+                      <div className="w-[100%] flex justify-center items-center md:text-sm text-xs">{item.name}</div>
                       <div className="flex justify-between px-1  md:px-2">
-                        <div className=" text-xs font-thin md:text-sm">
-                          {" "}
-                          &#8377;{" "}
-                          {item.metal.weightInGram * item.metal.pricePerGram +
-                            item.Gem.totalPrice}
-                        </div>
-                        <div
-                          className={
-                            item.instock
-                              ? "text-green-700 text-xs sm:text-sm"
-                              : "text-red-700 text-xs md:text-sm"
-                          }
-                        >
+                        <div className=" text-xs font-thin md:text-sm"> &#8377;{" "}{item.metal.weightInGram * item.metal.pricePerGram + item.Gem.totalPrice}</div>
+                        <div className={item.instock ? "text-green-700 text-xs sm:text-sm" : "text-red-700 text-xs md:text-sm"}>
                           {item.instock ? "in stock" : "Out of stock"}
                         </div>
                       </div>
@@ -394,9 +321,8 @@ const Home = () => {
         }
       </div>
 
-      {/* Gender */}
-
-      <div className="mb-[10vh]">
+      {/* sixth element */}
+      <div className="mb-[10vh]" ref={section6Ref}>
         <div className="w-screem md:text-3xl sm:text-2xl text-xl CustomCatagoryColor flex justify-center items-center mb-10 ">
           Shop by Gender
         </div>
@@ -405,20 +331,15 @@ const Home = () => {
             <div key={item.id} className="sm:w-[30vw] w-[300px] border bg-black rounded-2xl overflow-hidden">
               <Link to={`/products`} onClick={() => { dispatch(changeGender(item.set)); dispatch(changeMetal("All")); dispatch(changeGem("All")); dispatch(changeSearch("All")) }}>
                 <div className="sm:w-[30vw] 300px h-[80%]">
-                  <img
-                    src={item.src}
-                    className=" w-[100%] h-[100%] object-cover obj"
-                    alt=""
-                  />
+                  <img src={item.src} className=" w-[100%] h-[100%] object-cover obj" alt="" />
                 </div>
-                <div className="CustomCatagoryColor  text-xl justify-center flex items-center h-[20%]">
-                  {item.name}
-                </div>
+                <div className="CustomCatagoryColor  text-xl justify-center flex items-center h-[20%]">{item.name}</div>
               </Link>
             </div>
           ))}
         </div>
       </div>
+
     </div>
   );
 };
