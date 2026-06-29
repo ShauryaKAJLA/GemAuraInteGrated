@@ -91,17 +91,17 @@ const Home = () => {
 
 
   // setting products data from api call
-  // useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       const response = await axios.get(`${import.meta.env.VITE_SERVER}/products/getSampleProducts`);
-  //       console.log({ response });
-  //       setproductsDataForCarousel(response.data.data);
-  //     } catch (error) {
-  //       console.log("ERROR : ", error);
-  //     }
-  //   })();
-  // }, []);
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await axios.get(`${import.meta.env.VITE_SERVER}/products/getSampleProducts`);
+        console.log({ response });
+        setproductsDataForCarousel(response.data.data);
+      } catch (error) {
+        console.log("ERROR : ", error);
+      }
+    })();
+  }, []);
 
 
   const [selectedImage, setSelectedImage] = useState(0);
