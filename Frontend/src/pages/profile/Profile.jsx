@@ -25,7 +25,11 @@ const Profile = () => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_SERVER}/users/getAllCartItems`, { withCredentials: true });
+        const response = await axios.get(`${import.meta.env.VITE_SERVER}/users/getAllCartItems`, {
+          headers: {
+            "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+          }
+        }, { withCredentials: true });
         dispatch(userCart(response.data.data));
         // console.log('this is csrt : ',{response})
       } catch (err) {
@@ -36,7 +40,11 @@ const Profile = () => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.post(`${import.meta.env.VITE_SERVER}/users/adminLogin`, {}, { withCredentials: true });
+        const response = await axios.post(`${import.meta.env.VITE_SERVER}/users/adminLogin`, {}, {
+          headers: {
+            "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+          }
+        }, { withCredentials: true });
         console.log(response)
         setAd(true);
       } catch (err) {

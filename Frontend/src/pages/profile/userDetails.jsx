@@ -16,6 +16,10 @@ const UserDetails = () => {
     (async () => {
       try {
         const response = await axios.get(`${import.meta.env.VITE_SERVER}/users/getProfile`, {
+          headers: {
+            "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+          }
+        }, {
           withCredentials: true
         })
         console.log('user', { response })

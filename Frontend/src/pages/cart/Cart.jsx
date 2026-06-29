@@ -104,6 +104,10 @@ export function Cart() {
         data: {
           ...shipping, totalPrice: price
         }
+      }, {
+        headers: {
+          "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+        }
       }, { withCredentials: true });
       console.log(response)
       toast.success(response.data.message, {
@@ -140,7 +144,11 @@ export function Cart() {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_SERVER}/users/getAllCartItems`, { withCredentials: true });
+        const response = await axios.get(`${import.meta.env.VITE_SERVER}/users/getAllCartItems`, {
+          headers: {
+            "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+          }
+        }, { withCredentials: true });
         dispatch(userCart(response.data.data));
         // console.log('this is csrt : ',{response})
       } catch (err) {
@@ -151,6 +159,10 @@ export function Cart() {
   const getData = async () => {
     try {
       const response = await axios.get(`${import.meta.env.VITE_SERVER}/users/getProfile`, {
+        headers: {
+          "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+        }
+      }, {
         withCredentials: true
       })
       console.log('user', response.data.userDetails)
@@ -171,7 +183,14 @@ export function Cart() {
     try {
       const response = await axios.delete(`${import.meta.env.VITE_SERVER}/users/deleteItem`, {
         data: { data: { itemId: item._id } },
-        withCredentials: true
+        withCredentials: true,
+        headers: {
+          "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+        }
+      }, {
+        headers: {
+          "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+        }
       });
       if (response.data.success === true) {
         dispatch(removeItem(item));
@@ -185,6 +204,10 @@ export function Cart() {
     try {
       const response = await axios.post(`${import.meta.env.VITE_SERVER}/users/reduceQuantity`, {
         data: { itemId: item._id },
+      }, {
+        headers: {
+          "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+        }
       }, { withCredentials: true });
 
       if (response.data.success === true) {
@@ -199,6 +222,10 @@ export function Cart() {
     try {
       const response = await axios.post(`${import.meta.env.VITE_SERVER}/users/addQuantity`, {
         data: { itemId: item._id },
+      }, {
+        headers: {
+          "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+        }
       }, { withCredentials: true });
       if (response.data.success === true) {
         console.log("Hello");
@@ -230,6 +257,10 @@ export function Cart() {
       try {
         await axios.post(`${import.meta.env.VITE_SERVER}/users/addAddress`, {
           data: { newAddress: address },
+        }, {
+          headers: {
+            "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+          }
         }, { withCredentials: true }).then(() => {
           let add = user.address;
           add.push(address)

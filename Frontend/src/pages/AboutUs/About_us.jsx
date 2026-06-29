@@ -12,7 +12,11 @@ const About_us = () => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_SERVER}/users/getAllCartItems`, { withCredentials: true });
+        const response = await axios.get(`${import.meta.env.VITE_SERVER}/users/getAllCartItems`, {
+          headers: {
+            "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+          }
+        }, { withCredentials: true });
         dispatch(userCart(response.data.data));
         // console.log('this is csrt : ',{response})
       } catch (err) {

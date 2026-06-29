@@ -24,7 +24,11 @@ export function Product() {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_SERVER}/users/getAllCartItems`, { withCredentials: true });
+        const response = await axios.get(`${import.meta.env.VITE_SERVER}/users/getAllCartItems`, {
+          headers: {
+            "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+          }
+        }, { withCredentials: true });
         dispatch(userCart(response.data.data));
         // console.log('this is csrt : ',{response})
       } catch (err) {
@@ -37,7 +41,11 @@ export function Product() {
     (async () => {
       try {
         console.log(import.meta.env.VITE_SERVER)
-        const response = await axios.get(`${import.meta.env.VITE_SERVER}/products/getAllProducts`)
+        const response = await axios.get(`${import.meta.env.VITE_SERVER}/products/getAllProducts`, {
+          headers: {
+            "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+          }
+        })
         console.log(response)
         if (response.data.success === true) {
           dispatch(addProducts(response.data.data))
@@ -126,6 +134,10 @@ export function Product() {
         data: {
           productId: product._id,
           size: product.type_of === 'ring' || product.type_of === 'Ring' ? size : undefined,
+        }
+      }, {
+        headers: {
+          "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
         }
       }, { withCredentials: true })
       if (response.data.success === true) {

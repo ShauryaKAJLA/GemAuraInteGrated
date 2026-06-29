@@ -26,6 +26,8 @@ const Login = () => {
       }, { withCredentials: true });
 
       if (response.data.success === true) {
+        console.log(response)
+        localStorage.setItem("accessToken", response.data.data.accessToken)
         toast.info("Logged In!", {
           position: "bottom-right",
           autoClose: 5000,

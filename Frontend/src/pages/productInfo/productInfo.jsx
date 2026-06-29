@@ -16,7 +16,11 @@ const productInfo = () => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_SERVER}/users/getAllCartItems`, { withCredentials: true });
+        const response = await axios.get(`${import.meta.env.VITE_SERVER}/users/getAllCartItems`, {
+          headers: {
+            "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+          }
+        }, { withCredentials: true });
         dispatch(userCart(response.data.data));
         // console.log('this is csrt : ',{response})
       } catch (err) {
@@ -27,7 +31,11 @@ const productInfo = () => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_SERVER}/products/getProductInfo/${productId}`)
+        const response = await axios.get(`${import.meta.env.VITE_SERVER}/products/getProductInfo/${productId}`, {
+          headers: {
+            "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+          }
+        })
         setProductDetails(response.data.data)
         setError(1)
         console.log(response)
@@ -70,6 +78,10 @@ const productInfo = () => {
         data: {
           productId: productDetails._id,
           size: productDetails.type_of === 'ring' || productDetails.type_of === 'Ring' ? size : undefined
+        }
+      }, {
+        headers: {
+          "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
         }
       }, { withCredentials: true })
       if (response.data.success === true) {

@@ -24,7 +24,11 @@ const NavBar = () => {
   const handleLogout = async () => {
     try {
       console.log("click")
-      const response = await axios.post(`${import.meta.env.VITE_SERVER}/users/logoutUser`, {}, { withCredentials: true })
+      const response = await axios.post(`${import.meta.env.VITE_SERVER}/users/logoutUser`, {}, {
+        headers: {
+          "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+        }
+      }, { withCredentials: true })
       Navigate("/")
       window.location.reload()
     } catch (error) {

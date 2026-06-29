@@ -27,7 +27,11 @@ const Home = () => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_SERVER}/users/getAllCartItems`, { withCredentials: true });
+        const response = await axios.get(`${import.meta.env.VITE_SERVER}/users/getAllCartItems`, {
+          headers: {
+            "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+          }
+        }, { withCredentials: true });
         dispatch(userCart(response.data.data));
         // console.log('this is csrt : ',{response})
       } catch (err) {
@@ -40,7 +44,11 @@ const Home = () => {
 
     (async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_SERVER}/products/getAllProducts`)
+        const response = await axios.get(`${import.meta.env.VITE_SERVER}/products/getAllProducts`, {
+          headers: {
+            "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+          }
+        })
         if (response.data.success === true) {
           addProducts(response.data.data)
         }
@@ -51,26 +59,29 @@ const Home = () => {
   }, [])
   const token = localStorage.getItem('token')
   // to get cart Length
-  useEffect(() => {
-    (async () => {
-      try {
-        const response = await axios.get(`${import.meta.env.VITE_SERVER}/home`, {
-          params: {
-            token
-          }
-
-        })
-        console.log('home : ', { response })
-      } catch (err) {
-        console.log("ERROR : ", err)
-      }
-    })()
-  }, [])
+  // useEffect(() => {
+  //   (async () => {
+  //     try {
+  //       const response = await axios.get(`${import.meta.env.VITE_SERVER}/home`, {
+  //         headers: {
+  //           "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+  //         }
+  //       })
+  //       console.log('home : ', { response })
+  //     } catch (err) {
+  //       console.log("ERROR : ", err)
+  //     }
+  //   })()
+  // }, [])
   // setting categories data from api call
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_SERVER}/catagory/getAllCatagory`);
+        const response = await axios.get(`${import.meta.env.VITE_SERVER}/catagory/getAllCatagory`, {
+          headers: {
+            "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+          }
+        });
         setCategoriesData(response.data.data);
       } catch (err) {
         console.log("ERROR : ", err);
@@ -80,17 +91,17 @@ const Home = () => {
 
 
   // setting products data from api call
-  useEffect(() => {
-    (async () => {
-      try {
-        const response = await axios.get(`${import.meta.env.VITE_SERVER}/products/getSampleProducts`);
-        console.log({ response });
-        setproductsDataForCarousel(response.data.data);
-      } catch (error) {
-        console.log("ERROR : ", error);
-      }
-    })();
-  }, []);
+  // useEffect(() => {
+  //   (async () => {
+  //     try {
+  //       const response = await axios.get(`${import.meta.env.VITE_SERVER}/products/getSampleProducts`);
+  //       console.log({ response });
+  //       setproductsDataForCarousel(response.data.data);
+  //     } catch (error) {
+  //       console.log("ERROR : ", error);
+  //     }
+  //   })();
+  // }, []);
 
 
   const [selectedImage, setSelectedImage] = useState(0);

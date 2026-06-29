@@ -6,7 +6,11 @@ const Orders = () => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.post(`${import.meta.env.VITE_SERVER}/users/getOrders`, {}, { withCredentials: true })
+        const response = await axios.post(`${import.meta.env.VITE_SERVER}/users/getOrders`, {}, {
+          headers: {
+            "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+          }
+        }, { withCredentials: true })
         setOrders(response.data.data)
         console.log(response)
       } catch (error) {

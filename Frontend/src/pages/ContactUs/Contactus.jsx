@@ -16,7 +16,11 @@ const Contactus = () => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_SERVER}/users/getAllCartItems`, { withCredentials: true });
+        const response = await axios.get(`${import.meta.env.VITE_SERVER}/users/getAllCartItems`, {
+          headers: {
+            "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+          }
+        }, { withCredentials: true });
         dispatch(userCart(response.data.data));
         // console.log('this is csrt : ',{response})
       } catch (err) {
@@ -42,6 +46,10 @@ const Contactus = () => {
       console.log('i am clicked')
       const response = await axios.post(`${import.meta.env.VITE_SERVER}/users/addFeedback`, {
         data: { name: data.name, email: data.Email, message: data.Message }
+      }, {
+        headers: {
+          "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+        }
       }, { withCredentials: true });
       if (response.data.success) {
         setMessage(response.data.message);

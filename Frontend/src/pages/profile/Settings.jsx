@@ -23,6 +23,10 @@ const Settings = () => {
     (async () => {
       try {
         const response = await axios.get(`${import.meta.env.VITE_SERVER}/users/getProfile`, {
+          headers: {
+            "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+          }
+        }, {
           withCredentials: true
         })
         console.log('user', { response })
@@ -49,6 +53,10 @@ const Settings = () => {
       try {
         await axios.post(`${import.meta.env.VITE_SERVER}/users/addAddress`, {
           data: { newAddress: address },
+        }, {
+          headers: {
+            "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+          }
         }, { withCredentials: true }).then(() => {
           let add = UserData.address;
           add.push(address)
@@ -77,7 +85,11 @@ const Settings = () => {
   const handleChangeUsername = async () => {
     try {
 
-      const response = await axios.post(`${import.meta.env.VITE_SERVER}/users/changeUsername`, { data: { username } }, { withCredentials: true })
+      const response = await axios.post(`${import.meta.env.VITE_SERVER}/users/changeUsername`, { data: { username } }, {
+        headers: {
+          "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+        }
+      }, { withCredentials: true })
       setUserData({ ...UserData, username })
       setUsername("");
       setInputUs(0);
@@ -99,7 +111,11 @@ const Settings = () => {
   const handleChangePhoneNumber = async () => {
     try {
 
-      const response = await axios.post(`${import.meta.env.VITE_SERVER}/users/changePhoneNumber`, { data: { phone } }, { withCredentials: true })
+      const response = await axios.post(`${import.meta.env.VITE_SERVER}/users/changePhoneNumber`, { data: { phone } }, {
+        headers: {
+          "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+        }
+      }, { withCredentials: true })
       setUserData({ ...UserData, phoneNumber: phone })
       setPhone("");
       setInputPh(0);
@@ -121,7 +137,11 @@ const Settings = () => {
 
   const handleChangeEmail = async () => {
     try {
-      const response = await axios.post(`${import.meta.env.VITE_SERVER}/users/changeEmail`, { data: { email } }, { withCredentials: true })
+      const response = await axios.post(`${import.meta.env.VITE_SERVER}/users/changeEmail`, { data: { email } }, {
+        headers: {
+          "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+        }
+      }, { withCredentials: true })
       setUserData({ ...UserData, email })
       setEmail("");
       setInputEm(0);
@@ -144,7 +164,11 @@ const Settings = () => {
   const handleChangePassword = async () => {
     try {
 
-      const response = await axios.post(`${import.meta.env.VITE_SERVER}/users/changePassword`, { data: { password } }, { withCredentials: true })
+      const response = await axios.post(`${import.meta.env.VITE_SERVER}/users/changePassword`, { data: { password } }, {
+        headers: {
+          "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+        }
+      }, { withCredentials: true })
       setUserData({ ...UserData, passwordLength: password.length })
       setPassword("");
       setInputPa(0);
@@ -167,7 +191,11 @@ const Settings = () => {
   const handleDeleteAddress = async (index) => {
     try {
 
-      const response = await axios.post(`${import.meta.env.VITE_SERVER}/users/deleteAddress`, { data: { index } }, { withCredentials: true })
+      const response = await axios.post(`${import.meta.env.VITE_SERVER}/users/deleteAddress`, { data: { index } }, {
+        headers: {
+          "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+        }
+      }, { withCredentials: true })
       const address = UserData.address.filter((_, i) => i != index)
       setUserData({ ...UserData, address })
     } catch (error) {
