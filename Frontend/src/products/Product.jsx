@@ -126,7 +126,7 @@ export function Product() {
     setProductsData(change)
   }, [change])
   // const cart = useSelector((state) => state.cart);
-  const token = Cookies.get("isLoggedIn")
+  const token = localStorage.getItem("accessToken")
   async function handleAddToCart(product) {
     try {
       console.log({ product })

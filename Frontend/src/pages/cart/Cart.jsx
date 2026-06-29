@@ -19,7 +19,7 @@ export function Cart() {
   const dispatch = useDispatch();
   const change = useSelector((state) => state.cart.cart);
   const [cartItems, setCartItems] = useState([]);
-  const token = Cookies.get("isLoggedIn");
+  const token = localStorage.getItem("accessToken");
   const [display, setDisplay] = useState(0);
   const [shipping, setShipping] = useState({
     name: "", pincode: null, address: "", phoneNumber: null, email: null

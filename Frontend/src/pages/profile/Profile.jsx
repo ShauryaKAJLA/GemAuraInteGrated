@@ -18,7 +18,7 @@ import ManageProducts from "./ManageProducts";
 import ManageOrders from "./ManageOrders";
 import ManageAdmins from "./ManageAdmins";
 const Profile = () => {
-  const token = Cookies.get("isLoggedIn")
+  const token = localStorage.getItem("accessToken")
   const [choose, setChoose] = useState(1);
   const [ad, setAd] = useState(false);
   const dispatch = useDispatch();

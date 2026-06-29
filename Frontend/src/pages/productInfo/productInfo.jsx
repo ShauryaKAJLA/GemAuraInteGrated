@@ -70,7 +70,7 @@ const productInfo = () => {
   };
 
 
-  const token = Cookies.get("isLoggedIn")
+  const token = localStorage.getItem("accessToken")
   async function handleAddToCart() {
     try {
       console.log({ productDetails })
