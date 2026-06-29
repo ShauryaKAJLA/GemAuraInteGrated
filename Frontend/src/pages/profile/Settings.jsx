@@ -77,7 +77,7 @@ const Settings = () => {
   const handleChangeUsername = async () => {
     try {
 
-      const response = await axios.post(`${import.meta.env.VITE_SERVER} / users / changeUsername`, { data: { username } }, { withCredentials: true })
+      const response = await axios.post(`${import.meta.env.VITE_SERVER}/users/changeUsername`, { data: { username } }, { withCredentials: true })
       setUserData({ ...UserData, username })
       setUsername("");
       setInputUs(0);
@@ -121,7 +121,7 @@ const Settings = () => {
 
   const handleChangeEmail = async () => {
     try {
-      const response = await axios.post(`${import.meta.env.VITE_SERVER} / users / changeEmail`, { data: { email } }, { withCredentials: true })
+      const response = await axios.post(`${import.meta.env.VITE_SERVER}/users/changeEmail`, { data: { email } }, { withCredentials: true })
       setUserData({ ...UserData, email })
       setEmail("");
       setInputEm(0);
@@ -167,7 +167,7 @@ const Settings = () => {
   const handleDeleteAddress = async (index) => {
     try {
 
-      const response = await axios.post(`${import.meta.env.VITE_SERVER} / users / deleteAddress`, { data: { index } }, { withCredentials: true })
+      const response = await axios.post(`${import.meta.env.VITE_SERVER}/users/deleteAddress`, { data: { index } }, { withCredentials: true })
       const address = UserData.address.filter((_, i) => i != index)
       setUserData({ ...UserData, address })
     } catch (error) {

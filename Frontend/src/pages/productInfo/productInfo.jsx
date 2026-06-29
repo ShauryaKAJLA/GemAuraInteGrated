@@ -27,7 +27,7 @@ const productInfo = () => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_SERVER} / products / getProductInfo / ${productId}`)
+        const response = await axios.get(`${import.meta.env.VITE_SERVER}/products/getProductInfo/${productId}`)
         setProductDetails(response.data.data)
         setError(1)
         console.log(response)

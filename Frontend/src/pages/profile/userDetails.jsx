@@ -15,7 +15,7 @@ const UserDetails = () => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get('${import.meta.env.VITE_SERVER}/users/getProfile', {
+        const response = await axios.get(`${import.meta.env.VITE_SERVER}/users/getProfile`, {
           withCredentials: true
         })
         console.log('user', { response })

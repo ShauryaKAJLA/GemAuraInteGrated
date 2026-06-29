@@ -36,7 +36,7 @@ const Profile = () => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.post(`${import.meta.env.VITE_SERVER} / users / adminLogin`, {}, { withCredentials: true });
+        const response = await axios.post(`${import.meta.env.VITE_SERVER}/users/adminLogin`, {}, { withCredentials: true });
         console.log(response)
         setAd(true);
       } catch (err) {

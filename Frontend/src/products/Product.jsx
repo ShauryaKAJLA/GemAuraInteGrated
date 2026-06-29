@@ -122,7 +122,7 @@ export function Product() {
   async function handleAddToCart(product) {
     try {
       console.log({ product })
-      const response = await axios.post('${import.meta.env.VITE_SERVER}/users/addToCart', {
+      const response = await axios.post(`${import.meta.env.VITE_SERVER}/users/addToCart`, {
         data: {
           productId: product._id,
           size: product.type_of === 'ring' || product.type_of === 'Ring' ? size : undefined,
