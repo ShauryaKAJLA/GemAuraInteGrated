@@ -18,6 +18,11 @@ app.use(cors({
     credentials: true
 }))
 app.use(cookieParser())
+const razorpay = new Razorpay({
+    key_id: process.env.RAZORPAY_KEY_ID,
+    key_secret: process.env.RAZORPAY_KEY_SECRET,
+});
+
 import userRoute from './routes/user.route.js'
 import productRoute from './routes/product.route.js'
 import catagoryRoute from './routes/catagory.route.js'
@@ -39,4 +44,4 @@ app.use((err, req, res, next) => {
     });
 });
 
-export { app }
+export { app, razorpay }

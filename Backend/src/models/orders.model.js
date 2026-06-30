@@ -1,58 +1,69 @@
 import mongoose from 'mongoose'
 
-const orderSchema=new mongoose.Schema({
-    user:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"User"
-    },
-    name:{
-        type:String,
-        required:true,
-    },
-    status:{
-      type:String,
-      enum:["pending","completed"],
-      default:"pending"
-    },
-    address:{
-        type:String,
-        required:true,
+const orderSchema = new mongoose.Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
+  },
+  name: {
+    type: String,
+    required: true,
+  },
+  status: {
+    type: String,
+    enum: ["pending", "completed"],
+    default: "pending"
+  },
+  address: {
+    type: String,
+    required: true,
+  },
+  pincode: {
+    type: String,
+    required: true,
+  },
+  phoneNumber: {
+    type: String,
+    required: [true, "Phone Number is necessary"],
+  },
+  email: {
+    type: String,
+    required: [true, "Email field is necessary"],
+  },
+  totalQnt: {
+    type: Number,
+    required: true,
+  },
+  products: [
+    {
+      product: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Product",
       },
-      pincode:{
-        type:String,
-        required:true,
+      quantity: {
+        type: Number,
+        default: 1
       },
-      phoneNumber:{
-          type:String,
-          required:[true,"Phone Number is necessary"],
-      }, 
-      email: {
-        type: String,
-        required: [true, "Email field is necessary"],
+      size: {
+        type: Number,
       },
-      totalQnt:{
-        type:Number,
-        required:true,
-      },
-    products:[
-        {
-        product:{
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Product",
-          },
-          quantity: {
-            type: Number,
-            default :1
-          },
-          size:{
-            type: Number , 
-          },
-        }
-    ],
-    totalPrice:{
-        type:Number,
-        required:true
     }
-},{timestamps:true})
+  ],
+  totalPrice: {
+    type: Number,
+    required: true
+  },
+  razorpay_id: {
+    type: String,
+  },
+  payment: {
+    type: String,
+    enum: ["unverified", "success"],
+    default: "unverified"
+  }
 
-export const Orders=mongoose.model("Order",orderSchema);
+}, { timestamps: true })
+
+export const Orders = mongoose.model("Order", orderSchema);
+
+

@@ -278,35 +278,189 @@ export function Cart() {
   return (
     <div className=" flex flex-col justify-center items-center py-8 min-h-[49vh] relative">
       {display ? (
-        <div className="md:w-[70vw] w-[90vw]  gap-12 p-2 shadow-[#662b2b62] rounded-lg min-h-[80vh] flex flex-col  items-center  ">
-          <div className="text-2xl font-bold text-[#DD6A6A]">Shipping Details</div>
-          <div className="flex flex-col items-center justify-center gap-4">
-            <div><input type="text" placeholder="Name" value={shipping.name} onChange={(e) => setShipping({ ...shipping, name: e.target.value })} className="inp1 w-[60vw] md:w-[40vw] lg:w-[30vw]" /></div>
-            <div><input type="text" placeholder="Pincode" value={shipping.pincode} onChange={(e) => setShipping({ ...shipping, pincode: e.target.value })} className="inp1 w-[60vw] md:w-[40vw] lg:w-[30vw]" /></div>
-            <div className="flex w-[60vw] md:w-[40vw] lg:w-[30vw]">
-              {addressDisplay == 1 && user?.address?.length != 0 ? <div className="flex flex-col  w-[60vw] md:w-[40vw] lg:w-[30vw]">
-                <div className="font-bold p-2 text-[#DD6A6A]">Select Address</div>
-                <div className="h-[200px] overflow-x-auto ">
-                  {user?.address?.map((item, index) => <div key={index} className="my-3 flex justify-center items-center inp1  h-[80px] ">
-                    <div className="p-2 font-extrabold  text-xl">{shipping.address == item ? <FaRegCheckCircle /> : <FaRegCircle onClick={() => { setShipping({ ...shipping, address: item }) }} />}</div>
-                    <div className="h-[80px] w-[90%] overflow-y-scroll overflow-x-hidden">{item}</div>
-                  </div>)}
-                </div>
-                <button onClick={() => setAD(2)} className="font-bold border-[#DD6A6A] shadow-lg border bg-white text-xs p-1 text-center justify-center rounded-md  w-[70px] text-[#DD6A6A] flex items-center">Add New</button>
-              </div> :
+        <div className="relative md:w-[75vw] w-[95vw] overflow-hidden rounded-[32px] border border-[#E8D8D2] bg-[#FFFDFC] shadow-[0_20px_80px_rgba(110,44,44,0.12)]">
+
+          {/* Background Blur */}
+          <div className="absolute -top-24 -left-24 h-60 w-60 rounded-full bg-[#6E2C2C]/10 blur-3xl"></div>
+          <div className="absolute -bottom-24 -right-24 h-60 w-60 rounded-full bg-[#D4AF37]/10 blur-3xl"></div>
+
+          <div className="relative p-8 md:p-12">
+
+            {/* Heading */}
+            <div className="text-center mb-10">
+
+              <p className="uppercase tracking-[8px] text-[#6E2C2C] text-xs font-semibold">
+                Premium Checkout
+              </p>
+
+              <h1 className="text-4xl font-black mt-3 bg-gradient-to-r from-[#6E2C2C] via-[#8B3A3A] to-[#D4AF37] bg-clip-text text-transparent">
+                Shipping Details
+              </h1>
+
+              <div className="h-1 w-24 mx-auto rounded-full bg-gradient-to-r from-[#6E2C2C] via-[#D4AF37] to-[#6E2C2C] mt-5"></div>
+
+            </div>
+
+            <div className="space-y-6">
+
+              {/* Name */}
+              <div>
+                <label className="text-sm text-gray-500 font-medium mb-2 block">
+                  Full Name
+                </label>
+
+                <input
+                  type="text"
+                  value={shipping.name}
+                  placeholder="Enter your name"
+                  onChange={(e) =>
+                    setShipping({ ...shipping, name: e.target.value })
+                  }
+                  className="w-full rounded-2xl bg-[#FFFCFA] border border-[#E8D8D2] px-5 py-4 shadow-sm outline-none transition duration-300 focus:border-[#6E2C2C] focus:ring-4 focus:ring-[#6E2C2C]/10"
+                />
+              </div>
+
+              {/* Pincode */}
+              <div>
+                <label className="text-sm text-gray-500 font-medium mb-2 block">
+                  Pincode
+                </label>
+
+                <input
+                  type="text"
+                  value={shipping.pincode}
+                  placeholder="Enter pincode"
+                  onChange={(e) =>
+                    setShipping({ ...shipping, pincode: e.target.value })
+                  }
+                  className="w-full rounded-2xl bg-[#FFFCFA] border border-[#E8D8D2] px-5 py-4 shadow-sm outline-none transition duration-300 focus:border-[#6E2C2C] focus:ring-4 focus:ring-[#6E2C2C]/10"
+                />
+              </div>
+
+              {/* Address */}
+              {addressDisplay === 1 && user?.address?.length > 0 ? (
                 <div>
-                  <div>Add Address</div>
-                  <textarea name="Address" placeholder="Address" value={address} onChange={(e) => setAddress(e.target.value)} className="inp1 w-[60vw] md:w-[40vw] lg:w-[30vw]"></textarea>
-                  <div onClick={handleAddAddress}>Add</div>
+
+                  <div className="flex justify-between items-center mb-5">
+
+                    <h2 className="font-bold text-xl text-[#6E2C2C]">
+                      Saved Addresses
+                    </h2>
+
+                    <button
+                      onClick={() => setAD(2)}
+                      className="rounded-full bg-gradient-to-r from-[#6E2C2C] to-[#8B3A3A] px-5 py-2 text-white font-semibold shadow-md hover:scale-105 transition"
+                    >
+                      + Add New
+                    </button>
+
+                  </div>
+
+                  <div className="space-y-4 max-h-[260px] overflow-y-auto pr-2">
+
+                    {user.address.map((item, index) => (
+                      <div
+                        key={index}
+                        onClick={() =>
+                          setShipping({ ...shipping, address: item })
+                        }
+                        className={`cursor-pointer rounded-2xl border p-5 transition duration-300 ${shipping.address === item
+                            ? "border-[#6E2C2C] bg-[#FFF9F5] shadow-lg"
+                            : "border-[#E8D8D2] bg-[#FFFCFA] hover:shadow-md hover:-translate-y-1"
+                          }`}
+                      >
+
+                        <div className="flex gap-4">
+
+                          <div className="text-2xl text-[#6E2C2C]">
+                            {shipping.address === item ? (
+                              <FaRegCheckCircle />
+                            ) : (
+                              <FaRegCircle />
+                            )}
+                          </div>
+
+                          <div className="text-gray-700 leading-7">
+                            {item}
+                          </div>
+
+                        </div>
+
+                      </div>
+                    ))}
+
+                  </div>
+
                 </div>
-              }
+              ) : (
+                <div className="rounded-3xl border border-dashed border-[#6E2C2C] p-6 bg-[#FFFCFA]">
+
+                  <h2 className="font-bold text-[#6E2C2C] mb-4 text-lg">
+                    Add New Address
+                  </h2>
+
+                  <textarea
+                    value={address}
+                    rows={5}
+                    placeholder="Write your complete address..."
+                    onChange={(e) => setAddress(e.target.value)}
+                    className="w-full rounded-2xl border border-[#E8D8D2] bg-white px-4 py-4 outline-none resize-none focus:ring-4 focus:ring-[#6E2C2C]/10 focus:border-[#6E2C2C]"
+                  />
+
+                  <button
+                    onClick={handleAddAddress}
+                    className="mt-5 rounded-full bg-gradient-to-r from-[#6E2C2C] to-[#8B3A3A] px-8 py-3 font-semibold text-white shadow-md hover:scale-105 transition"
+                  >
+                    Save Address
+                  </button>
+
+                </div>
+              )}
+
+              {/* Contact */}
+              <div className="grid md:grid-cols-2 gap-5">
+
+                <div className="rounded-2xl bg-[#FFFCFA] border border-[#E8D8D2] shadow-sm p-5">
+                  <p className="text-xs uppercase tracking-widest text-gray-500">
+                    Phone Number
+                  </p>
+                  <p className="mt-2 text-lg font-bold text-gray-700">
+                    {shipping.phoneNumber}
+                  </p>
+                </div>
+
+                <div className="rounded-2xl bg-[#FFFCFA] border border-[#E8D8D2] shadow-sm p-5">
+                  <p className="text-xs uppercase tracking-widest text-gray-500">
+                    Email Address
+                  </p>
+                  <p className="mt-2 text-lg font-bold text-gray-700 break-all">
+                    {shipping.email}
+                  </p>
+                </div>
+
+              </div>
+
+              {/* Buttons */}
+              <div className="flex flex-col md:flex-row gap-5 pt-5">
+
+                <button
+                  onClick={handlePlaceOrder}
+                  className="flex-1 rounded-full bg-gradient-to-r from-[#6E2C2C] via-[#8B3A3A] to-[#A56A2C] py-4 text-lg font-bold text-white shadow-[0_15px_35px_rgba(110,44,44,0.25)] hover:scale-[1.03] transition"
+                >
+                  Place Order
+                </button>
+
+                <button
+                  onClick={() => setDisplay(0)}
+                  className="flex-1 rounded-full border-2 border-[#6E2C2C] py-4 text-lg font-bold text-[#6E2C2C] hover:bg-[#6E2C2C] hover:text-white transition"
+                >
+                  Cancel
+                </button>
+
+              </div>
+
             </div>
-            <div className="inp1 w-[60vw] md:w-[40vw] lg:w-[30vw]">{shipping?.phoneNumber}</div>
-            <div className="inp1 w-[60vw] md:w-[40vw] lg:w-[30vw]">{shipping?.email}</div>
-            <div className="flex gap-4 p-5">
-              <button className="inp1 md:w-[13vw] text-sm " onClick={handlePlaceOrder}>Place Order</button>
-              <button className="inp1 md:w-[13vw] text-sm " onClick={() => setDisplay(0)}>Cancel Order</button>
-            </div>
+
           </div>
         </div>
       ) : (
